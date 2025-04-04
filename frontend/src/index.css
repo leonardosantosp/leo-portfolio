@@ -8,10 +8,29 @@
 }
 
 body {
-  background-color: #000000;
+  background: rgb(20, 3, 36);
+  background: radial-gradient(
+    circle,
+    rgba(20, 3, 36, 1) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: #fff;
 }
 
-html {
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+s html {
   scroll-behavior: smooth;
 }
 
@@ -195,6 +214,7 @@ a {
 }
 
 .chat {
+  margin-top: 60px;
   margin-left: 30px;
   display: flex;
   align-items: flex-start;
@@ -205,6 +225,7 @@ a {
   height: 70px;
   border-radius: 50%;
   object-fit: cover;
+  background-color: transparent;
 }
 
 .chat-bubble {
@@ -230,65 +251,4 @@ a {
   border-style: solid;
   border-width: 10px 15px 10px 0;
   border-color: transparent #333 transparent transparent;
-}
-
-/* Neon Cursor */
-
-.cursor {
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background: #0ff;
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 15px #0ff, 0 0 30px #0ff;
-  transition: transform 0.05s ease;
-  z-index: 9999;
-}
-
-.cursor-line {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: cyan;
-  pointer-events: none;
-  z-index: 9999;
-  filter: blur(4px);
-  transition: transform 0.05s linear;
-}
-
-#app {
-  overflow: hidden;
-}
-
-#app h1 {
-  --fontSize: 70px;
-  --lineHeight: 90px;
-  width: auto;
-  height: calc(2 * var(--lineHeight));
-  line-height: var(--lineHeight);
-  margin: calc(50vh - var(--lineHeight)) auto 0;
-  text-align: center;
-  color: #ffffff;
-  font-family: 'Montserrat', sans-serif;
-  font-size: var(--fontSize);
-  text-shadow: 0 0 5px #ffffff, 0 0 20px #000, 0 0 30px #000;
-}
-
-#app canvas {
-  display: block;
-  position: fixed;
-  z-index: -1;
-  top: 0;
-}
-
-.content {
-  display: block;
-  height: 300px;
 }
