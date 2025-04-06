@@ -9,5 +9,74 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <div id="particles-js"></div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+      particlesJS('particles-js', {
+        particles: {
+          number: {
+            value: 40, // menos partículas
+            density: {
+              enable: true,
+              value_area: 400 // menor área de dispersão
+            }
+          },
+          color: {
+            value: '#e203ff' // tom violeta
+          },
+          shape: {
+            type: 'circle',
+            stroke: {
+              width: 0,
+              color: '#000000'
+            },
+            polygon: {
+              nb_sides: 5
+            }
+          },
+          opacity: {
+            value: 0.3, // mais suave
+            random: true
+          },
+          size: {
+            value: 4,
+            random: true
+          },
+          line_linked: {
+            enable: true,
+            distance: 120,
+            color: '#e203ff',
+            opacity: 0.2,
+            width: 1
+          },
+          move: {
+            enable: true,
+            speed: 1,
+            direction: 'none',
+            random: true,
+            straight: false,
+            out_mode: 'out',
+            bounce: false,
+            attract: {
+              enable: false
+            }
+          }
+        },
+        interactivity: {
+          detect_on: 'canvas',
+          events: {
+            onhover: {
+              enable: false
+            },
+            onclick: {
+              enable: false
+            },
+            resize: true
+          }
+        },
+        retina_detect: true
+      })
+    </script>
   </body>
 </html>
