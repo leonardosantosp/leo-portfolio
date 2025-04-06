@@ -252,3 +252,121 @@ a {
   border-width: 10px 15px 10px 0;
   border-color: transparent #333 transparent transparent;
 }
+
+/* Projects */
+
+.projects__title {
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
+  font-size: 40px;
+  margin: 40px 0 40px 40px;
+}
+
+.projects__container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.project-item__initial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 534px;
+}
+
+.project-item__logo {
+  margin-top: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s ease;
+}
+
+.project-item__logo h2 {
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
+  font-size: 35px;
+}
+
+.project-item__logo img {
+  margin-right: 30px;
+  transition: 0.5s ease;
+}
+
+.project-item {
+  margin: 40px;
+  background: linear-gradient(135deg, #330352, #068953);
+  border-radius: 20px;
+  width: 40%;
+  transition: 0.5s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.project-item:hover {
+  transform: scale(1.05);
+}
+
+.project-item:hover .project-item__logo {
+  transform: scale(1.06);
+}
+
+.arrow {
+  transition: 0.5s ease;
+}
+
+.arrow-down {
+  margin-top: 50px;
+}
+
+.arrow-down:hover {
+  transform: translateY(10px);
+}
+
+.project-item__detail .project-item__detail-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.project-item__detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.project-item__detail-content h2 {
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
+  font-size: 35px;
+}
+
+.project-item__detail-content button {
+  background-color: #580c76;
+  color: white;
+  border-radius: 30px;
+  width: 20%;
+  height: 40px;
+  margin-bottom: 30px;
+  border-style: none;
+  font-size: 20px;
+  font-weight: bold;
+  transition: 0.5s ease;
+}
+
+.project-item__detail-content button:hover {
+  background-color: #41024a;
+}
+
+.arrow-up {
+  transform: rotate(180deg);
+  transition: transform 0.5s ease;
+}
+
+.arrow-up:hover {
+  transform: rotate(180deg) translateY(10px);
+}
