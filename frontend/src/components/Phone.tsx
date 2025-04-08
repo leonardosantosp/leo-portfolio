@@ -1,15 +1,20 @@
-import { useState } from 'react'
+import { Clock } from './Clock'
+import search from '../assets/search-icon.png'
+import { Apps } from './Apps'
+
 const Phone = () => {
-  const [page, setPage] = useState(0)
-
-  // Simula várias páginas
-  const pages = [
-    { id: 0, content: <h3>📱 Minha Stack de Tecnologias</h3> },
-    { id: 1, content: <h3>🚀 Meus Projetos</h3> },
-    { id: 2, content: <h3>📩 Contato</h3> }
-  ]
-
-  return <div className="phone">{''}</div>
+  return (
+    <div className="phone">
+      <Clock />
+      <div className="phone__search">
+        <img src={search} alt="Ícone de busca" />
+        <p>Minha stack de tecnologias</p>
+      </div>
+      <div className="phone__apps">
+        <Apps />
+      </div>
+    </div>
+  )
 }
 
 export default Phone

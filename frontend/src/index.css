@@ -149,6 +149,59 @@ a {
   filter: drop-shadow(0px 10px 200px rgba(186, 10, 229, 0.7));
 }
 
+.clock {
+  color: white;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 30px;
+}
+
+.clock__time {
+  font-size: 51px;
+  font-weight: bold;
+}
+
+.clock__date {
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.phone__search {
+  display: flex;
+  color: black;
+  background-color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  height: 20px;
+  border-radius: 30px;
+  margin: 30px;
+  width: 77%;
+  align-items: center;
+}
+
+.phone__search img {
+  margin: 0 10px;
+}
+
+.phone__apps {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 15px;
+}
+
+.phone__apps img {
+  width: 35px;
+  height: 35px;
+  margin: 10px;
+  transition: transform 0.5s ease;
+}
+
+.phone__apps img:hover {
+  transform: scale(1.2);
+}
+
 /* Ticker */
 
 .skills-ticker {

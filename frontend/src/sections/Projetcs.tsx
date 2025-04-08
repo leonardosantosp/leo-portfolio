@@ -5,7 +5,22 @@ export const Projects = () => {
     {
       image: 'https://imgur.com/LtdTASQ.png',
       logo: 'https://imgur.com/i9UWRS8.png',
-      title: 'Spotify Clone'
+      title: 'Spotify Clone',
+      link: 'http://projeto.com',
+      stack: [
+        {
+          name: 'React',
+          image: 'https://img.icons8.com/teste'
+        },
+        {
+          name: 'NodeJs',
+          image: 'https://img.icons8.com/teste'
+        },
+        {
+          name: 'CSS',
+          image: 'https://img.icons8.com/teste'
+        }
+      ]
     },
     {
       image: 'https://imgur.com/LtdTASQ.png',
