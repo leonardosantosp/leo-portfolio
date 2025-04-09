@@ -1,4 +1,5 @@
 import { ProjectItem } from '../components/ProjectItem'
+import { Stack } from '../components/Stack'
 
 export const Projects = () => {
   const projects = [
@@ -10,47 +11,139 @@ export const Projects = () => {
       stack: [
         {
           name: 'React',
-          image: 'https://img.icons8.com/teste'
+          image: 'https://imgur.com/mpjlXh4.png'
         },
         {
           name: 'NodeJs',
-          image: 'https://img.icons8.com/teste'
+          image: 'https://imgur.com/mpjlXh4.png'
         },
         {
           name: 'CSS',
-          image: 'https://img.icons8.com/teste'
+          image: 'https://imgur.com/mpjlXh4.png'
         }
       ]
     },
     {
       image: 'https://imgur.com/LtdTASQ.png',
       logo: 'https://imgur.com/i9UWRS8.png',
-      title: 'Spotify Clone'
+      title: 'Spotify Clone',
+      stack: [
+        {
+          name: 'React',
+          image: 'https://imgur.com/mpjlXh4.png'
+        },
+        {
+          name: 'NodeJs',
+          image: 'https://imgur.com/mpjlXh4.png'
+        },
+        {
+          name: 'CSS',
+          image: 'https://imgur.com/mpjlXh4.png'
+        }
+      ]
     },
     {
       image: 'https://imgur.com/LtdTASQ.png',
       logo: 'https://imgur.com/i9UWRS8.png',
-      title: 'Spotify Clone'
+      title: 'Spotify Clone',
+      stack: [
+        {
+          name: 'React',
+          image: 'https://imgur.com/mpjlXh4.png'
+        },
+        {
+          name: 'NodeJs',
+          image: 'https://imgur.com/mpjlXh4.png'
+        },
+        {
+          name: 'CSS',
+          image: 'https://imgur.com/mpjlXh4.png'
+        }
+      ]
     },
     {
       image: 'https://imgur.com/LtdTASQ.png',
       logo: 'https://imgur.com/i9UWRS8.png',
-      title: 'Spotify Clone'
+      title: 'Spotify Clone',
+      stack: [
+        {
+          name: 'React',
+          image: 'https://imgur.com/mpjlXh4.png'
+        },
+        {
+          name: 'NodeJs',
+          image: 'https://imgur.com/mpjlXh4.png'
+        },
+        {
+          name: 'CSS',
+          image: 'https://imgur.com/mpjlXh4.png'
+        }
+      ]
     },
     {
       image: 'https://imgur.com/LtdTASQ.png',
       logo: 'https://imgur.com/i9UWRS8.png',
-      title: 'Spotify Clone'
+      title: 'Spotify Clone',
+      stack: [
+        {
+          name: 'React',
+          image: 'https://imgur.com/mpjlXh4.png'
+        },
+        {
+          name: 'NodeJs',
+          image: 'https://imgur.com/mpjlXh4.png'
+        },
+        {
+          name: 'CSS',
+          image: 'https://imgur.com/mpjlXh4.png'
+        }
+      ]
     },
     {
       image: 'https://imgur.com/LtdTASQ.png',
       logo: 'https://imgur.com/i9UWRS8.png',
-      title: 'Spotify Clone'
+      title: 'Spotify Clone',
+      stack: [
+        {
+          name: 'React',
+          image: 'https://imgur.com/mpjlXh4.png'
+        },
+        {
+          name: 'NodeJs',
+          image: 'https://imgur.com/mpjlXh4.png'
+        },
+        {
+          name: 'CSS',
+          image: 'https://imgur.com/mpjlXh4.png'
+        }
+      ]
     },
     {
       image: 'https://imgur.com/LtdTASQ.png',
       logo: 'https://imgur.com/i9UWRS8.png',
-      title: 'Spotify Clone'
+      title: 'Spotify Clone',
+      stack: [
+        {
+          name: 'React',
+          image: 'https://imgur.com/mpjlXh4.png'
+        },
+        {
+          name: 'NodeJs',
+          image: 'https://imgur.com/mpjlXh4.png'
+        },
+        {
+          name: 'CSS',
+          image: 'https://imgur.com/mpjlXh4.png'
+        },
+        {
+          name: 'React',
+          image: 'https://imgur.com/mpjlXh4.png'
+        },
+        {
+          name: 'React',
+          image: 'https://imgur.com/mpjlXh4.png'
+        }
+      ]
     }
   ]
 
@@ -63,6 +156,7 @@ export const Projects = () => {
             logo={project.logo}
             title={project.title}
             image={project.image}
+            stack={project.stack}
           />
         ))}
       </div>

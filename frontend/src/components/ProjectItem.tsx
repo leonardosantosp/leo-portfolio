@@ -5,9 +5,20 @@ interface ProjectItemProps {
   logo: string
   title: string
   image: string
+  stack: {
+    name: string
+    image: string
+  }[]
 }
 
-export const ProjectItem = ({ logo, title, image }: ProjectItemProps) => {
+import { Stack } from './Stack'
+
+export const ProjectItem = ({
+  logo,
+  title,
+  image,
+  stack
+}: ProjectItemProps) => {
   const [isVisible, setIsVisible] = useState(false)
 
   return (
@@ -28,7 +39,9 @@ export const ProjectItem = ({ logo, title, image }: ProjectItemProps) => {
       ) : (
         <div className="project-item__detail">
           <div className="project-item__detail-header">
-            <div className="stack">{''}</div>
+            <div className="stack">
+              <Stack stack={stack} />
+            </div>
             <img
               className="arrow arrow-up"
               src={arrow}
