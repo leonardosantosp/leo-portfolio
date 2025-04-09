@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import arrow from '../assets/down-arrow.png'
+import { Link } from 'react-router-dom'
 
 interface ProjectItemProps {
   logo: string
@@ -52,7 +53,7 @@ export const ProjectItem = ({
           <div className="project-item__detail-content">
             <h2>{title}</h2>
             <img src={image} alt="mockup do projeto" />
-            <button>View</button>
+            <Link to={`/project/${title.replace(/\s+/g, '_')}`}>View</Link>
           </div>
         </div>
       )}

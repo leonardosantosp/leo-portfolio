@@ -403,7 +403,7 @@ a {
   font-size: 35px;
 }
 
-.project-item__detail-content button {
+.project-item__detail-content a {
   background-color: #5e0482;
   color: white;
   border-radius: 30px;
@@ -411,12 +411,16 @@ a {
   height: 40px;
   margin-bottom: 30px;
   border-style: none;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   transition: 0.5s ease;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.project-item__detail-content button:hover {
+.project-item__detail-content a:hover {
   background-color: #41024a;
 }
 
@@ -503,7 +507,93 @@ p {
   box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
 }
 
+.stack__item img {
+  width: 25px;
+  height: 25px;
+}
+
 .stack__item p {
-  margin: 0;
+  margin: 3px 0 0 0;
   white-space: nowrap;
+}
+
+.project-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.links-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.links-container a {
+  display: flex;
+  align-items: center;
+  margin: 0 30px 30px 0;
+  background-color: #580c76;
+  width: 150px;
+  border-radius: 5px;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  transition: 0.5s ease;
+}
+
+.links-container a:hover {
+  background-color: #3c0543;
+  box-shadow: 0 4px 12px rgba(225, 13, 218, 0.2);
+  transform: translateY(-2px);
+}
+
+.links-container a img {
+  margin: 5px 5px 5px 10px;
+  transition: 0.5s ease;
+}
+
+.links-container a:hover img {
+  transform: scale(1.05);
+}
+
+.link-text {
+  width: 58%;
+  display: flex;
+  justify-content: center;
+}
+
+.readme-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.markdown-body {
+  padding: 80px;
+  border-radius: 20px;
+}
+
+.markdown-body.collapsed {
+  max-height: 400px;
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+
+.readme-toggle {
+  background-color: #5e0482;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin: 20px auto;
+  display: block;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.readme-toggle:hover {
+  background-color: #41024a;
 }
