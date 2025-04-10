@@ -1,12 +1,27 @@
 import { Clock } from './Clock'
 import search from '../assets/search-icon.png'
 import { Apps } from './Apps'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import onGif from '../assets/ligar-gif.gif'
 import onPng from '../assets/ligar.png'
 
+const text = 'Minha stack de tecnologias'
+
 const Phone = () => {
   const [phoneOn, setPhoneOn] = useState(false)
+  const [index, setIndex] = useState(0)
+  const [showApps, setShowApps] = useState(false)
+
+  useEffect(() => {
+    if (!phoneOn) return
+    if (index < text.length) {
+      const timeout = setTimeout(() => {
+        setIndex(prevIndex => prevIndex + 1)
+      }, 25)
+      return () => clearTimeout(timeout)
+    }
+    setShowApps(true)
+  }, [index, phoneOn])
 
   return (
     <div className="phone">
@@ -33,10 +48,12 @@ const Phone = () => {
           <Clock />
           <div className="phone__search">
             <img src={search} alt="Ícone de busca" />
-            <p>Minha stack de tecnologias</p>
+            <p>
+              {text.slice(0, index)} {index !== text.length && '|'}
+            </p>
           </div>
-          <div className="phone__apps">
-            <Apps />
+          <div className={`phone__apps ${showApps ? 'show' : ''}`}>
+            {showApps && <Apps />}
           </div>
         </>
       )}

@@ -208,6 +208,14 @@ a {
   }
 }
 
+.phone__apps {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+.phone__apps.show {
+  opacity: 1;
+}
+
 .clock {
   color: white;
   font-family: 'Inter', sans-serif;
