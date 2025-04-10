@@ -39,7 +39,7 @@ export const About = () => {
     if (visible && index < text.length) {
       const interval = setInterval(() => {
         setIndex(prevIndex => prevIndex + 1)
-      }, 20)
+      }, 25)
       return () => clearInterval(interval)
     }
   }, [visible, index])
@@ -50,7 +50,9 @@ export const About = () => {
       <div className="about-container">
         <div className="chat" ref={chatRef}>
           <img src={foto} alt="imagem de leonardo" />
-          <div className="chat-bubble">{text.slice(0, index)}</div>
+          <div className="chat-bubble">
+            {text.slice(0, index)} {index !== text.length && '|'}
+          </div>
         </div>
         <img
           className="signature"

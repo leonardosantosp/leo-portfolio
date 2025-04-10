@@ -2,6 +2,7 @@ import ReactMarkdown from 'react-markdown'
 import { useEffect, useState } from 'react'
 import rehypeRaw from 'rehype-raw'
 import 'github-markdown-css/github-markdown.css'
+import readme from '../assets/readme.png'
 
 export const ReadmeViewer = () => {
   const [content, setContent] = useState('')
@@ -18,6 +19,10 @@ export const ReadmeViewer = () => {
   return (
     <div className="readme-wrapper">
       <div className={`markdown-body ${expanded ? 'expanded' : 'collapsed'}`}>
+        <div className="readme-header">
+          <img src={readme} alt="imagem do readme do github" />
+          <h3>README</h3>
+        </div>
         <ReactMarkdown rehypePlugins={[rehypeRaw]}>{content}</ReactMarkdown>
       </div>
       <button className="readme-toggle" onClick={() => setExpanded(!expanded)}>

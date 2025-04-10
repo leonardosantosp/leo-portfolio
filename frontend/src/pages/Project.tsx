@@ -2,13 +2,15 @@ import { ReadmeViewer } from '../components/ReadmeViewer'
 import { Header } from '../components/Header'
 import github from '../assets/github-icon.png'
 
-// TODO: adicionar o nome do repositório como parâmetro na URL (http://localhost:5173/project/:repo) e através desse nome pegar o projeto na base de dados através de um fetch com a API
-
 export const Project = () => {
   return (
     <>
       <Header showMenu={false} />
       <div className="project-page">
+        <div className="project-page__header">
+          <img src="https://imgur.com/i9UWRS8.png" alt="logo do projeto X" />
+          <h2>Full Stack Spotify</h2>
+        </div>
         <div className="links-container">
           <a
             href="https://github.com/leonardosantosp/full-stack-spotify"
