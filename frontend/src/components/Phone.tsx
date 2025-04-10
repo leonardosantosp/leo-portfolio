@@ -20,7 +20,10 @@ const Phone = () => {
       }, 25)
       return () => clearTimeout(timeout)
     }
-    setShowApps(true)
+    const timeout = setTimeout(() => {
+      setShowApps(true)
+    }, 200)
+    return () => clearTimeout(timeout)
   }, [index, phoneOn])
 
   return (

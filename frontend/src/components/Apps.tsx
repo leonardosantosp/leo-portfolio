@@ -18,6 +18,7 @@ export const Apps = () => {
       <img src={react} alt="logo do react" />
       <img src={react} alt="logo do react" />
       <img src={react} alt="logo do react" />
+      <img src={react} alt="logo do react" />
     </>
   )
 }
