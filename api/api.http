@@ -1,0 +1,30 @@
+# SKILLS
+# @name createSkill 
+POST http://localhost:3000/skills
+Content-Type: application/json
+
+{
+  "name": "react",
+  "icon": "foto react"
+}
+
+###
+@skillId = {{ createSkill.response.body._id }}
+###
+
+GET http://localhost:3000/skills
+
+###
+GET http://localhost:3000/skills/{{skillId}}
+
+###
+
+PATCH http://localhost:3000/skills/{{skillId}}
+Content-Type: application/json
+
+{
+  "icon": "image"
+}
+
+###
+DELETE http://localhost:3000/skills/{{skillId}}
