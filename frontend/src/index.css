@@ -609,7 +609,7 @@ p {
 
 .project-page__header {
   display: flex;
-  width: 100%;
+  width: 96%;
   align-items: center;
   margin: 30px 0 30px 30px;
 }
