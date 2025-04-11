@@ -1,5 +1,6 @@
 import { ReadmeViewer } from '../components/ReadmeViewer'
 import { Header } from '../components/Header'
+import { Footer } from '../components/Footer'
 import github from '../assets/github-icon.png'
 
 export const Project = () => {
@@ -32,6 +33,7 @@ export const Project = () => {
         </div>
         <ReadmeViewer />
       </div>
+      <Footer />
     </>
   )
 }

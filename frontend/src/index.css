@@ -716,3 +716,29 @@ p {
 .readme-toggle:hover {
   background-color: #41024a;
 }
+
+.project-by-stack__header {
+  display: flex;
+  align-items: center;
+}
+
+.project-by-stack__header img {
+  height: 90px;
+  width: 90px;
+  margin: 0 30px 20px 30px;
+}
+
+.project-by-stack__header h2 {
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
+  font-size: 35px;
+}
+
+.project-by-stack__projects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0 2rem;
+}

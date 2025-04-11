@@ -142,6 +142,14 @@ export const Projects = () => {
         {
           name: 'React',
           image: 'https://imgur.com/mpjlXh4.png'
+        },
+        {
+          name: 'React',
+          image: 'https://imgur.com/mpjlXh4.png'
+        },
+        {
+          name: 'React',
+          image: 'https://imgur.com/mpjlXh4.png'
         }
       ]
     }

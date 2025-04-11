@@ -1,9 +1,11 @@
 import react from '../assets/app-images/react.png'
-
+import { Link } from 'react-router-dom'
 export const Apps = () => {
   return (
     <>
-      <img src={react} alt="logo do react" />
+      <Link to="/projects/:stackId">
+        <img src={react} alt="logo do react" />
+      </Link>
       <img src={react} alt="logo do react" />
       <img src={react} alt="logo do react" />
       <img src={react} alt="logo do react" />
