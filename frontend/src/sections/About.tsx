@@ -49,7 +49,7 @@ export const About = () => {
       <h1 className="about__title">Sobre Mim</h1>
       <div className="about-container">
         <div className="chat" ref={chatRef}>
-          <img src={foto} alt="imagem de leonardo" />
+          <img src={foto} alt="imagem de leonardo" loading="lazy" />
           <div className="chat-bubble">
             {text.slice(0, index)} {index !== text.length && '|'}
           </div>
@@ -58,6 +58,7 @@ export const About = () => {
           className="signature"
           src={assinatura}
           alt="assinatura de leonardo"
+          loading="lazy"
         />
       </div>
     </div>
