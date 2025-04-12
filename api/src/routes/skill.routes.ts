@@ -1,5 +1,5 @@
 import { transformer, z } from 'zod'
-import { skillSchema } from '../schemas/player.schema.ts'
+import { skillSchema } from '../schemas/skill.schema.ts'
 import {
   getAllSkillsController,
   getSkillByIdController,

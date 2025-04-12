@@ -8,6 +8,7 @@ import {
   jsonSchemaTransform
 } from 'fastify-type-provider-zod'
 import { skillRoutes } from './routes/skill.routes.ts'
+import { technologyRoutes } from './routes/technology.routes.ts'
 
 const app = fastify()
 
@@ -31,6 +32,7 @@ app.register(fastifySwaggerUi, {
 })
 
 app.register(skillRoutes)
+app.register(technologyRoutes)
 
 app.listen({ port: 3333 }, (err, address) => {
   console.log(`app listening at ${address}`)

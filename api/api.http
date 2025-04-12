@@ -29,4 +29,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3333/skills/67fa774e61d7a4afcd861759
+DELETE http://localhost:3333/skills/67fa8067769f9789fa37f84f
