@@ -1,7 +1,8 @@
 import { z } from 'zod'
 import {
   getAllTechnologiesController,
-  getTechnologyByIdController
+  getTechnologyByIdController,
+  createTechnologyController
 } from '../controllers/technology.controller.ts'
 
 import { technologySchema } from '../schemas/technology.schema.ts'
@@ -52,5 +53,32 @@ export function technologyRoutes(app) {
       }
     },
     getTechnologyByIdController
+  )
+
+  app.post(
+    '/technologies',
+    {
+      schema: {
+        summary: 'create a technology',
+        description: 'create a technology',
+        tags: ['technologies'],
+        body: z.object({
+          name: z.string(),
+          icon: z.string(),
+          appIcon: z.string()
+        }),
+        response: {
+          201: technologySchema,
+          409: z.object({
+            message: z.string()
+          }),
+          500: z.object({
+            message: z.string(),
+            error: z.string()
+          })
+        }
+      }
+    },
+    createTechnologyController
   )
 }

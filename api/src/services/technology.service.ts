@@ -1,8 +1,12 @@
 import {
   getAllTechnologies,
   getTechnologyById,
-  getTechnologyByName
+  getTechnologyByNameOrSlug,
+  createTechnology
 } from '../repository/tecnology.repository.ts'
+
+import { generateSlug } from '../utils/generateSlug.ts'
+import type { CreateTechnologyDtoType } from '../dtos/technology/create-technology.dto.ts'
 
 export async function getAllTechnologiesService() {
   return await getAllTechnologies()
@@ -16,4 +20,26 @@ export async function getTechnologyByIdService(id: string) {
   }
 
   return technology
+}
+
+export async function createTechnologyService(
+  technologyData: CreateTechnologyDtoType
+) {
+  const slug = generateSlug(technologyData.name)
+
+  const existingTechnology = await getTechnologyByNameOrSlug(
+    technologyData.name,
+    slug
+  )
+
+  if (existingTechnology) {
+    throw new Error('Technology already exists')
+  }
+
+  const technologyToCreate = {
+    ...technologyData,
+    slug
+  }
+
+  return createTechnology(technologyToCreate)
 }

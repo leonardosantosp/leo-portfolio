@@ -8,6 +8,13 @@ export async function getTechnologyById(id: string) {
   return await Technology.findById(id)
 }
 
-export async function getTechnologyByName(name: string) {
-  return await Technology.findOne({ name })
+export async function getTechnologyByNameOrSlug(name: string, slug: string) {
+  return await Technology.findOne({
+    $or: [{ name }, { slug }]
+  })
+}
+
+export async function createTechnology(technologyData: unknown) {
+  const technology = new Technology(technologyData)
+  return await technology.save()
 }

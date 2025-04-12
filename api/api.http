@@ -1,4 +1,4 @@
-# SKILLS
+#  ---------------------- SKILLS ----------------------
 # @name createSkill 
 POST http://localhost:3333/skills
 Content-Type: application/json
@@ -30,3 +30,20 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:3333/skills/67fa8067769f9789fa37f84f
+
+#  ---------------------- TECHNOLOGIES ----------------------
+###
+POST http://localhost:3333/technologies
+Content-Type: application/json
+
+{
+  "name": "c++",
+  "icon": "icone",
+  "appIcon": "app"
+}
+
+###
+GET http://localhost:3333/technologies
+
+###
+GET http://localhost:3333/technologies/67faa6c324843b545e722c3d
