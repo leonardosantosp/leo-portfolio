@@ -14,6 +14,10 @@ export async function getSkillById(id: string) {
   return await Skill.findById(id)
 }
 
+export async function getSkillByName(name: string) {
+  return await Skill.findOne({ name })
+}
+
 export async function createSkill(skillData: unknown) {
   const skill = new Skill(skillData)
   return await skill.save()

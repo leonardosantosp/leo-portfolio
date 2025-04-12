@@ -35,11 +35,13 @@ export function skillRoutes(app) {
         description: 'Get skill by id',
         summary: 'Get skill by id',
         tags: ['Skills'],
+        params: z.object({
+          id: z.string()
+        }),
         response: {
           200: skillSchema,
           404: z.object({
-            message: z.string(),
-            error: z.string()
+            message: z.string()
           }),
           500: z.object({
             message: z.string(),
@@ -63,10 +65,9 @@ export function skillRoutes(app) {
           icon: z.string()
         }),
         response: {
-          200: skillSchema,
-          400: z.object({
-            message: z.string(),
-            error: z.string()
+          201: skillSchema,
+          409: z.object({
+            message: z.string()
           }),
           500: z.object({
             message: z.string(),
@@ -88,19 +89,19 @@ export function skillRoutes(app) {
         params: z.object({
           id: z.string()
         }),
-        body: z.object({
-          name: z.string().optional(),
-          icon: z.string().optional()
-        }),
+        body: z
+          .object({
+            name: z.string().optional(),
+            icon: z.string().optional()
+          })
+          .strict(),
         response: {
           200: skillSchema,
           400: z.object({
-            message: z.string(),
-            error: z.string()
+            message: z.string()
           }),
           404: z.object({
-            message: z.string(),
-            error: z.string()
+            message: z.string()
           }),
           500: z.object({
             message: z.string(),
@@ -125,12 +126,10 @@ export function skillRoutes(app) {
         response: {
           200: skillSchema,
           400: z.object({
-            message: z.string(),
-            error: z.string()
+            message: z.string()
           }),
           404: z.object({
-            message: z.string(),
-            error: z.string()
+            message: z.string()
           }),
           500: z.object({
             message: z.string(),

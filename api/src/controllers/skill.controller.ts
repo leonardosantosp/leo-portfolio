@@ -27,12 +27,11 @@ export const getSkillByIdController = async (req, res) => {
 
   try {
     const skill = await getSkillByIdService(id)
-
-    if (!skill) {
-      return res.status(404).send({ message: 'Skill not found' })
-    }
     return res.status(200).send(skill)
   } catch (error) {
+    if (error instanceof Error && error.message === 'Skill not found') {
+      return res.status(404).send({ message: 'Skill not found' })
+    }
     console.error('Error fetching skill:', error)
     return res.status(500).send({ message: 'Internal Server Error' })
   }
@@ -45,8 +44,8 @@ export const createSkillController = async (req, res) => {
     const skill = await createSkillService(skillData)
     return res.status(201).send(skill)
   } catch (error) {
-    if (error instanceof Error && error.message === 'Invalid skill data') {
-      return res.status(400).send({ message: 'Invalid skill data' })
+    if (error instanceof Error && error.message === 'Skill already exists') {
+      return res.status(409).send({ message: 'Skill already exists' })
     }
     console.error('Error creating skill', error)
     return res.status(500).send({ message: 'Internal Server Error' })
@@ -57,10 +56,6 @@ export const UpdateSkillController = async (req, res) => {
   const { id } = req.params
   const skillData = req.body
 
-  if (!mongoose.isValidObjectId(id)) {
-    return res.status(400).send({ message: 'Invalid ID format' })
-  }
-
   try {
     const updated = await updateSkillService(id, skillData)
 
@@ -69,25 +64,34 @@ export const UpdateSkillController = async (req, res) => {
     }
     return res.status(200).send(updated)
   } catch (error) {
-    console.error('Error updating skill:', error)
-    if (error instanceof Error && error.message === 'Invalid skill data') {
-      return res.status(400).send({ message: 'Invalid skill data' })
+    if (
+      error instanceof Error &&
+      error.message === 'Skill name already exists'
+    ) {
+      return res.status(409).send({ message: 'Skill name already exists' })
     }
+    if (error instanceof Error && error.message === 'Invalid ID format') {
+      return res.status(400).send({ message: 'Invalid ID format' })
+    }
+
+    if (error instanceof Error && error.message === 'No fields to update') {
+      return res.status(400).send({ message: 'No fields to update' })
+    }
+
+    console.error('Error updating skill:', error)
     return res.status(500).send({ message: 'Internal Server Error' })
   }
 }
 
 export const deleteSkillController = async (req, res) => {
   const { id } = req.params
+
   if (!mongoose.isValidObjectId(id)) {
     return res.status(400).send({ message: 'Invalid ID format' })
   }
 
   try {
     const deleted = await deleteSkillService(id)
-    if (!deleted) {
-      return res.status(404).send({ message: 'Skill not found' })
-    }
     return res.status(200).send(deleted)
   } catch (error) {
     if (error instanceof Error && error.message === 'Skill not found') {

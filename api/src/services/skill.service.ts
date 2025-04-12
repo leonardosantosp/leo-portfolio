@@ -3,31 +3,41 @@ import {
   getSkillById,
   createSkill,
   updateSkill,
-  deleteSkill
+  deleteSkill,
+  getSkillByName
 } from '../repository/skill.repository'
 
-import { CreateSkillDto } from '../dtos/skill/create-skill.dto'
+import {
+  CreateSkillDto,
+  CreateSkillDtoType
+} from '../dtos/skill/create-skill.dto'
 import {
   UpdateSkillDto,
   UpdateSkillDtoType
 } from '../dtos/skill/update-skill.dto'
+import mongoose from 'mongoose'
 
 export async function getAllSkillsService() {
   return await getAllSkills()
 }
 
 export async function getSkillByIdService(id: string) {
-  return await getSkillById(id)
-}
-
-export async function createSkillService(skillData: unknown) {
-  const result = CreateSkillDto.safeParse(skillData)
-
-  if (!result.success) {
-    throw new Error('Invalid skill data')
+  const skill = await getSkillById(id)
+  if (!skill) {
+    throw new Error('Skill not found')
   }
 
-  return await createSkill(result.data)
+  return skill
+}
+
+export async function createSkillService(skillData: CreateSkillDtoType) {
+  const existingSkill = await getSkillByName(skillData.name)
+
+  if (existingSkill) {
+    throw new Error('Skill already exists')
+  }
+
+  return await createSkill(skillData)
 }
 
 export async function updateSkillService(
@@ -36,15 +46,28 @@ export async function updateSkillService(
 ) {
   const { _id, ...rest } = skillData
 
+  if (!mongoose.isValidObjectId(id)) {
+    throw new Error('Invalid ID format')
+  }
+
+  if (Object.keys(rest).length === 0) {
+    throw new Error('No fields to update')
+  }
+
   const updateSkillData = {
     _id: id,
     ...rest
   }
-  const result = UpdateSkillDto.safeParse(updateSkillData)
-  if (!result.success) {
-    throw new Error('Invalid skill data')
+
+  if (rest.name !== undefined) {
+    const existingSkill = await getSkillByName(rest.name)
+
+    if (existingSkill && existingSkill._id.toString() !== id) {
+      throw new Error('Skill name already exists')
+    }
   }
-  return await updateSkill(result.data)
+
+  return await updateSkill(updateSkillData)
 }
 
 export async function deleteSkillService(id: string) {
@@ -54,6 +77,5 @@ export async function deleteSkillService(id: string) {
     throw new Error('Skill not found')
   }
 
-  console.log(deleted)
   return deleted
 }

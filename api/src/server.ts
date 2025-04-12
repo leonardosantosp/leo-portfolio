@@ -32,7 +32,7 @@ app.register(fastifySwaggerUi, {
 
 app.register(skillRoutes)
 
-app.listen({ port: 3000 }, (err, address) => {
+app.listen({ port: 3333 }, (err, address) => {
   console.log(`app listening at ${address}`)
   if (err) {
     app.log.error(err)
