@@ -2,19 +2,13 @@ import { Home } from '../sections/Home'
 import { About } from '../sections/About'
 import { Projects } from '../sections/Projetcs'
 import { Footer } from '../components/Footer'
-import { useState, useEffect } from 'react'
 import { LoadingScreen } from '../components/LoadingScreen'
 
-export const Main = () => {
-  const [loading, setLoading] = useState(true)
+interface mainProps {
+  loading: boolean
+}
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false)
-    }, 1500)
-    return () => clearTimeout(timer)
-  }, [])
-
+export const Main = ({ loading }: mainProps) => {
   return (
     <div className="main-page">
       {loading && <LoadingScreen />}
