@@ -216,6 +216,15 @@ a {
   opacity: 1;
 }
 
+.load__app {
+  width: 235px;
+  height: 224px;
+}
+
+.load__app .loading-screen .spinner {
+  margin-top: 90px;
+}
+
 .clock {
   color: white;
   font-family: 'Inter', sans-serif;

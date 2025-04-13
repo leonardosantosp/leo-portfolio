@@ -1,30 +1,14 @@
 import { Clock } from './Clock'
 import search from '../assets/search-icon.png'
 import { Apps } from './Apps'
-import { useState, useEffect } from 'react'
 import onGif from '../assets/ligar-gif.gif'
 import onPng from '../assets/ligar.png'
-
-const text = 'Minha stack de tecnologias'
+import { LoadingScreen } from './LoadingScreen'
+import { usePhoneBoot } from '../hooks/usePhoneBoot'
 
 const Phone = () => {
-  const [phoneOn, setPhoneOn] = useState(false)
-  const [index, setIndex] = useState(0)
-  const [showApps, setShowApps] = useState(false)
-
-  useEffect(() => {
-    if (!phoneOn) return
-    if (index < text.length) {
-      const timeout = setTimeout(() => {
-        setIndex(prevIndex => prevIndex + 1)
-      }, 25)
-      return () => clearTimeout(timeout)
-    }
-    const timeout = setTimeout(() => {
-      setShowApps(true)
-    }, 200)
-    return () => clearTimeout(timeout)
-  }, [index, phoneOn])
+  const { phoneOn, phoneLoading, text, showApps, appsLoading, bootPhone } =
+    usePhoneBoot()
 
   return (
     <div className="phone">
@@ -36,28 +20,38 @@ const Phone = () => {
               className="phone__png"
               src={onPng}
               alt="imagem do ícone de ligar"
-              onClick={() => setPhoneOn(true)}
+              onClick={bootPhone}
             />
             <img
               className="phone__gif"
               src={onGif}
               alt="gif do ícone de ligar"
-              onClick={() => setPhoneOn(true)}
+              onClick={bootPhone}
             />
           </div>
         </div>
       ) : (
         <>
-          <Clock />
-          <div className="phone__search">
-            <img src={search} alt="Ícone de busca" />
-            <p>
-              {text.slice(0, index)} {index !== text.length && '|'}
-            </p>
-          </div>
-          <div className={`phone__apps ${showApps ? 'show' : ''}`}>
-            {showApps && <Apps />}
-          </div>
+          {phoneLoading ? (
+            <LoadingScreen />
+          ) : (
+            <>
+              <Clock />
+              <div className="phone__search">
+                <img src={search} alt="Ícone de busca" />
+                <p>{text}</p>
+              </div>
+              <div className={`phone__apps ${showApps ? 'show' : ''}`}>
+                {appsLoading ? (
+                  <div className="load__app">
+                    <LoadingScreen />
+                  </div>
+                ) : (
+                  <Apps />
+                )}
+              </div>
+            </>
+          )}
         </>
       )}
     </div>
