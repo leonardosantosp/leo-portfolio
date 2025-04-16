@@ -38,7 +38,7 @@ POST http://localhost:3333/technologies
 Content-Type: application/json
 
 {
-  "name": "spring Boot",
+  "name": "spring teste",
   "icon": "icone",
   "appIcon": "app"
 }
@@ -52,3 +52,11 @@ GET http://localhost:3333/technologies
 
 ###
 GET http://localhost:3333/technologies/{{technologyId}}
+
+###
+PATCH http://localhost:3333/technologies/{{technologyId}}
+Content-Type: application/json
+
+{
+ "icon": "Icone do React"
+}

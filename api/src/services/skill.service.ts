@@ -44,23 +44,21 @@ export async function updateSkillService(
   id: string,
   skillData: UpdateSkillDtoType
 ) {
-  const { _id, ...rest } = skillData
-
   if (!mongoose.isValidObjectId(id)) {
     throw new Error('Invalid ID format')
   }
 
-  if (Object.keys(rest).length === 0) {
+  if (Object.keys(skillData).length === 0) {
     throw new Error('No fields to update')
   }
 
   const updateSkillData = {
     _id: id,
-    ...rest
+    ...skillData
   }
 
-  if (rest.name !== undefined) {
-    const existingSkill = await getSkillByName(rest.name)
+  if (skillData.name !== undefined) {
+    const existingSkill = await getSkillByName(skillData.name)
 
     if (existingSkill && existingSkill._id.toString() !== id) {
       throw new Error('Skill name already exists')

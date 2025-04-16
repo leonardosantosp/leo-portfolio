@@ -28,7 +28,7 @@ export const usePhoneBoot = () => {
     if (!phoneOn) return
     const time = setTimeout(() => {
       setPhoneLoading(false)
-    }, 150)
+    }, 200)
     return () => clearTimeout(time)
   }, [phoneOn])
 
