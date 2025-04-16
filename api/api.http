@@ -62,3 +62,11 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:3333/technologies/{{technologyId}}
+
+#  ---------------------- PROJECTS ----------------------
+
+###
+GET http://localhost:3333/projects
+
+### 
+GET http://localhost:3333/projects/67fffa557965d3dc99b3a986

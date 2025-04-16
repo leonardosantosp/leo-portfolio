@@ -7,8 +7,8 @@ import {
   getSkillByName
 } from '../repository/skill.repository'
 
-import { CreateSkillDtoType } from '../dtos/skill/create-skill.dto'
-import { UpdateSkillDtoType } from '../dtos/skill/update-skill.dto'
+import type { CreateSkillDtoType } from '../dtos/skill/create-skill.dto'
+import type { UpdateSkillDtoType } from '../dtos/skill/update-skill.dto'
 
 export async function getAllSkillsService() {
   return await getAllSkills()

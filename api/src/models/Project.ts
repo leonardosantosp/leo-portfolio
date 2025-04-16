@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 const { Schema } = mongoose
 
 const projectSchema = new Schema({
-  title: { type: String, required: true },
+  title: { type: String, required: true, maxlength: 30 },
   logo: { type: String, required: true },
   mockup: { type: String, required: true },
   repository: { type: String, required: true, unique: true },
@@ -12,7 +12,8 @@ const projectSchema = new Schema({
   stack: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Technology'
+      ref: 'Technology',
+      default: []
     }
   ]
 })
