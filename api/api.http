@@ -24,12 +24,11 @@ PATCH http://localhost:3333/skills/{{skillId}}
 Content-Type: application/json
 
 {
-
-  "icon": "TD222"
+"name": "react"
 }
 
 ###
-DELETE http://localhost:3333/skills/67fa8067769f9789fa37f84f
+DELETE http://localhost:3333/skills/{{skillId}}
 
 #  ---------------------- TECHNOLOGIES ----------------------
 ###
@@ -58,5 +57,8 @@ PATCH http://localhost:3333/technologies/{{technologyId}}
 Content-Type: application/json
 
 {
- "icon": "Icone do React"
+ 
 }
+
+###
+DELETE http://localhost:3333/technologies/{{technologyId}}

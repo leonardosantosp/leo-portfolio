@@ -37,3 +37,7 @@ export async function updateTechnology(technologyData: technologyType) {
     runValidators: true
   })
 }
+
+export async function deleteTechnology(id: string) {
+  return await Technology.findByIdAndDelete(id)
+}

@@ -3,7 +3,8 @@ import {
   getAllTechnologiesController,
   getTechnologyByIdController,
   createTechnologyController,
-  updateTechnologyController
+  updateTechnologyController,
+  deleteTechnologyController
 } from '../controllers/technology.controller.ts'
 
 import { technologySchema } from '../schemas/technology.schema.ts'
@@ -119,5 +120,33 @@ export function technologyRoutes(app) {
       }
     },
     updateTechnologyController
+  )
+
+  app.delete(
+    '/technologies/:id',
+    {
+      schema: {
+        summary: 'Delete Technology',
+        description: 'Delete Technology',
+        tags: ['technologies'],
+        params: z.object({
+          id: z.string()
+        }),
+        response: {
+          200: technologySchema,
+          400: z.object({
+            message: z.string()
+          }),
+          404: z.object({
+            message: z.string()
+          }),
+          500: z.object({
+            message: z.string(),
+            error: z.string()
+          })
+        }
+      }
+    },
+    deleteTechnologyController
   )
 }

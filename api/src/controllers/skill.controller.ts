@@ -56,6 +56,14 @@ export const UpdateSkillController = async (req, res) => {
   const { id } = req.params
   const skillData = req.body
 
+  if (!mongoose.isValidObjectId(id)) {
+    return res.status(400).send({ message: 'Invalid ID format' })
+  }
+
+  if (Object.keys(skillData).length === 0) {
+    return res.status(400).send({ message: 'No fields to update' })
+  }
+
   try {
     const updated = await updateSkillService(id, skillData)
 
@@ -69,13 +77,6 @@ export const UpdateSkillController = async (req, res) => {
       error.message === 'Skill name already exists'
     ) {
       return res.status(409).send({ message: 'Skill name already exists' })
-    }
-    if (error instanceof Error && error.message === 'Invalid ID format') {
-      return res.status(400).send({ message: 'Invalid ID format' })
-    }
-
-    if (error instanceof Error && error.message === 'No fields to update') {
-      return res.status(400).send({ message: 'No fields to update' })
     }
 
     console.error('Error updating skill:', error)

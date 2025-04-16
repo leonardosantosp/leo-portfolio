@@ -3,7 +3,8 @@ import {
   getTechnologyById,
   getTechnologyByNameOrSlug,
   createTechnology,
-  updateTechnology
+  updateTechnology,
+  deleteTechnology
 } from '../repository/tecnology.repository.ts'
 
 import { generateSlug } from '../utils/generateSlug.ts'
@@ -51,14 +52,6 @@ export async function updateTechnologyService(
   id: string,
   technologyData: UpdateTechnologyDtoType
 ) {
-  if (!mongoose.isValidObjectId(id)) {
-    throw new Error('Invalid ID format')
-  }
-
-  if (Object.keys(technologyData).length === 0) {
-    throw new Error('No fields to update')
-  }
-
   let slug: string | undefined = undefined
 
   if (technologyData.name !== undefined) {
@@ -79,4 +72,14 @@ export async function updateTechnologyService(
   }
 
   return await updateTechnology(updateTechnologyData)
+}
+
+export async function deleteTechnologyService(id: string) {
+  const deleted = await deleteTechnology(id)
+
+  if (!deleted) {
+    throw new Error('Technology Not found')
+  }
+
+  return deleted
 }

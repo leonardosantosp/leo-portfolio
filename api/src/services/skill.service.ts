@@ -7,15 +7,8 @@ import {
   getSkillByName
 } from '../repository/skill.repository'
 
-import {
-  CreateSkillDto,
-  CreateSkillDtoType
-} from '../dtos/skill/create-skill.dto'
-import {
-  UpdateSkillDto,
-  UpdateSkillDtoType
-} from '../dtos/skill/update-skill.dto'
-import mongoose from 'mongoose'
+import { CreateSkillDtoType } from '../dtos/skill/create-skill.dto'
+import { UpdateSkillDtoType } from '../dtos/skill/update-skill.dto'
 
 export async function getAllSkillsService() {
   return await getAllSkills()
@@ -44,14 +37,6 @@ export async function updateSkillService(
   id: string,
   skillData: UpdateSkillDtoType
 ) {
-  if (!mongoose.isValidObjectId(id)) {
-    throw new Error('Invalid ID format')
-  }
-
-  if (Object.keys(skillData).length === 0) {
-    throw new Error('No fields to update')
-  }
-
   const updateSkillData = {
     _id: id,
     ...skillData
