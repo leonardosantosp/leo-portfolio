@@ -3,7 +3,8 @@ import {
   getAllProjectsService,
   getProjectByIdService,
   createProjectService,
-  updateProjectService
+  updateProjectService,
+  deleteProjectService
 } from '../services/project.service'
 
 export const getAllProjectsController = async (req, res) => {
@@ -80,5 +81,24 @@ export const updateProjectController = async (req, res) => {
     }
     console.error('Error while updating project', error)
     return res.status(500).send({ error: 'Internal Server Error' })
+  }
+}
+
+export const deleteProjectController = async (req, res) => {
+  const { id } = req.params
+
+  if (!mongoose.isValidObjectId(id)) {
+    return res.status(400).send({ message: 'Invalid Id Format' })
+  }
+
+  try {
+    const deletedProject = await deleteProjectService(id)
+    return res.status(200).send(deletedProject)
+  } catch (error) {
+    if (error instanceof Error && error.message === 'Project Not Found') {
+      return res.status(404).send({ message: 'Project Not Found' })
+    }
+    console.error('Error While deleting project', error)
+    return res.status(500).send({ message: 'Internal Server Error' })
   }
 }

@@ -3,7 +3,8 @@ import {
   getAllProjectsController,
   getProjectByIdController,
   createProjectController,
-  updateProjectController
+  updateProjectController,
+  deleteProjectController
 } from '../controllers/project.controller'
 import { projectSchema } from '../schemas/project.schema'
 
@@ -115,5 +116,33 @@ export function projectRoutes(app) {
       }
     },
     updateProjectController
+  )
+
+  app.delete(
+    '/projects/:id',
+    {
+      schema: {
+        summary: 'Delete Project',
+        description: 'Delete Project',
+        tags: ['Project'],
+        params: z.object({
+          id: z.string()
+        }),
+        response: {
+          200: projectSchema,
+          400: z.object({
+            message: z.string()
+          }),
+          404: z.object({
+            message: z.string()
+          }),
+          500: z.object({
+            message: z.string(),
+            error: z.string()
+          })
+        }
+      }
+    },
+    deleteProjectController
   )
 }

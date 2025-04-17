@@ -3,7 +3,8 @@ import {
   getProjectById,
   createProject,
   checkProjectUniqueness,
-  updateProject
+  updateProject,
+  deleteProject
 } from '../repository/project.repository'
 
 import type { CreateProjectDtoType } from '../dtos/project/create-project.dto'
@@ -76,4 +77,12 @@ export async function updateProjectService(
   }
 
   return await updateProject(updateProjectData)
+}
+
+export async function deleteProjectService(id: string) {
+  const project = await getProjectById(id)
+
+  if (!project) throw new Error('Project Not Found')
+
+  return deleteProject(id)
 }

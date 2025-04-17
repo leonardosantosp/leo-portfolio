@@ -106,3 +106,6 @@ Content-Type: application/json
       "67fac495be08b8e50cc33122"
     ]
 }
+
+###
+DELETE http://localhost:3333/projects/{{projectId}}

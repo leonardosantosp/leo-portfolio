@@ -51,3 +51,7 @@ export async function updateProject(projectData: UpdateProjectType) {
     runValidators: true
   })
 }
+
+export async function deleteProject(id: string) {
+  return await Project.findByIdAndDelete(id)
+}
