@@ -1,7 +1,8 @@
 import { z } from 'zod'
 import {
   getAllProjectsController,
-  getProjectByIdController
+  getProjectByIdController,
+  createProjectController
 } from '../controllers/project.controller'
 import { projectSchema } from '../schemas/project.schema'
 
@@ -51,5 +52,40 @@ export function projectRoutes(app) {
       }
     },
     getProjectByIdController
+  )
+
+  app.post(
+    '/projects',
+    {
+      schema: {
+        summary: 'create project',
+        description: 'create project',
+        tags: ['Projects'],
+        body: z.object({
+          title: z.string(),
+          logo: z.string(),
+          mockup: z.string(),
+          repository: z.string(),
+          siteUrl: z.string(),
+          videoUrl: z.string(),
+          stack: z.array(z.string())
+        })
+      },
+      response: {
+        201: projectSchema,
+        400: z.object({
+          message: z.string(),
+          error: z.string().optional()
+        }),
+        409: z.object({
+          message: z.string()
+        }),
+        500: z.object({
+          message: z.string(),
+          error: z.string()
+        })
+      }
+    },
+    createProjectController
   )
 }

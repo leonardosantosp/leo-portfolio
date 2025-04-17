@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 const { Schema } = mongoose
 
 const projectSchema = new Schema({
-  title: { type: String, required: true, maxlength: 30 },
+  title: { type: String, required: true, maxlength: 30, unique: true },
   logo: { type: String, required: true },
   mockup: { type: String, required: true },
   repository: { type: String, required: true, unique: true },
