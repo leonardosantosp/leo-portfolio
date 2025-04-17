@@ -2,11 +2,13 @@ import { z } from 'zod'
 import {
   getAllProjectsController,
   getProjectByIdController,
-  createProjectController
+  createProjectController,
+  updateProjectController
 } from '../controllers/project.controller'
 import { projectSchema } from '../schemas/project.schema'
 
 import { CreateProjectDto } from '../dtos/project/create-project.dto'
+import { UpdateProjectDto } from '../dtos/project/update-project.dto'
 
 export function projectRoutes(app) {
   app.get(
@@ -81,5 +83,37 @@ export function projectRoutes(app) {
       }
     },
     createProjectController
+  )
+
+  app.patch(
+    '/projects/:id',
+    {
+      schema: {
+        summary: 'Update Project',
+        description: 'Update Project',
+        tags: ['Projects'],
+        params: z.object({
+          id: z.string()
+        }),
+        body: UpdateProjectDto.strict(),
+        response: {
+          200: projectSchema,
+          400: z.object({
+            message: z.string()
+          }),
+          404: z.object({
+            message: z.string()
+          }),
+          409: z.object({
+            message: z.string()
+          }),
+          500: z.object({
+            message: z.string(),
+            error: z.string()
+          })
+        }
+      }
+    },
+    updateProjectController
   )
 }

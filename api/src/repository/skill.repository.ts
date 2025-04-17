@@ -1,6 +1,6 @@
 import Skill from '../models/Skill.ts'
 
-type skillType = {
+type UpdateSkillType = {
   _id: string
   name?: string
   icon?: string
@@ -23,7 +23,7 @@ export async function createSkill(skillData: unknown) {
   return await skill.save()
 }
 
-export async function updateSkill(skillData: skillType) {
+export async function updateSkill(skillData: UpdateSkillType) {
   const { _id, ...updateFields } = skillData
   return await Skill.findByIdAndUpdate(_id, updateFields, {
     new: true,

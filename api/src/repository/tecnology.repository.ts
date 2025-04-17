@@ -1,6 +1,6 @@
 import Technology from '../models/Technology.ts'
 
-type technologyType = {
+type UpdateTechnologyType = {
   _id: string
   name?: string
   slug?: string
@@ -30,7 +30,7 @@ export async function createTechnology(technologyData: unknown) {
   return await technology.save()
 }
 
-export async function updateTechnology(technologyData: technologyType) {
+export async function updateTechnology(technologyData: UpdateTechnologyType) {
   const { _id, ...updateFiels } = technologyData
   return await Technology.findByIdAndUpdate(_id, updateFiels, {
     new: true,

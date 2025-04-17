@@ -4,7 +4,7 @@ POST http://localhost:3333/skills
 Content-Type: application/json
 
 {
-  "name": "fudts",
+  "name": "ff",
   "icon": "http://tddd"
 }
 
@@ -68,21 +68,41 @@ DELETE http://localhost:3333/technologies/{{technologyId}}
 
 #  ---------------------- PROJECTS ----------------------
 ###
+# @name createProject
 POST http://localhost:3333/projects
 Content-Type: application/json
 
 {
-  "title": "champss",
-  "logo": "http://nbaf",
-  "mockup": "htt://nbaf",
-  "repository": "champs",
-  "siteUrl": "htt://champ",
-  "videoUrl": "http://nbaf",
+  "title": "portfolio2",
+  "logo": "http://portfolio",
+  "mockup": "htt://portfolio",
+  "repository": "portfolio2",
+  "siteUrl": "htt://portfolio2",
+  "videoUrl": "http://portfolio",
   "stack": ["67fac495be08b8e50cc33122", "67fac4bcbe08b8e50cc33126"]
 }
+
+###
+@projectId = {{ createProject.response.body._id }}
 
 ###
 GET http://localhost:3333/projects
 
 ### 
-GET http://localhost:3333/projects/67fffa557965d3dc99b3a986
+GET http://localhost:3333/projects/{{ projectId }}
+
+###
+PATCH http://localhost:3333/projects/{{projectId}}
+Content-Type: application/json
+
+{
+  "title": "react Native",
+    "logo": "http://react",
+    "mockup": "http:/react",
+    "repository": "react",
+    "siteUrl": "htt://champ",
+    "videoUrl": "http://react",
+    "stack": [
+      "67fac495be08b8e50cc33122"
+    ]
+}
