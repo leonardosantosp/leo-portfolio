@@ -6,6 +6,8 @@ import {
 } from '../controllers/project.controller'
 import { projectSchema } from '../schemas/project.schema'
 
+import { CreateProjectDto } from '../dtos/project/create-project.dto'
+
 export function projectRoutes(app) {
   app.get(
     '/projects',
@@ -61,15 +63,7 @@ export function projectRoutes(app) {
         summary: 'create project',
         description: 'create project',
         tags: ['Projects'],
-        body: z.object({
-          title: z.string(),
-          logo: z.string(),
-          mockup: z.string(),
-          repository: z.string(),
-          siteUrl: z.string(),
-          videoUrl: z.string(),
-          stack: z.array(z.string())
-        })
+        body: CreateProjectDto
       },
       response: {
         201: projectSchema,

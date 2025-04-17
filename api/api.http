@@ -4,8 +4,8 @@ POST http://localhost:3333/skills
 Content-Type: application/json
 
 {
-  "name": "TDDf",
-  "icon": "TD"
+  "name": "fudts",
+  "icon": "http://tddd"
 }
 
 ###
@@ -24,7 +24,8 @@ PATCH http://localhost:3333/skills/{{skillId}}
 Content-Type: application/json
 
 {
-"name": "react"
+  "name": "react",
+ "icon": "/dd"
 }
 
 ###
@@ -37,9 +38,9 @@ POST http://localhost:3333/technologies
 Content-Type: application/json
 
 {
-  "name": "spring teste",
-  "icon": "icone",
-  "appIcon": "app"
+  "name": "springzada",
+  "icon": "http://icone",
+  "appIcon": "http://app"
 }
 
 ###
@@ -57,7 +58,9 @@ PATCH http://localhost:3333/technologies/{{technologyId}}
 Content-Type: application/json
 
 {
- 
+ "name": "springzada",
+  "icon": "http://icone",
+  "appIcon": "http://app"
 }
 
 ###
@@ -69,12 +72,12 @@ POST http://localhost:3333/projects
 Content-Type: application/json
 
 {
-  "title": "NBA",
-  "logo": "http://nba",
-  "mockup": "http:/nba",
-  "repository": "nba-project",
-  "siteUrl": "htt://nba",
-  "videoUrl": "http://nba",
+  "title": "champss",
+  "logo": "http://nbaf",
+  "mockup": "htt://nbaf",
+  "repository": "champs",
+  "siteUrl": "htt://champ",
+  "videoUrl": "http://nbaf",
   "stack": ["67fac495be08b8e50cc33122", "67fac4bcbe08b8e50cc33126"]
 }
 

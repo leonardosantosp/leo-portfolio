@@ -59,12 +59,12 @@ export const updateTechnologyController = async (req, res) => {
   const technologyData = req.body
   const { id } = req.params
 
-  if (Object.keys(technologyData).length === 0) {
-    return res.status(400).send({ message: 'No fields to update' })
-  }
-
   if (!mongoose.isValidObjectId(id)) {
     return res.status(400).send({ message: 'Invalid ID format' })
+  }
+
+  if (Object.keys(technologyData).length === 0) {
+    return res.status(400).send({ message: 'No fields to update' })
   }
 
   try {

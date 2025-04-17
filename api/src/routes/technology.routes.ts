@@ -8,6 +8,8 @@ import {
 } from '../controllers/technology.controller.ts'
 
 import { technologySchema } from '../schemas/technology.schema.ts'
+import { CreateTechnologyDto } from '../dtos/technology/create-technology.dto.ts'
+import { UpdateTechnologyDto } from '../dtos/technology/update-technology.dto.ts'
 
 export function technologyRoutes(app) {
   app.get(
@@ -64,11 +66,7 @@ export function technologyRoutes(app) {
         summary: 'create a technology',
         description: 'create a technology',
         tags: ['technologies'],
-        body: z.object({
-          name: z.string(),
-          icon: z.string(),
-          appIcon: z.string()
-        }),
+        body: CreateTechnologyDto,
         response: {
           201: technologySchema,
           409: z.object({
@@ -94,13 +92,7 @@ export function technologyRoutes(app) {
         params: z.object({
           id: z.string()
         }),
-        body: z
-          .object({
-            name: z.string().optional(),
-            icon: z.string().optional(),
-            appIcon: z.string().optional()
-          })
-          .strict(),
+        body: UpdateTechnologyDto.strict(),
         response: {
           200: technologySchema,
           400: z.object({

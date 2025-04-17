@@ -52,6 +52,10 @@ export async function updateTechnologyService(
   id: string,
   technologyData: UpdateTechnologyDtoType
 ) {
+  const existing = await getTechnologyById(id)
+
+  if (!existing) return null
+
   let slug: string | undefined = undefined
 
   if (technologyData.name !== undefined) {

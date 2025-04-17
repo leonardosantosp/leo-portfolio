@@ -1,3 +1,4 @@
+import { CreateSkillDto } from '../dtos/skill/create-skill.dto.ts'
 import {
   getAllSkillsService,
   getSkillByIdService,

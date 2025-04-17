@@ -8,6 +8,9 @@ import {
   deleteSkillController
 } from '../controllers/skill.controller.ts'
 
+import { CreateSkillDto } from '../dtos/skill/create-skill.dto.ts'
+import { UpdateSkillDto } from '../dtos/skill/update-skill.dto.ts'
+
 export function skillRoutes(app) {
   app.get(
     '/skills',
@@ -60,12 +63,12 @@ export function skillRoutes(app) {
         description: 'Create a new skill',
         summary: 'Create a new skill',
         tags: ['Skills'],
-        body: z.object({
-          name: z.string(),
-          icon: z.string()
-        }),
+        body: CreateSkillDto,
         response: {
           201: skillSchema,
+          400: z.object({
+            message: z.string()
+          }),
           409: z.object({
             message: z.string()
           }),
@@ -89,12 +92,7 @@ export function skillRoutes(app) {
         params: z.object({
           id: z.string()
         }),
-        body: z
-          .object({
-            name: z.string().optional(),
-            icon: z.string().optional()
-          })
-          .strict(),
+        body: UpdateSkillDto.strict(),
         response: {
           200: skillSchema,
           400: z.object({

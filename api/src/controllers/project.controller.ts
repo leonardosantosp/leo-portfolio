@@ -5,8 +5,6 @@ import {
   createProjectService
 } from '../services/project.service'
 
-import { CreateProjectDto } from '../dtos/project/create-project.dto'
-
 export const getAllProjectsController = async (req, res) => {
   try {
     const projects = await getAllProjectsService()
@@ -38,14 +36,7 @@ export const getProjectByIdController = async (req, res) => {
 
 export const createProjectController = async (req, res) => {
   const projectData = req.body
-  const result = CreateProjectDto.safeParse(req.body)
 
-  if (!result.success) {
-    return res.status(400).send({
-      message: 'Erro de validação',
-      error: result.error.format()
-    })
-  }
   try {
     const project = await createProjectService(projectData)
     return res.status(201).send(project)
