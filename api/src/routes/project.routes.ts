@@ -16,9 +16,10 @@ export function projectRoutes(app) {
     '/projects',
     {
       schema: {
-        summary: 'Get All Projects',
-        description: 'Get All Projects',
-        tags: ['Porjects'],
+        summary: 'List all registered projects',
+        description:
+          'Retrieves a list of all projects with their metadata, including title, logo, stack, mockup, repository, slug, video and links.',
+        tags: ['Projects'],
         response: {
           200: z.array(projectSchema),
           500: z.object({
@@ -35,9 +36,10 @@ export function projectRoutes(app) {
     '/projects/:id',
     {
       schema: {
-        summary: 'Get Project By Id',
-        description: 'Get Project By Id',
-        tags: ['Project'],
+        summary: 'Retrieve a project by its ID',
+        description:
+          'Fetch detailed information about a specific project using its unique MongoDB ObjectId. Returns metadata, including title, logo, stack, mockup, repository, slug, video and links.',
+        tags: ['Projects'],
         params: z.object({
           id: z.string()
         }),
@@ -63,8 +65,9 @@ export function projectRoutes(app) {
     '/projects',
     {
       schema: {
-        summary: 'create project',
-        description: 'create project',
+        summary: 'Create a new project',
+        description:
+          'Creates a new project entry in the database with a title, repository link, site URL, technologies used, logo, mockup, and video.',
         tags: ['Projects'],
         body: CreateProjectDto
       },
@@ -90,8 +93,9 @@ export function projectRoutes(app) {
     '/projects/:id',
     {
       schema: {
-        summary: 'Update Project',
-        description: 'Update Project',
+        summary: 'Update an existing project',
+        description:
+          'Updates one or more fields of a project based on the provided ID. Supports partial updates to fields like title, logo, mockup, repository, site URL, video URL, and technology stack.',
         tags: ['Projects'],
         params: z.object({
           id: z.string()
@@ -122,9 +126,9 @@ export function projectRoutes(app) {
     '/projects/:id',
     {
       schema: {
-        summary: 'Delete Project',
-        description: 'Delete Project',
-        tags: ['Project'],
+        summary: 'Delete a project',
+        description: 'Deletes a project from the database using its unique ID.',
+        tags: ['Projects'],
         params: z.object({
           id: z.string()
         }),

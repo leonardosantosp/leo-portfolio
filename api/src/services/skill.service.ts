@@ -9,6 +9,7 @@ import {
 
 import type { CreateSkillDtoType } from '../dtos/skill/create-skill.dto'
 import type { UpdateSkillDtoType } from '../dtos/skill/update-skill.dto'
+import { ErrorCode } from '../constants/errors'
 
 export async function getAllSkillsService() {
   return await getAllSkills()
@@ -17,17 +18,17 @@ export async function getAllSkillsService() {
 export async function getSkillByIdService(id: string) {
   const skill = await getSkillById(id)
   if (!skill) {
-    throw new Error('Skill not found')
+    throw new Error(ErrorCode.NOT_FOUND)
   }
 
   return skill
 }
 
 export async function createSkillService(skillData: CreateSkillDtoType) {
-  const existingSkill = await getSkillByName(skillData.name)
+  const duplicateSkill = await getSkillByName(skillData.name)
 
-  if (existingSkill) {
-    throw new Error('Skill already exists')
+  if (duplicateSkill) {
+    throw new Error(ErrorCode.ALREADY_EXISTS)
   }
 
   return await createSkill(skillData)
@@ -46,7 +47,7 @@ export async function updateSkillService(
     const existingSkill = await getSkillByName(skillData.name)
 
     if (existingSkill && existingSkill._id.toString() !== id) {
-      throw new Error('Skill name already exists')
+      throw new Error(ErrorCode.ALREADY_EXISTS)
     }
   }
 
@@ -54,11 +55,11 @@ export async function updateSkillService(
 }
 
 export async function deleteSkillService(id: string) {
-  const deleted = await deleteSkill(id)
+  const deletedSkill = await deleteSkill(id)
 
-  if (!deleted) {
-    throw new Error('Skill not found')
+  if (!deletedSkill) {
+    throw new Error(ErrorCode.NOT_FOUND)
   }
 
-  return deleted
+  return deletedSkill
 }

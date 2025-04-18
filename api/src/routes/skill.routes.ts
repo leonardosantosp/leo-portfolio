@@ -4,7 +4,7 @@ import {
   getAllSkillsController,
   getSkillByIdController,
   createSkillController,
-  UpdateSkillController,
+  updateSkillController,
   deleteSkillController
 } from '../controllers/skill.controller.ts'
 
@@ -16,8 +16,8 @@ export function skillRoutes(app) {
     '/skills',
     {
       schema: {
-        description: 'Get all skills',
-        summary: 'Get all skills',
+        description: 'Retrieve all skills',
+        summary: 'Fetches the complete list of skills available in the system.',
         tags: ['Skills'],
         response: {
           200: z.array(skillSchema),
@@ -35,8 +35,9 @@ export function skillRoutes(app) {
     '/skills/:id',
     {
       schema: {
-        description: 'Get skill by id',
-        summary: 'Get skill by id',
+        description: 'Retrieve a skill by ID',
+        summary:
+          'Fetches a single skill based on the provided unique identifier.',
         tags: ['Skills'],
         params: z.object({
           id: z.string()
@@ -61,7 +62,7 @@ export function skillRoutes(app) {
     {
       schema: {
         description: 'Create a new skill',
-        summary: 'Create a new skill',
+        summary: 'Adds a new skill to the database using the provided data',
         tags: ['Skills'],
         body: CreateSkillDto,
         response: {
@@ -87,7 +88,8 @@ export function skillRoutes(app) {
     {
       schema: {
         summary: 'Update a skill',
-        description: 'Update a skill',
+        description:
+          'Updates the information of an existing skill based on the provided data.',
         tags: ['Skills'],
         params: z.object({
           id: z.string()
@@ -108,7 +110,7 @@ export function skillRoutes(app) {
         }
       }
     },
-    UpdateSkillController
+    updateSkillController
   )
 
   app.delete(
@@ -116,7 +118,8 @@ export function skillRoutes(app) {
     {
       schema: {
         summary: 'Delete a skill',
-        description: 'Delete a skill',
+        description:
+          'Deletes a skill from the database using the provided skill ID.',
         tags: ['Skills'],
         params: z.object({
           id: z.string()

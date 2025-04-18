@@ -1,21 +1,26 @@
-import { CreateSkillDto } from '../dtos/skill/create-skill.dto.ts'
 import {
   getAllSkillsService,
   getSkillByIdService,
   createSkillService,
   deleteSkillService,
   updateSkillService
-} from '../services/skill.service.ts'
+} from '../services/skill.service'
 
 import mongoose from 'mongoose'
+import { ErrorCode, ErrorMessages } from '../constants/errors'
 
 export const getAllSkillsController = async (req, res) => {
   try {
     const skills = await getAllSkillsService()
     return res.status(200).send(skills)
   } catch (error) {
-    console.error('Error fetching skills:', error)
-    return res.status(500).send({ message: 'Internal Server Error' })
+    console.error(
+      `${ErrorMessages[ErrorCode.ERROR_WHILE_FETCHING]} Skills: `,
+      error
+    )
+    return res
+      .status(500)
+      .send({ message: ErrorMessages[ErrorCode.INTERNAL_SERVER_ERROR] })
   }
 }
 
@@ -23,18 +28,27 @@ export const getSkillByIdController = async (req, res) => {
   const { id } = req.params
 
   if (!mongoose.isValidObjectId(id)) {
-    return res.status(400).send({ message: 'Invalid ID format' })
+    return res
+      .status(400)
+      .send({ message: ErrorMessages[ErrorCode.INVALID_ID_FORMAT] })
   }
 
   try {
     const skill = await getSkillByIdService(id)
     return res.status(200).send(skill)
   } catch (error) {
-    if (error instanceof Error && error.message === 'Skill not found') {
-      return res.status(404).send({ message: 'Skill not found' })
+    if (error instanceof Error && error.message === ErrorCode.NOT_FOUND) {
+      return res
+        .status(404)
+        .send({ message: `Skill ${ErrorMessages[ErrorCode.NOT_FOUND]}` })
     }
-    console.error('Error fetching skill:', error)
-    return res.status(500).send({ message: 'Internal Server Error' })
+    console.error(
+      `${ErrorMessages[ErrorCode.ERROR_WHILE_FETCHING]} Skill: `,
+      error
+    )
+    return res
+      .status(500)
+      .send({ message: ErrorMessages[ErrorCode.INTERNAL_SERVER_ERROR] })
   }
 }
 
@@ -45,43 +59,60 @@ export const createSkillController = async (req, res) => {
     const skill = await createSkillService(skillData)
     return res.status(201).send(skill)
   } catch (error) {
-    if (error instanceof Error && error.message === 'Skill already exists') {
-      return res.status(409).send({ message: 'Skill already exists' })
+    if (error instanceof Error && error.message === ErrorCode.ALREADY_EXISTS) {
+      return res
+        .status(409)
+        .send({ message: `Skill ${ErrorMessages[ErrorCode.ALREADY_EXISTS]}` })
     }
-    console.error('Error creating skill', error)
-    return res.status(500).send({ message: 'Internal Server Error' })
+    console.error(
+      `${ErrorMessages[ErrorCode.ERROR_WHILE_CREATING]} Skill: `,
+      error
+    )
+    return res
+      .status(500)
+      .send({ message: ErrorMessages[ErrorCode.INTERNAL_SERVER_ERROR] })
   }
 }
 
-export const UpdateSkillController = async (req, res) => {
+export const updateSkillController = async (req, res) => {
   const { id } = req.params
   const skillData = req.body
 
   if (!mongoose.isValidObjectId(id)) {
-    return res.status(400).send({ message: 'Invalid ID format' })
+    return res
+      .status(400)
+      .send({ message: ErrorMessages[ErrorCode.INVALID_ID_FORMAT] })
   }
 
   if (Object.keys(skillData).length === 0) {
-    return res.status(400).send({ message: 'No fields to update' })
+    return res
+      .status(400)
+      .send({ message: ErrorMessages[ErrorCode.NO_FIELDS_TO_UPDATE] })
   }
 
   try {
-    const updated = await updateSkillService(id, skillData)
+    const updatedSkill = await updateSkillService(id, skillData)
 
-    if (!updated) {
-      return res.status(404).send({ message: 'Skill not found' })
+    if (!updatedSkill) {
+      return res
+        .status(404)
+        .send({ message: `Skill ${ErrorMessages[ErrorCode.NOT_FOUND]}` })
     }
-    return res.status(200).send(updated)
+    return res.status(200).send(updatedSkill)
   } catch (error) {
-    if (
-      error instanceof Error &&
-      error.message === 'Skill name already exists'
-    ) {
-      return res.status(409).send({ message: 'Skill name already exists' })
+    if (error instanceof Error && error.message === ErrorCode.ALREADY_EXISTS) {
+      return res.status(409).send({
+        message: `Skill name ${ErrorMessages[ErrorCode.ALREADY_EXISTS]}`
+      })
     }
 
-    console.error('Error updating skill:', error)
-    return res.status(500).send({ message: 'Internal Server Error' })
+    console.error(
+      `${ErrorMessages[ErrorCode.ERROR_WHILE_UPDATING]} Skill: `,
+      error
+    )
+    return res
+      .status(500)
+      .send({ message: ErrorMessages[ErrorCode.INTERNAL_SERVER_ERROR] })
   }
 }
 
@@ -89,17 +120,26 @@ export const deleteSkillController = async (req, res) => {
   const { id } = req.params
 
   if (!mongoose.isValidObjectId(id)) {
-    return res.status(400).send({ message: 'Invalid ID format' })
+    return res
+      .status(400)
+      .send({ message: ErrorMessages[ErrorCode.INVALID_ID_FORMAT] })
   }
 
   try {
-    const deleted = await deleteSkillService(id)
-    return res.status(200).send(deleted)
+    const deletedSkill = await deleteSkillService(id)
+    return res.status(200).send(deletedSkill)
   } catch (error) {
-    if (error instanceof Error && error.message === 'Skill not found') {
-      return res.status(404).send({ message: 'Skill not found' })
+    if (error instanceof Error && error.message === ErrorCode.NOT_FOUND) {
+      return res
+        .status(404)
+        .send({ message: `Skill ${ErrorMessages[ErrorCode.NOT_FOUND]}` })
     }
-    console.error('Error deleting skill:', error)
-    return res.status(500).send({ message: 'Internal Server Error' })
+    console.error(
+      `${ErrorMessages[ErrorCode.ERROR_WHILE_DELETING]} Skill: `,
+      error
+    )
+    return res
+      .status(500)
+      .send({ message: ErrorMessages[ErrorCode.INTERNAL_SERVER_ERROR] })
   }
 }

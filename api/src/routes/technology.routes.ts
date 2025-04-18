@@ -16,9 +16,10 @@ export function technologyRoutes(app) {
     '/technologies',
     {
       schema: {
-        summary: 'Get All technologies',
-        description: 'Get All technologies',
-        tags: ['technologies'],
+        summary: 'Retrieve all technologies',
+        description:
+          'Fetches and returns a complete list of all technologies currently stored in the database.',
+        tags: ['Technologies'],
         response: {
           200: z.array(technologySchema),
           500: z.object({
@@ -35,9 +36,10 @@ export function technologyRoutes(app) {
     '/technologies/:id',
     {
       schema: {
-        summary: 'Get Technology by Id',
-        description: 'Get Technology by Id',
-        tags: ['technologies'],
+        summary: 'Retrieve a technology by ID',
+        description:
+          'Retrieves the details of a specific technology by its unique identifier from the database.',
+        tags: ['Technologies'],
         params: z.object({
           id: z.string()
         }),
@@ -63,9 +65,9 @@ export function technologyRoutes(app) {
     '/technologies',
     {
       schema: {
-        summary: 'create a technology',
-        description: 'create a technology',
-        tags: ['technologies'],
+        summary: 'create a new technology',
+        description: 'Creates a new technology record with the provided data.',
+        tags: ['Technologies'],
         body: CreateTechnologyDto,
         response: {
           201: technologySchema,
@@ -86,9 +88,10 @@ export function technologyRoutes(app) {
     '/technologies/:id',
     {
       schema: {
-        summary: 'Update Technology',
-        description: 'Update Technology',
-        tags: ['technologies'],
+        summary: 'Update an existing technology',
+        description:
+          'Updates the details of an existing technology in the database based on the provided data.',
+        tags: ['Technologies'],
         params: z.object({
           id: z.string()
         }),
@@ -118,9 +121,10 @@ export function technologyRoutes(app) {
     '/technologies/:id',
     {
       schema: {
-        summary: 'Delete Technology',
-        description: 'Delete Technology',
-        tags: ['technologies'],
+        summary: 'Delete an existing technology',
+        description:
+          'Removes a technology from the database based on the provided ID.',
+        tags: ['Technologies'],
         params: z.object({
           id: z.string()
         }),

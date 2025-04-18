@@ -5,15 +5,21 @@ import {
   createTechnologyService,
   updateTechnologyService,
   deleteTechnologyService
-} from '../services/technology.service.ts'
+} from '../services/technology.service'
+import { ErrorCode, ErrorMessages } from '../constants/errors'
 
 export const getAllTechnologiesController = async (req, res) => {
   try {
     const technologies = await getAllTechnologiesService()
     return res.status(200).send(technologies)
   } catch (error) {
-    console.error('Error fetching technologies:', error)
-    return res.status(500).send({ message: 'Internal Server Error' })
+    console.error(
+      `${ErrorMessages[ErrorCode.ERROR_WHILE_FETCHING]} Technologies: `,
+      error
+    )
+    return res
+      .status(500)
+      .send({ message: ErrorMessages[ErrorCode.INTERNAL_SERVER_ERROR] })
   }
 }
 
@@ -21,19 +27,28 @@ export const getTechnologyByIdController = async (req, res) => {
   const { id } = req.params
 
   if (!mongoose.isValidObjectId(id)) {
-    return res.status(400).send({ message: 'Invalid ID format' })
+    return res
+      .status(400)
+      .send({ message: ErrorMessages[ErrorCode.INVALID_ID_FORMAT] })
   }
 
   try {
     const technology = await getTechnologyByIdService(id)
     return res.status(200).send(technology)
   } catch (error) {
-    if (error instanceof Error && error.message === 'Technology not found') {
-      return res.status(404).send({ message: 'Technology not found' })
+    if (error instanceof Error && error.message === ErrorCode.NOT_FOUND) {
+      return res
+        .status(404)
+        .send({ message: `Technology ${ErrorMessages[ErrorCode.NOT_FOUND]}` })
     }
 
-    console.error('Error fetching technology:', error)
-    return res.status(500).send({ message: 'Internal Server Error' })
+    console.error(
+      `${ErrorMessages[ErrorCode.ERROR_WHILE_FETCHING]} Technology:`,
+      error
+    )
+    return res
+      .status(500)
+      .send({ message: ErrorMessages[ErrorCode.INTERNAL_SERVER_ERROR] })
   }
 }
 
@@ -44,14 +59,18 @@ export const createTechnologyController = async (req, res) => {
     const technology = await createTechnologyService(technologyData)
     return res.status(201).send(technology)
   } catch (error) {
-    if (
-      error instanceof Error &&
-      error.message === 'Technology already exists'
-    ) {
-      return res.status(409).send({ message: 'Technology already exists' })
+    if (error instanceof Error && error.message === ErrorCode.ALREADY_EXISTS) {
+      return res.status(409).send({
+        message: `Technology ${ErrorMessages[ErrorCode.ALREADY_EXISTS]}`
+      })
     }
-    console.error('Error creating technology', error)
-    return res.status(500).send({ message: 'Internal Server Error' })
+    console.error(
+      `${ErrorMessages[ErrorCode.ERROR_WHILE_CREATING]} Technology:`,
+      error
+    )
+    return res
+      .status(500)
+      .send({ message: ErrorMessages[ErrorCode.INTERNAL_SERVER_ERROR] })
   }
 }
 
@@ -60,27 +79,40 @@ export const updateTechnologyController = async (req, res) => {
   const { id } = req.params
 
   if (!mongoose.isValidObjectId(id)) {
-    return res.status(400).send({ message: 'Invalid ID format' })
+    return res
+      .status(400)
+      .send({ message: ErrorMessages[ErrorCode.INVALID_ID_FORMAT] })
   }
 
   if (Object.keys(technologyData).length === 0) {
-    return res.status(400).send({ message: 'No fields to update' })
+    return res
+      .status(400)
+      .send({ message: ErrorMessages[ErrorCode.NO_FIELDS_TO_UPDATE] })
   }
 
   try {
-    const technology = await updateTechnologyService(id, technologyData)
-
-    if (!technology) {
-      return res.status(404).send({ message: 'Technology not found' })
-    }
-
-    return res.status(200).send(technology)
+    const updatedTechnology = await updateTechnologyService(id, technologyData)
+    return res.status(200).send(updatedTechnology)
   } catch (error) {
-    if (error instanceof Error && error.message === 'Name already exists') {
-      return res.status(409).send({ message: 'Name already exists' })
+    if (error instanceof Error && error.message === ErrorCode.ALREADY_EXISTS) {
+      return res
+        .status(409)
+        .send({ message: `Name ${ErrorMessages[ErrorCode.ALREADY_EXISTS]}` })
     }
-    console.error('Error creating technology', error)
-    return res.status(500).send({ message: 'Internal Server Error' })
+
+    if (error instanceof Error && error.message === ErrorCode.NOT_FOUND) {
+      return res
+        .status(404)
+        .send({ message: `Technology ${ErrorMessages[ErrorCode.NOT_FOUND]}` })
+    }
+
+    console.error(
+      `${ErrorMessages[ErrorCode.ERROR_WHILE_UPDATING]} Technology:`,
+      error
+    )
+    return res
+      .status(500)
+      .send({ message: ErrorMessages[ErrorCode.INTERNAL_SERVER_ERROR] })
   }
 }
 
@@ -88,17 +120,26 @@ export const deleteTechnologyController = async (req, res) => {
   const { id } = req.params
 
   if (!mongoose.isValidObjectId(id)) {
-    return res.status(400).send({ message: 'Invalid ID format' })
+    return res
+      .status(400)
+      .send({ message: ErrorMessages[ErrorCode.INVALID_ID_FORMAT] })
   }
 
   try {
-    const deletedData = await deleteTechnologyService(id)
-    return res.status(200).send(deletedData)
+    const deletedTechnology = await deleteTechnologyService(id)
+    return res.status(200).send(deletedTechnology)
   } catch (error) {
-    if (error instanceof Error && error.message === 'Technology Not found') {
-      return res.status(404).send({ message: 'Technology Not found' })
+    if (error instanceof Error && error.message === ErrorCode.NOT_FOUND) {
+      return res
+        .status(404)
+        .send({ message: `Technology ${ErrorMessages[ErrorCode.NOT_FOUND]}` })
     }
-    console.error('Error deleting technology', error)
-    return res.status(500).send({ message: 'Internal Server error' })
+    console.error(
+      `${ErrorMessages[ErrorCode.ERROR_WHILE_DELETING]} Technology: `,
+      error
+    )
+    return res
+      .status(500)
+      .send({ message: ErrorMessages[ErrorCode.INTERNAL_SERVER_ERROR] })
   }
 }

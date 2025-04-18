@@ -10,6 +10,7 @@ import {
 import type { CreateProjectDtoType } from '../dtos/project/create-project.dto'
 import type { UpdateProjectDtoType } from '../dtos/project/update-project.dto'
 import { generateSlug } from '../utils/generateSlug'
+import { ErrorCode } from '../constants/errors'
 
 export async function getAllProjectsService() {
   return await getAllProjects()
@@ -19,7 +20,7 @@ export async function getProjectByIdService(id: string) {
   const project = await getProjectById(id)
 
   if (!project) {
-    throw new Error('Project Not Found')
+    throw new Error(ErrorCode.NOT_FOUND)
   }
 
   return project
@@ -28,14 +29,14 @@ export async function getProjectByIdService(id: string) {
 export async function createProjectService(projectData: CreateProjectDtoType) {
   const slug = generateSlug(projectData.title)
 
-  const existProject = await checkProjectUniqueness(
+  const duplicateProject = await checkProjectUniqueness(
     projectData.title,
     slug,
     projectData.repository,
     projectData.siteUrl
   )
 
-  if (existProject) throw new Error('Project already exists')
+  if (duplicateProject) throw new Error(ErrorCode.ALREADY_EXISTS)
 
   const projectToCreate = {
     slug: slug,
@@ -48,26 +49,24 @@ export async function updateProjectService(
   id: string,
   projectData: UpdateProjectDtoType
 ) {
-  const exist = await getProjectById(id)
+  const existingProject = await getProjectById(id)
 
-  if (!exist) return null
+  if (!existingProject) throw new Error(ErrorCode.NOT_FOUND)
 
   let slug: string | undefined = undefined
 
   if (projectData.title || projectData.repository || projectData.siteUrl) {
     if (projectData.title) slug = generateSlug(projectData.title)
 
-    const existProject = await checkProjectUniqueness(
+    const duplicateProject = await checkProjectUniqueness(
       projectData.title,
       slug,
       projectData.repository,
       projectData.siteUrl
     )
 
-    if (existProject && existProject._id.toString() !== id)
-      throw new Error(
-        'Another project with the same title, slug, repository, or site URL already exists'
-      )
+    if (duplicateProject && duplicateProject._id.toString() !== id)
+      throw new Error(ErrorCode.ALREADY_EXISTS)
   }
 
   const updateProjectData = {
@@ -82,7 +81,7 @@ export async function updateProjectService(
 export async function deleteProjectService(id: string) {
   const project = await getProjectById(id)
 
-  if (!project) throw new Error('Project Not Found')
+  if (!project) throw new Error(ErrorCode.NOT_FOUND)
 
   return deleteProject(id)
 }

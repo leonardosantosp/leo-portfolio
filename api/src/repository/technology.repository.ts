@@ -15,7 +15,7 @@ export async function getTechnologyById(id: string) {
   return await Technology.findById(id)
 }
 
-export async function getTechnologyByNameOrSlug(name?: string, slug?: string) {
+export async function checkTechnologyUniqueness(name?: string, slug?: string) {
   const conditions: Record<string, any>[] = []
   if (name) conditions.push({ name })
   if (slug) conditions.push({ slug })

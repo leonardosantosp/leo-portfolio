@@ -4,8 +4,8 @@ POST http://localhost:3333/skills
 Content-Type: application/json
 
 {
-  "name": "ff",
-  "icon": "http://tddd"
+  "name": "react",
+  "icon": "http://react"
 }
 
 ###
@@ -25,7 +25,7 @@ Content-Type: application/json
 
 {
   "name": "react",
- "icon": "/dd"
+ "icon": "http://react"
 }
 
 ###
@@ -38,9 +38,9 @@ POST http://localhost:3333/technologies
 Content-Type: application/json
 
 {
-  "name": "springzada",
-  "icon": "http://icone",
-  "appIcon": "http://app"
+  "name": "spring",
+  "icon": "http://iconeSpring",
+  "appIcon": "http://spring"
 }
 
 ###
@@ -58,9 +58,9 @@ PATCH http://localhost:3333/technologies/{{technologyId}}
 Content-Type: application/json
 
 {
- "name": "springzada",
-  "icon": "http://icone",
-  "appIcon": "http://app"
+ "name": "spring",
+  "icon": "http://spring",
+  "appIcon": "http://spring"
 }
 
 ###
@@ -73,12 +73,12 @@ POST http://localhost:3333/projects
 Content-Type: application/json
 
 {
-  "title": "portfolio2",
-  "logo": "http://portfolio",
-  "mockup": "htt://portfolio",
-  "repository": "portfolio2",
-  "siteUrl": "htt://portfolio2",
-  "videoUrl": "http://portfolio",
+  "title": "react2",
+  "logo": "http://react",
+  "mockup": "htt://react",
+  "repository": "react2",
+  "siteUrl": "htt://react2",
+  "videoUrl": "http://react",
   "stack": ["67fac495be08b8e50cc33122", "67fac4bcbe08b8e50cc33126"]
 }
 
@@ -96,11 +96,11 @@ PATCH http://localhost:3333/projects/{{projectId}}
 Content-Type: application/json
 
 {
-  "title": "react Native",
+  "title": "react",
     "logo": "http://react",
     "mockup": "http:/react",
     "repository": "react",
-    "siteUrl": "htt://champ",
+    "siteUrl": "http://react",
     "videoUrl": "http://react",
     "stack": [
       "67fac495be08b8e50cc33122"

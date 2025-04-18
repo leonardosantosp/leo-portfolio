@@ -1,16 +1,16 @@
 import {
   getAllTechnologies,
   getTechnologyById,
-  getTechnologyByNameOrSlug,
+  checkTechnologyUniqueness,
   createTechnology,
   updateTechnology,
   deleteTechnology
-} from '../repository/tecnology.repository.ts'
+} from '../repository/technology.repository'
 
-import { generateSlug } from '../utils/generateSlug.ts'
-import type { CreateTechnologyDtoType } from '../dtos/technology/create-technology.dto.ts'
-import type { UpdateTechnologyDtoType } from '../dtos/technology/update-technology.dto.ts'
-import mongoose from 'mongoose'
+import { generateSlug } from '../utils/generateSlug'
+import type { CreateTechnologyDtoType } from '../dtos/technology/create-technology.dto'
+import type { UpdateTechnologyDtoType } from '../dtos/technology/update-technology.dto'
+import { ErrorCode } from '../constants/errors'
 
 export async function getAllTechnologiesService() {
   return await getAllTechnologies()
@@ -20,7 +20,7 @@ export async function getTechnologyByIdService(id: string) {
   const technology = await getTechnologyById(id)
 
   if (!technology) {
-    throw new Error('Technology not found')
+    throw new Error(ErrorCode.NOT_FOUND)
   }
 
   return technology
@@ -31,13 +31,13 @@ export async function createTechnologyService(
 ) {
   const slug = generateSlug(technologyData.name)
 
-  const existingTechnology = await getTechnologyByNameOrSlug(
+  const duplicateTechnology = await checkTechnologyUniqueness(
     technologyData.name,
     slug
   )
 
-  if (existingTechnology) {
-    throw new Error('Technology already exists')
+  if (duplicateTechnology) {
+    throw new Error(ErrorCode.ALREADY_EXISTS)
   }
 
   const technologyToCreate = {
@@ -52,21 +52,22 @@ export async function updateTechnologyService(
   id: string,
   technologyData: UpdateTechnologyDtoType
 ) {
-  const existing = await getTechnologyById(id)
+  const existingTechnology = await getTechnologyById(id)
 
-  if (!existing) return null
+  if (!existingTechnology) throw new Error(ErrorCode.NOT_FOUND)
 
   let slug: string | undefined = undefined
 
   if (technologyData.name !== undefined) {
-    const existingTechnology = await getTechnologyByNameOrSlug(
-      technologyData.name
+    slug = generateSlug(technologyData.name)
+    const duplicateTechnology = await checkTechnologyUniqueness(
+      technologyData.name,
+      slug
     )
 
-    if (existingTechnology && existingTechnology._id.toString() !== id) {
-      throw new Error('Name already exists')
+    if (duplicateTechnology && duplicateTechnology._id.toString() !== id) {
+      throw new Error(ErrorCode.ALREADY_EXISTS)
     }
-    slug = generateSlug(technologyData.name)
   }
 
   const updateTechnologyData = {
@@ -79,11 +80,11 @@ export async function updateTechnologyService(
 }
 
 export async function deleteTechnologyService(id: string) {
-  const deleted = await deleteTechnology(id)
+  const deletedTechnology = await deleteTechnology(id)
 
-  if (!deleted) {
-    throw new Error('Technology Not found')
+  if (!deletedTechnology) {
+    throw new Error(ErrorCode.NOT_FOUND)
   }
 
-  return deleted
+  return deletedTechnology
 }
