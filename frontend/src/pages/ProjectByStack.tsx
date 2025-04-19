@@ -1,6 +1,6 @@
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
-import { ProjectItem } from '../components/ProjectItem'
+import { ProjectsList } from '../components/ProjectsList'
 import iconReact from '../assets/react.png'
 
 const projects = [
@@ -164,19 +164,8 @@ export const ProjectByStack = () => {
         <img src={iconReact} alt="logo da technologia X" />
         <h2>React</h2>
       </div>
-      <div className="project-by-stack__projects">
-        {projects
-          .map(project => (
-            <ProjectItem
-              key={project.title}
-              logo={project.logo}
-              title={project.title}
-              image={project.image}
-              stack={project.stack}
-            />
-          ))
-          .reverse()}
-      </div>
+
+      <ProjectsList projects={projects} />
 
       <Footer />
     </div>

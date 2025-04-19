@@ -1,5 +1,4 @@
-import { ProjectItem } from '../components/ProjectItem'
-import { Stack } from '../components/Stack'
+import { ProjectsList } from '../components/ProjectsList'
 
 export const Projects = () => {
   const projects = [
@@ -156,18 +155,9 @@ export const Projects = () => {
   ]
 
   return (
-    <div className="projects" id="projects">
+    <div id="projects">
       <h1 className="projects__title">Meus Projetos</h1>
-      <div className="projects__container">
-        {projects.map(project => (
-          <ProjectItem
-            logo={project.logo}
-            title={project.title}
-            image={project.image}
-            stack={project.stack}
-          />
-        ))}
-      </div>
+      <ProjectsList projects={projects} />
     </div>
   )
 }

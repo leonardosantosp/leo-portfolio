@@ -746,7 +746,7 @@ p {
   font-size: 35px;
 }
 
-.project-by-stack__projects {
+.projects-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
