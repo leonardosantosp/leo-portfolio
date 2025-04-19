@@ -1,11 +1,11 @@
-import { ReadmeViewer } from '../components/ReadmeViewer'
+import { ProjectReadme } from '../components/ProjectReadme'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 import github from '../assets/github-icon.png'
 import { useEffect, useState } from 'react'
 import { LoadingScreen } from '../components/LoadingScreen'
 
-export const Project = () => {
+export const ProjectDetailsPage = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -46,7 +46,7 @@ export const Project = () => {
               <div className="link-text">Ver Site</div>
             </a>
           </div>
-          <ReadmeViewer />
+          <ProjectReadme />
         </div>
         <Footer />
       </div>

@@ -4,7 +4,7 @@ import linkedin from '../assets/linkedin-icon.png'
 import zap from '../assets/whatsapp-icon.png'
 import { SkillsTicker } from '../components/SkillsTicker'
 
-export const Home = () => {
+export const HomeSection = () => {
   return (
     <div className="home" id="home">
       <div className="home-container">

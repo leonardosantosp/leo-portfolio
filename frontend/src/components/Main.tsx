@@ -1,6 +1,6 @@
-import { Home } from '../sections/Home'
-import { About } from '../sections/About'
-import { Projects } from '../sections/Projetcs'
+import { HomeSection } from '../sections/HomeSection'
+import { AboutSection } from '../sections/AboutSection'
+import { ProjectsSection } from '../sections/ProjetcsSection'
 import { Footer } from '../components/Footer'
 import { LoadingScreen } from '../components/LoadingScreen'
 
@@ -15,9 +15,9 @@ export const Main = ({ loading }: mainProps) => {
       <div
         style={{ opacity: loading ? 0 : 1, transition: 'opacity 0.5s ease' }}
       >
-        <Home />
-        <About />
-        <Projects />
+        <HomeSection />
+        <AboutSection />
+        <ProjectsSection />
         <Footer />
       </div>
     </div>

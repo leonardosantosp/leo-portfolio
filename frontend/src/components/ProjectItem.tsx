@@ -12,7 +12,7 @@ interface ProjectItemProps {
   }[]
 }
 
-import { Stack } from './Stack'
+import { ProjectStack } from './ProjectStack'
 
 export const ProjectItem = ({
   logo,
@@ -43,7 +43,7 @@ export const ProjectItem = ({
           <div className="project-item__detail">
             <div className="project-item__detail-header">
               <div className="stack">
-                <Stack stack={stack} />
+                <ProjectStack stack={stack} />
               </div>
               <img
                 className="arrow arrow-up"

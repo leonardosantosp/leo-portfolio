@@ -1,6 +1,6 @@
 import react from '../assets/app-images/react.png'
 import { Link } from 'react-router-dom'
-export const Apps = () => {
+export const AppList = () => {
   return (
     <>
       <Link to="/projects/:stackId">

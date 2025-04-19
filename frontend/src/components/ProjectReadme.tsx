@@ -4,7 +4,7 @@ import rehypeRaw from 'rehype-raw'
 import 'github-markdown-css/github-markdown.css'
 import readme from '../assets/readme.png'
 
-export const ReadmeViewer = () => {
+export const ProjectReadme = () => {
   const [content, setContent] = useState('')
   const [expanded, setExpanded] = useState(false)
 

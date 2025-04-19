@@ -1,6 +1,6 @@
 import { ProjectsList } from '../components/ProjectsList'
 
-export const Projects = () => {
+export const ProjectsSection = () => {
   const projects = [
     {
       image: 'https://imgur.com/LtdTASQ.png',

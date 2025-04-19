@@ -156,7 +156,7 @@ const projects = [
   }
 ]
 
-export const ProjectByStack = () => {
+export const ProjectsByStackPage = () => {
   return (
     <div className="project-by-stack">
       <Header showMenu={false} />

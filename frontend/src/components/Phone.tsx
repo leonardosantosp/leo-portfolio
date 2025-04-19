@@ -1,6 +1,6 @@
 import { Clock } from './Clock'
 import search from '../assets/search-icon.png'
-import { Apps } from './Apps'
+import { AppList } from './AppList'
 import onGif from '../assets/ligar-gif.gif'
 import onPng from '../assets/ligar.png'
 import { LoadingScreen } from './LoadingScreen'
@@ -47,7 +47,7 @@ const Phone = () => {
                     <LoadingScreen />
                   </div>
                 ) : (
-                  <Apps />
+                  <AppList />
                 )}
               </div>
             </>

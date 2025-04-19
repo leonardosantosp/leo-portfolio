@@ -5,7 +5,7 @@ interface stackItemProps {
   }[]
 }
 
-export const Stack = ({ stack }: stackItemProps) => {
+export const ProjectStack = ({ stack }: stackItemProps) => {
   return (
     <>
       {stack.map(stackItem => (

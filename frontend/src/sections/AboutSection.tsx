@@ -9,7 +9,7 @@ trabalhando tanto no front-end quanto no back-end,
 busco transformar ideias em aplicações funcionais, 
 eficientes e escaláveis. Vamos construir juntos o seu próximo projeto!`
 
-export const About = () => {
+export const AboutSection = () => {
   const [index, setIndex] = useState(0)
   const [visible, setVisible] = useState(false)
   const chatRef = useRef<HTMLDivElement>(null)
