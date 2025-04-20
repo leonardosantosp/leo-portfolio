@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 interface headerProps {
   showMenu: boolean
 }
@@ -21,6 +23,9 @@ export const Header = ({ showMenu }: headerProps) => {
           </li>
           <li>
             <a href="#projects">Projetos</a>
+          </li>
+          <li>
+            <Link to="/login">Login</Link>
           </li>
         </ul>
       )}

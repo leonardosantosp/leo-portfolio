@@ -2,6 +2,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -847,4 +849,123 @@ p {
 .pagination__info {
   font-family: 'Inter', sans-serif;
   font-size: 12px;
+}
+
+/* Login */
+
+.admin-signin {
+  display: flex;
+  height: 100vh;
+}
+
+.admin-signin__left {
+  width: 64%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.admin-signin__greeting {
+  margin-left: 30px;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  font-size: 40px;
+}
+
+.admin-signin__greeting-role {
+  background: linear-gradient(90deg, #501794 0%, #ae69ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.admin-signin__right {
+  font-family: 'Poppins', sans-serif;
+  width: 36%;
+  background-color: #140324;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 3rem 2rem 1rem 2rem;
+}
+
+.admin-signin__right-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+}
+
+.admin-signin__form {
+  padding-left: 5%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.admin-signin__title {
+  font-weight: bold;
+  font-size: 57px;
+}
+
+.admin-signin__label {
+  font-weight: bold;
+}
+
+.admin-signin__input-group {
+  background-color: #261046;
+  border-radius: 10px;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.admin-signin__input {
+  height: 60px;
+  background-color: #261046;
+  border-style: none;
+  width: 79%;
+}
+
+.admin-signin__button {
+  margin-top: 20px;
+  background: linear-gradient(95deg, #501794 0%, #3e70a1 100%);
+  border-style: none;
+  color: white;
+  height: 60px;
+  border-radius: 10px;
+  font-size: 22px;
+  transition: 0.5s ease;
+}
+
+.admin-signin__button:hover {
+  box-shadow: 0 0 10px #3e70a1;
+  transform: scale(1.01);
+}
+
+.admin-signin__back a {
+  align-items: center;
+  font-size: 14px;
+  display: flex;
+  color: white;
+  transition: 0.5s ease;
+}
+
+.admin-signin__back a:hover {
+  transform: translateY(-2px);
+}
+
+.admin-signin__back img {
+  transform: rotate(90deg);
+}
+
+.admin-signin__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-signin__note {
+  color: #b6b6b6;
+  font-size: 12.53px;
 }
