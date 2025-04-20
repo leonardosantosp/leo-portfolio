@@ -5,10 +5,21 @@ import onGif from '../assets/ligar-gif.gif'
 import onPng from '../assets/ligar.png'
 import { LoadingScreen } from './LoadingScreen'
 import { usePhoneBoot } from '../hooks/usePhoneBoot'
+import { PaginationDots } from './PaginationDots'
+import { useState } from 'react'
+import react from '../assets/app-images/react.png'
 
 const Phone = () => {
   const { phoneOn, phoneLoading, text, showApps, appsLoading, bootPhone } =
     usePhoneBoot()
+
+  const pageSize = 16
+  const [currentPage, setCurrentPage] = useState(0)
+
+  const onChange = (newPage: number) => {
+    setCurrentPage(newPage)
+  }
+  const apps = Array(40).fill({ react })
 
   return (
     <div className="phone">
@@ -47,7 +58,19 @@ const Phone = () => {
                     <LoadingScreen />
                   </div>
                 ) : (
-                  <AppList />
+                  <>
+                    <AppList
+                      apps={apps}
+                      currentPage={currentPage}
+                      pageSize={pageSize}
+                    />
+                    <PaginationDots
+                      currentPage={currentPage}
+                      pageSize={pageSize}
+                      onChange={onChange}
+                      array={apps}
+                    />
+                  </>
                 )}
               </div>
             </>

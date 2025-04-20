@@ -1,26 +1,21 @@
 import react from '../assets/app-images/react.png'
-import { Link } from 'react-router-dom'
-export const AppList = () => {
+
+interface AppListProps {
+  currentPage: number
+  pageSize: number
+  apps: string[]
+}
+
+export const AppList = ({ currentPage, pageSize, apps }: AppListProps) => {
+  const visibleApps = apps.slice(
+    currentPage * pageSize,
+    (currentPage + 1) * pageSize
+  )
   return (
-    <>
-      <Link to="/projects/:stackId">
-        <img src={react} alt="logo do react" />
-      </Link>
-      <img src={react} alt="logo do react" />
-      <img src={react} alt="logo do react" />
-      <img src={react} alt="logo do react" />
-      <img src={react} alt="logo do react" />
-      <img src={react} alt="logo do react" />
-      <img src={react} alt="logo do react" />
-      <img src={react} alt="logo do react" />
-      <img src={react} alt="logo do react" />
-      <img src={react} alt="logo do react" />
-      <img src={react} alt="logo do react" />
-      <img src={react} alt="logo do react" />
-      <img src={react} alt="logo do react" />
-      <img src={react} alt="logo do react" />
-      <img src={react} alt="logo do react" />
-      <img src={react} alt="logo do react" />
-    </>
+    <div className="apps">
+      {visibleApps.map((app, i) => (
+        <img key={i} src={react} alt="" />
+      ))}
+    </div>
   )
 }

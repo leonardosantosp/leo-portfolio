@@ -226,6 +226,7 @@ a {
 }
 
 .clock {
+  transform: translateY(20px);
   color: white;
   font-family: 'Inter', sans-serif;
   display: flex;
@@ -276,6 +277,11 @@ a {
 
 .phone__apps img:hover {
   transform: scale(1.2);
+}
+
+.apps {
+  width: 235px;
+  height: 224px;
 }
 
 /* Ticker */
@@ -802,4 +808,43 @@ p {
   100% {
     opacity: 0.3;
   }
+}
+
+.pagination {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 15px 0 0;
+}
+
+.pagination__arrow {
+  background: none;
+  border-style: none;
+  font-size: 20px;
+}
+
+.pagination__arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.pagination__dot {
+  opacity: 0.4;
+  border-radius: 360px;
+  border-style: none;
+  background-color: #d9d9d9;
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+}
+
+.pagination__dot-active {
+  opacity: 1;
+  background-color: #211b69;
+}
+
+.pagination__info {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
 }
