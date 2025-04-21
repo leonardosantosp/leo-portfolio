@@ -9,6 +9,10 @@
   padding: 0;
 }
 
+table {
+  border-spacing: 0;
+}
+
 body {
   background: rgb(20, 3, 36);
   background: radial-gradient(
@@ -968,4 +972,244 @@ p {
 .admin-signin__note {
   color: #b6b6b6;
   font-size: 12.53px;
+}
+
+/* Admin Page */
+
+.item-management-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 110vh;
+}
+
+.item-management-page {
+  background: #111827;
+  width: 91.23%;
+  height: 100%;
+  border: 1px solid #606165;
+  border-radius: 15px;
+}
+
+.item-management-page__header {
+  padding-top: 10px;
+  height: 7%;
+  background: #374151;
+  border-radius: 15px 15px 0 0;
+  border: 1px solid #606165;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item-management-page__header button {
+  background: #1f2937;
+  border: 1px solid #606165;
+  padding: 5px;
+  border-radius: 10px;
+  color: #9ca3af;
+  margin-right: 10px;
+  transition: 0.5s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.item-management-page__header button:hover {
+  transform: scale(1.07);
+  color: white;
+  background: #55585f;
+}
+
+.item-management-page__header-schemas {
+  margin-left: 30px;
+}
+
+.item-management-page__header-schemas button {
+  padding: 10px;
+}
+
+.item-management-page__header-view-toggle {
+  margin-right: 60px;
+}
+
+.theme-toggle {
+  margin-right: 40px;
+}
+
+.item-list-container {
+  width: 100%;
+  height: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-management-page__item-list {
+  border-radius: 15px;
+  background: #1f2937;
+  border: 1px solid #606165;
+  width: 91.23%;
+  height: 85.37%;
+}
+
+.item-list__header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #374151;
+  height: 8%;
+}
+
+.item-list__header h2,
+p {
+  margin-left: 15px;
+}
+
+.item-list__header-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
+  font-size: 25px;
+}
+.item-list__header-results {
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  color: #59657a;
+}
+
+.item-list__toolbar {
+  height: 12%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.item-list__toolbar button {
+  background: #7c3aed;
+  border: none;
+  color: white;
+  padding: 7px;
+  border-radius: 10px;
+  font-family: 'Inter', sans-serif;
+  transition: 0.4s ease;
+}
+
+.item-list__toolbar button:hover {
+  background: #5918c7;
+  transform: scale(1.02);
+}
+
+.item-list__toolbar button span {
+  font-size: 20px;
+  transition: 1s ease;
+  display: inline-block;
+}
+
+.item-list__toolbar button:hover span {
+  transform: rotate(90deg) scale(1.2);
+}
+
+.item-search {
+  display: flex;
+  align-items: center;
+  background: #374151;
+  width: 25%;
+  height: 35%;
+  border-radius: 10px;
+  border: 1px solid #606165;
+}
+
+.item-search input {
+  background: #374151;
+  border-style: none;
+}
+
+.item-search img {
+  margin: 0 6px;
+}
+
+.item-list__table table {
+  width: 100%;
+}
+
+.item-list__table thead th {
+  background: #374151;
+  padding: 7px;
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  color: #9ca3af;
+}
+
+.item-list__table tbody tr:first-child td {
+  padding-top: 5px;
+}
+
+.item-list__table tbody tr:last-child td {
+  border: none;
+}
+
+.item-list__table td {
+  border-bottom: 1px solid #374151;
+}
+
+.item-list__table th,
+.item-list__table td {
+  text-align: center;
+}
+
+.item-list__table td strong {
+  font-family: 'Inter', sans-serif;
+}
+
+.item-table__actions button {
+  padding: 5px;
+  margin-right: 15px;
+  border-style: none;
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-table__actions button:hover {
+  transform: scale(1.07);
+}
+
+.item-table__actions-img {
+  margin-right: 5px;
+}
+
+.item-table__actions-edit {
+  background: #7c3aed;
+  color: white;
+  transition: 0.5s ease;
+}
+
+.item-table__actions-edit:hover {
+  background: #440ba6;
+}
+
+.item-table__actions-preview {
+  background: none;
+  border: 1px solid #a4a4a4 !important;
+  color: #a4a4a4;
+  transition: 0.5s ease;
+}
+
+.item-table__actions-preview:hover {
+  color: white;
+  background-color: #a4a4a4;
+}
+
+.item-table__actions-delete {
+  background: none;
+  border: 1px solid #ef4444 !important;
+  color: #ef4444;
+  transition: 0.5s ease;
+}
+
+.item-table__actions-delete:hover {
+  color: white;
+  background-color: #ef4444;
 }
