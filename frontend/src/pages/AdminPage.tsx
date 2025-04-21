@@ -8,7 +8,12 @@ import { SquarePen } from 'lucide-react'
 import { LayoutPanelTop } from 'lucide-react'
 import { Sun } from 'lucide-react'
 import { MoonStar } from 'lucide-react'
+import { useState } from 'react'
+import { ChevronRight } from 'lucide-react'
+
 export const AdminPage = () => {
+  const [isMenuVisible, setIsMenuVisible] = useState(false)
+
   return (
     <>
       <Header showMenu={false} />
@@ -22,21 +27,47 @@ export const AdminPage = () => {
             </div>
             <div className="item-management-page__header-view-toggle">
               <button type="button">
-                <Table />
+                <Table cursor={'pointer'} />
               </button>
               <button type="button">
-                <LayoutPanelTop />
+                <LayoutPanelTop cursor={'pointer'} />
               </button>
             </div>
             <div className="theme-toggle">
               <button type="button">
-                <Sun />
+                <Sun cursor={'pointer'} />
               </button>
               <button type="button">
-                <MoonStar />
+                <MoonStar cursor={'pointer'} />
               </button>
             </div>
           </div>
+          {isMenuVisible && (
+            <div className="menu-overlay">
+              <div className="side-bar">
+                <div className="side-bar__fields">
+                  <h2>Microsserviços</h2>
+                  <div className="icon-field">
+                    <h3>Icon</h3>
+                    <img src={microservices} alt="" width={88} height={88} />
+                  </div>
+                  <div className="title-field">
+                    <h3>Title</h3>
+                    <p>Microsserviços</p>
+                  </div>
+                </div>
+                <div
+                  className="sidebar-foot"
+                  onClick={() => setIsMenuVisible(false)}
+                >
+                  <p>voltar</p>
+                  <ChevronRight size={30} />
+                </div>
+              </div>
+              <div className="blur-layer"></div>
+            </div>
+          )}
+
           <div className="item-list-container">
             <div className="item-management-page__item-list">
               <div className="item-list__header">
@@ -81,6 +112,7 @@ export const AdminPage = () => {
                           Edit
                         </button>
                         <button
+                          onClick={() => setIsMenuVisible(true)}
                           className="item-table__actions-preview"
                           type="button"
                         >
