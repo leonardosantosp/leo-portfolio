@@ -1242,14 +1242,14 @@ p {
 
 .blur-layer {
   width: 41.3%;
-  backdrop-filter: blur(0.4px);
+  backdrop-filter: blur(0.6px);
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 0 0 15px 0;
   pointer-events: none;
 }
 
 .side-bar h2 {
-  font-size: 25px;
+  font-size: 40px;
   margin-bottom: 15px;
 }
 
@@ -1257,42 +1257,48 @@ p {
   padding: 40px 0 0 40px;
 }
 
-.icon-field {
+.image-fields {
   display: flex;
   flex-direction: column;
-  width: 25%;
-  height: 55%;
+  width: 20%;
+  height: 30%;
   background-color: #374151;
-  border: 1px solid #a4a4a4;
+  border: 1px solid #606165;
   border-radius: 10px;
+  padding: 10px 0 15px 0;
+  margin: 15px 0;
 }
 
-.icon-field img {
+.images-container img {
   align-self: center;
 }
 
-.icon-field img,
-h3 {
-  margin-top: 10px;
+.image-fields img {
+  align-self: center;
 }
 
-.icon-field h3 {
+.image-fields h3 {
   margin-left: 10px;
 }
 
-.title-field {
-  width: 50%;
-  height: 30%;
+.title-fields {
+  width: 40%;
+  max-height: 70px;
   background-color: #374151;
-  border: 1px solid #a4a4a4;
+  border: 1px solid #606165;
   border-radius: 10px;
-  margin-top: 30px;
-  padding-left: 10px;
+  margin-top: 15px;
+  padding: 12px;
 }
 
-.title-field p {
+.image-fields h3,
+.title-fields h3 {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.title-fields p {
   color: #9ca3af;
-  margin-top: 10px;
 }
 
 .sidebar-foot {
@@ -1310,4 +1316,14 @@ h3 {
 
 .sidebar-foot p {
   margin: 0 !important;
+}
+
+.images-container {
+  gap: 20px;
+  display: flex;
+}
+
+.fields-container {
+  display: flex;
+  flex-wrap: wrap;
 }

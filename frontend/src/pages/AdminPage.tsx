@@ -10,9 +10,14 @@ import { Sun } from 'lucide-react'
 import { MoonStar } from 'lucide-react'
 import { useState } from 'react'
 import { ChevronRight } from 'lucide-react'
+import react from '../assets/react.png'
+import reactApp from '../assets/app-images/react.png'
 
 export const AdminPage = () => {
   const [isMenuVisible, setIsMenuVisible] = useState(false)
+  const [schema, setSchema] = useState('skills')
+  const logo = 'https://imgur.com/i9UWRS8.png'
+  const mockup = 'https://imgur.com/LtdTASQ.png'
 
   return (
     <>
@@ -21,9 +26,33 @@ export const AdminPage = () => {
         <div className="item-management-page">
           <div className="item-management-page__header">
             <div className="item-management-page__header-schemas">
-              <button type="button">Skills</button>
-              <button type="button">Technologies</button>
-              <button type="button">Projects</button>
+              <button
+                type="button"
+                onClick={() => {
+                  setSchema('skills')
+                  setIsMenuVisible(false)
+                }}
+              >
+                Skills
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setSchema('technologies')
+                  setIsMenuVisible(false)
+                }}
+              >
+                Technologies
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setSchema('projects')
+                  setIsMenuVisible(false)
+                }}
+              >
+                Projects
+              </button>
             </div>
             <div className="item-management-page__header-view-toggle">
               <button type="button">
@@ -46,15 +75,60 @@ export const AdminPage = () => {
             <div className="menu-overlay">
               <div className="side-bar">
                 <div className="side-bar__fields">
-                  <h2>Microsserviços</h2>
-                  <div className="icon-field">
-                    <h3>Icon</h3>
-                    <img src={microservices} alt="" width={88} height={88} />
-                  </div>
-                  <div className="title-field">
-                    <h3>Title</h3>
-                    <p>Microsserviços</p>
-                  </div>
+                  {schema === 'skills' ? (
+                    <>
+                      <div>
+                        <h2>Microsserviços</h2>
+                        <div className="image-fields">
+                          <h3>Icon</h3>
+                          <img
+                            src={microservices}
+                            alt=""
+                            width={60}
+                            height={60}
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <div className="title-fields">
+                          <h3>Title</h3>
+                          <p>Microsserviços</p>
+                        </div>
+                      </div>
+                    </>
+                  ) : schema === 'technologies' ? (
+                    <>
+                      <h2>React</h2>
+                      <>
+                        <div className="images-container">
+                          <div className="image-fields">
+                            <h3>Icon</h3>
+                            <img src={react} alt="" width={60} height={60} />
+                          </div>
+                          <div className="image-fields">
+                            <h3>AppIcon</h3>
+                            <img src={reactApp} alt="" width={60} height={60} />
+                          </div>
+                        </div>
+                        <div>
+                          <div>
+                            <div className="title-fields">
+                              <h3>Slug</h3>
+                              <p>react</p>
+                            </div>
+                            <div className="title-fields">
+                              <h3>Name</h3>
+                              <p>React</p>
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    </>
+                  ) : schema === 'projects' ? (
+                    <></>
+                  ) : (
+                    ''
+                  )}
                 </div>
                 <div
                   className="sidebar-foot"
