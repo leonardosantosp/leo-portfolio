@@ -1048,6 +1048,92 @@ p {
   justify-content: center;
 }
 
+.blur {
+  position: absolute;
+  width: 91%;
+  height: 100%;
+  backdrop-filter: blur(0.6px);
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 0 0 15px 15px;
+  margin-bottom: 25px;
+}
+
+.delete-card {
+  position: absolute;
+  background-color: #374151;
+  width: 35%;
+  height: 35%;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+  align-items: center;
+}
+
+.delete-card p {
+  color: #b7b8ba;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.delete-card__header {
+  display: flex;
+  margin: 20px 20px 0 0;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.close-component {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 7%;
+  height: 30%;
+  border-radius: 5px;
+  transition: 0.3s ease;
+  color: #b7b8ba;
+  cursor: pointer;
+}
+
+.close-component:hover {
+  color: white;
+  background-color: #1c2330;
+}
+
+.delete-card__header-container {
+  margin: 30px 0 0 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.delete-card__buttons button {
+  border-style: none;
+  border-radius: 10px;
+  padding: 10px;
+  margin-right: 15px;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+}
+
+.button-yes {
+  background-color: #ef4444;
+}
+
+.button-yes:hover {
+  background-color: #af2121;
+}
+
+.button-no {
+  background-color: #374151;
+  border: 1px solid #606165 !important;
+}
+
+.button-no:hover {
+  background-color: rgb(74, 80, 90);
+}
+
 .item-management-page__item-list {
   border-radius: 15px;
   background: #1f2937;

@@ -13,10 +13,12 @@ import { ChevronRight } from 'lucide-react'
 import react from '../assets/react.png'
 import reactApp from '../assets/app-images/react.png'
 import { Link } from 'react-router-dom'
-
+import { CircleAlert } from 'lucide-react'
+import { X } from 'lucide-react'
 export const AdminPage = () => {
   const [isMenuVisible, setIsMenuVisible] = useState(false)
   const [schema, setSchema] = useState('skills')
+  const [showDeleteCard, setShowDeleteCard] = useState(false)
   const logo = 'https://imgur.com/i9UWRS8.png'
   const mockup = 'https://imgur.com/LtdTASQ.png'
   const itemStack = 'https://imgur.com/mpjlXh4.png'
@@ -212,6 +214,35 @@ export const AdminPage = () => {
           )}
 
           <div className="item-list-container">
+            {showDeleteCard === true && (
+              <>
+                <div className="blur">{}</div>
+
+                <div className="delete-card">
+                  <div className="delete-card__header">
+                    <div className="delete-card__header-container">
+                      <CircleAlert size={60} />
+                    </div>
+                    <div className="close-component">
+                      <X size={20} onClick={() => setShowDeleteCard(false)} />
+                    </div>
+                  </div>
+                  <p>Are you sure you want to delete this {schema}?</p>
+                  <div className="delete-card__buttons">
+                    <button className="button-yes" type="button">
+                      Yes, I'm sure
+                    </button>
+                    <button
+                      className="button-no"
+                      type="button"
+                      onClick={() => setShowDeleteCard(false)}
+                    >
+                      No, cancel
+                    </button>
+                  </div>
+                </div>
+              </>
+            )}
             <div className="item-management-page__item-list">
               <div className="item-list__header">
                 <h2 className="item-list__header-title">Skills</h2>
@@ -265,339 +296,7 @@ export const AdminPage = () => {
                         <button
                           className="item-table__actions-delete"
                           type="button"
-                        >
-                          <Trash2
-                            size={15}
-                            className="item-table__actions-img "
-                          />
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="item-table__icon">
-                        <img src={microservices} alt="" />
-                      </td>
-                      <td className="item-table__name">
-                        <strong>Microserviços</strong>
-                      </td>
-                      <td className="item-table__actions">
-                        <button
-                          className="item-table__actions-edit"
-                          type="button"
-                        >
-                          <SquarePen
-                            size={15}
-                            className="item-table__actions-img"
-                          />
-                          Edit
-                        </button>
-                        <button
-                          className="item-table__actions-preview"
-                          type="button"
-                        >
-                          <Eye size={15} className="item-table__actions-img" />
-                          Preview
-                        </button>
-                        <button
-                          className="item-table__actions-delete"
-                          type="button"
-                        >
-                          <Trash2
-                            size={15}
-                            className="item-table__actions-img "
-                          />
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="item-table__icon">
-                        <img src={microservices} alt="" />
-                      </td>
-                      <td className="item-table__name">
-                        <strong>Microserviços</strong>
-                      </td>
-                      <td className="item-table__actions">
-                        <button
-                          className="item-table__actions-edit"
-                          type="button"
-                        >
-                          <SquarePen
-                            size={15}
-                            className="item-table__actions-img"
-                          />
-                          Edit
-                        </button>
-                        <button
-                          className="item-table__actions-preview"
-                          type="button"
-                        >
-                          <Eye size={15} className="item-table__actions-img" />
-                          Preview
-                        </button>
-                        <button
-                          className="item-table__actions-delete"
-                          type="button"
-                        >
-                          <Trash2
-                            size={15}
-                            className="item-table__actions-img "
-                          />
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="item-table__icon">
-                        <img src={microservices} alt="" />
-                      </td>
-                      <td className="item-table__name">
-                        <strong>Microserviços</strong>
-                      </td>
-                      <td className="item-table__actions">
-                        <button
-                          className="item-table__actions-edit"
-                          type="button"
-                        >
-                          <SquarePen
-                            size={15}
-                            className="item-table__actions-img"
-                          />
-                          Edit
-                        </button>
-                        <button
-                          className="item-table__actions-preview"
-                          type="button"
-                        >
-                          <Eye size={15} className="item-table__actions-img" />
-                          Preview
-                        </button>
-                        <button
-                          className="item-table__actions-delete"
-                          type="button"
-                        >
-                          <Trash2
-                            size={15}
-                            className="item-table__actions-img "
-                          />
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="item-table__icon">
-                        <img src={microservices} alt="" />
-                      </td>
-                      <td className="item-table__name">
-                        <strong>Microserviços</strong>
-                      </td>
-                      <td className="item-table__actions">
-                        <button
-                          className="item-table__actions-edit"
-                          type="button"
-                        >
-                          <SquarePen
-                            size={15}
-                            className="item-table__actions-img"
-                          />
-                          Edit
-                        </button>
-                        <button
-                          className="item-table__actions-preview"
-                          type="button"
-                        >
-                          <Eye size={15} className="item-table__actions-img" />
-                          Preview
-                        </button>
-                        <button
-                          className="item-table__actions-delete"
-                          type="button"
-                        >
-                          <Trash2
-                            size={15}
-                            className="item-table__actions-img "
-                          />
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="item-table__icon">
-                        <img src={microservices} alt="" />
-                      </td>
-                      <td className="item-table__name">
-                        <strong>Microserviços</strong>
-                      </td>
-                      <td className="item-table__actions">
-                        <button
-                          className="item-table__actions-edit"
-                          type="button"
-                        >
-                          <SquarePen
-                            size={15}
-                            className="item-table__actions-img"
-                          />
-                          Edit
-                        </button>
-                        <button
-                          className="item-table__actions-preview"
-                          type="button"
-                        >
-                          <Eye size={15} className="item-table__actions-img" />
-                          Preview
-                        </button>
-                        <button
-                          className="item-table__actions-delete"
-                          type="button"
-                        >
-                          <Trash2
-                            size={15}
-                            className="item-table__actions-img "
-                          />
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="item-table__icon">
-                        <img src={microservices} alt="" />
-                      </td>
-                      <td className="item-table__name">
-                        <strong>Microserviços</strong>
-                      </td>
-                      <td className="item-table__actions">
-                        <button
-                          className="item-table__actions-edit"
-                          type="button"
-                        >
-                          <SquarePen
-                            size={15}
-                            className="item-table__actions-img"
-                          />
-                          Edit
-                        </button>
-                        <button
-                          className="item-table__actions-preview"
-                          type="button"
-                        >
-                          <Eye size={15} className="item-table__actions-img" />
-                          Preview
-                        </button>
-                        <button
-                          className="item-table__actions-delete"
-                          type="button"
-                        >
-                          <Trash2
-                            size={15}
-                            className="item-table__actions-img "
-                          />
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="item-table__icon">
-                        <img src={microservices} alt="" />
-                      </td>
-                      <td className="item-table__name">
-                        <strong>Microserviços</strong>
-                      </td>
-                      <td className="item-table__actions">
-                        <button
-                          className="item-table__actions-edit"
-                          type="button"
-                        >
-                          <SquarePen
-                            size={15}
-                            className="item-table__actions-img"
-                          />
-                          Edit
-                        </button>
-                        <button
-                          className="item-table__actions-preview"
-                          type="button"
-                        >
-                          <Eye size={15} className="item-table__actions-img" />
-                          Preview
-                        </button>
-                        <button
-                          className="item-table__actions-delete"
-                          type="button"
-                        >
-                          <Trash2
-                            size={15}
-                            className="item-table__actions-img "
-                          />
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="item-table__icon">
-                        <img src={microservices} alt="" />
-                      </td>
-                      <td className="item-table__name">
-                        <strong>Microserviços</strong>
-                      </td>
-                      <td className="item-table__actions">
-                        <button
-                          className="item-table__actions-edit"
-                          type="button"
-                        >
-                          <SquarePen
-                            size={15}
-                            className="item-table__actions-img"
-                          />
-                          Edit
-                        </button>
-                        <button
-                          className="item-table__actions-preview"
-                          type="button"
-                        >
-                          <Eye size={15} className="item-table__actions-img" />
-                          Preview
-                        </button>
-                        <button
-                          className="item-table__actions-delete"
-                          type="button"
-                        >
-                          <Trash2
-                            size={15}
-                            className="item-table__actions-img "
-                          />
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="item-table__icon">
-                        <img src={microservices} alt="" />
-                      </td>
-                      <td className="item-table__name">
-                        <strong>Microserviços</strong>
-                      </td>
-                      <td className="item-table__actions">
-                        <button
-                          className="item-table__actions-edit"
-                          type="button"
-                        >
-                          <SquarePen
-                            size={15}
-                            className="item-table__actions-img"
-                          />
-                          Edit
-                        </button>
-                        <button
-                          className="item-table__actions-preview"
-                          type="button"
-                        >
-                          <Eye size={15} className="item-table__actions-img" />
-                          Preview
-                        </button>
-                        <button
-                          className="item-table__actions-delete"
-                          type="button"
+                          onClick={() => setShowDeleteCard(true)}
                         >
                           <Trash2
                             size={15}
