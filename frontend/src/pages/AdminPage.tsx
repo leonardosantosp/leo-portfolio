@@ -15,10 +15,17 @@ import reactApp from '../assets/app-images/react.png'
 import { Link } from 'react-router-dom'
 import { CircleAlert } from 'lucide-react'
 import { X } from 'lucide-react'
+import { ArrowLeftRight } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 export const AdminPage = () => {
   const [isMenuVisible, setIsMenuVisible] = useState(false)
-  const [schema, setSchema] = useState('skills')
+  const [schema, setSchema] = useState<'skills' | 'technologies' | 'projects'>(
+    'skills'
+  )
   const [showDeleteCard, setShowDeleteCard] = useState(false)
+  const [formMode, setFormMode] = useState<
+    'preview' | 'create' | 'update' | null
+  >(null)
   const logo = 'https://imgur.com/i9UWRS8.png'
   const mockup = 'https://imgur.com/LtdTASQ.png'
   const itemStack = 'https://imgur.com/mpjlXh4.png'
@@ -79,127 +86,256 @@ export const AdminPage = () => {
             <div className="menu-overlay">
               <div className="side-bar">
                 <div className="side-bar__fields">
-                  {schema === 'skills' ? (
-                    <>
-                      <div>
-                        <h2>Microsserviços</h2>
-                        <div className="image-fields">
-                          <h3>Icon</h3>
-                          <img
-                            src={microservices}
-                            alt=""
-                            width={60}
-                            height={60}
-                          />
-                        </div>
-                      </div>
-                      <div>
-                        <div className="text-fields">
-                          <h3>Title</h3>
-                          <p>Microsserviços</p>
-                        </div>
-                      </div>
-                    </>
-                  ) : schema === 'technologies' ? (
-                    <>
-                      <h2>React</h2>
+                  {formMode === 'preview' ? (
+                    schema === 'skills' ? (
                       <>
-                        <div className="images-container">
+                        <div>
+                          <h2>Microsserviços</h2>
                           <div className="image-fields">
                             <h3>Icon</h3>
-                            <img src={react} alt="" width={60} height={60} />
-                          </div>
-                          <div className="image-fields">
-                            <h3>AppIcon</h3>
-                            <img src={reactApp} alt="" width={60} height={60} />
+                            <img
+                              src={microservices}
+                              alt=""
+                              width={60}
+                              height={60}
+                            />
                           </div>
                         </div>
                         <div>
-                          <div>
-                            <div className="text-fields">
-                              <h3>Slug</h3>
-                              <p>react</p>
+                          <div className="text-fields">
+                            <h3>Title</h3>
+                            <p>Microsserviços</p>
+                          </div>
+                        </div>
+                      </>
+                    ) : schema === 'technologies' ? (
+                      <>
+                        <h2>React</h2>
+                        <>
+                          <div className="images-container">
+                            <div className="image-fields">
+                              <h3>Icon</h3>
+                              <img src={react} alt="" width={60} height={60} />
                             </div>
-                            <div className="text-fields">
-                              <h3>Name</h3>
-                              <p>React</p>
+                            <div className="image-fields">
+                              <h3>AppIcon</h3>
+                              <img
+                                src={reactApp}
+                                alt=""
+                                width={60}
+                                height={60}
+                              />
+                            </div>
+                          </div>
+                          <div>
+                            <div>
+                              <div className="text-fields">
+                                <h3>Slug</h3>
+                                <p>react</p>
+                              </div>
+                              <div className="text-fields">
+                                <h3>Name</h3>
+                                <p>React</p>
+                              </div>
+                            </div>
+                          </div>
+                        </>
+                      </>
+                    ) : schema === 'projects' ? (
+                      <>
+                        <h2>Full Stack Spotify</h2>
+                        <div className="images-container">
+                          <div className="image-fields">
+                            <h3>Logo</h3>
+                            <img src={logo} alt="" width={60} height={60} />
+                          </div>
+                          <div className="image-fields">
+                            <h3>Mockup</h3>
+                            <img src={mockup} alt="" width={177} height={134} />
+                          </div>
+                        </div>
+                        <div className="text-fields-container">
+                          <div className="text-fields">
+                            <h3>Title</h3>
+                            <p>Full Stack Spotify</p>
+                          </div>
+                          <div className="text-fields">
+                            <h3>Repository</h3>
+                            <p>full-stack-spotify</p>
+                          </div>
+                          <div className="text-fields">
+                            <h3>Slug</h3>
+                            <p>full-stack-spotify</p>
+                          </div>
+                          <div className="text-fields">
+                            <h3>Site URL</h3>
+                            <Link to="https://github.com/leonardosantosp/full-stack-spotify">
+                              https://github.com/leonardosantosp/full-stack-spotify
+                            </Link>
+                          </div>
+                          <div className="text-fields">
+                            <h3>Video URL</h3>
+                            <Link to="https://github.com/leonardosantosp/full-stack-spotify">
+                              https://github.com/leonardosantosp/full-stack-spotify
+                            </Link>
+                          </div>
+                          <div className="text-fields">
+                            <h3>Stack</h3>
+                            <div className="stack-fields">
+                              <div className="stack-fields-item">
+                                <img src={itemStack} alt="" />
+                                <p>Css</p>
+                              </div>
+                              <div className="stack-fields-item">
+                                <img src={itemStack} alt="" />
+                                <p>Css</p>
+                              </div>
+                              <div className="stack-fields-item">
+                                <img src={itemStack} alt="" />
+                                <p>Css</p>
+                              </div>
+                              <div className="stack-fields-item">
+                                <img src={itemStack} alt="" />
+                                <p>Css</p>
+                              </div>
+                              <div className="stack-fields-item">
+                                <img src={itemStack} alt="" />
+                                <p>Css</p>
+                              </div>
+                              <div className="stack-fields-item">
+                                <img src={itemStack} alt="" />
+                                <p>Css</p>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </>
-                    </>
-                  ) : schema === 'projects' ? (
-                    <>
-                      <h2>Full Stack Spotify</h2>
-                      <div className="images-container">
-                        <div className="image-fields">
-                          <h3>Logo</h3>
-                          <img src={logo} alt="" width={60} height={60} />
+                    ) : (
+                      ''
+                    )
+                  ) : formMode === 'create' ? (
+                    schema === 'projects' ? (
+                      <>
+                        <div className="text-fields-container">
+                          <div className="create-fields-container">
+                            <h3>Title</h3>
+
+                            <input
+                              type="text"
+                              id="title"
+                              name="title"
+                              placeholder={`Type ${schema} title`}
+                            />
+                          </div>
+                          <div className="create-fields-container">
+                            <h3>Logo</h3>
+                            <input
+                              type="text"
+                              id="title"
+                              name="title"
+                              placeholder="Type logo url"
+                            />
+                          </div>
+                          <div className="create-fields-container">
+                            <h3>Mockup</h3>
+                            <input
+                              type="text"
+                              id="title"
+                              name="title"
+                              placeholder="Type mockup url"
+                            />
+                          </div>
+                          <div className="create-fields-container">
+                            <h3>Repository</h3>
+                            <input
+                              type="text"
+                              id="title"
+                              name="title"
+                              placeholder="Type repository name"
+                            />
+                          </div>
+                          <div className="create-fields-container">
+                            <h3>Site</h3>
+                            <input
+                              type="text"
+                              id="title"
+                              name="title"
+                              placeholder="Type site url"
+                            />
+                          </div>
+                          <div className="create-fields-container">
+                            <h3>Video</h3>
+                            <input
+                              type="text"
+                              id="title"
+                              name="title"
+                              placeholder="Type video url"
+                            />
+                          </div>
                         </div>
-                        <div className="image-fields">
-                          <h3>Mockup</h3>
-                          <img src={mockup} alt="" width={177} height={134} />
-                        </div>
-                      </div>
-                      <div className="text-fields-container">
-                        <div className="text-fields">
-                          <h3>Title</h3>
-                          <p>Full Stack Spotify</p>
-                        </div>
-                        <div className="text-fields">
-                          <h3>Repository</h3>
-                          <p>full-stack-spotify</p>
-                        </div>
-                        <div className="text-fields">
-                          <h3>Slug</h3>
-                          <p>full-stack-spotify</p>
-                        </div>
-                        <div className="text-fields">
-                          <h3>Site URL</h3>
-                          <Link to="https://github.com/leonardosantosp/full-stack-spotify">
-                            https://github.com/leonardosantosp/full-stack-spotify
-                          </Link>
-                        </div>
-                        <div className="text-fields">
-                          <h3>Video URL</h3>
-                          <Link to="https://github.com/leonardosantosp/full-stack-spotify">
-                            https://github.com/leonardosantosp/full-stack-spotify
-                          </Link>
-                        </div>
-                        <div className="text-fields">
-                          <h3>Stack</h3>
-                          <div className="stack-fields">
-                            <div className="stack-fields-item">
-                              <img src={itemStack} alt="" />
-                              <p>Css</p>
-                            </div>
-                            <div className="stack-fields-item">
-                              <img src={itemStack} alt="" />
-                              <p>Css</p>
-                            </div>
-                            <div className="stack-fields-item">
-                              <img src={itemStack} alt="" />
-                              <p>Css</p>
-                            </div>
-                            <div className="stack-fields-item">
-                              <img src={itemStack} alt="" />
-                              <p>Css</p>
-                            </div>
-                            <div className="stack-fields-item">
-                              <img src={itemStack} alt="" />
-                              <p>Css</p>
-                            </div>
-                            <div className="stack-fields-item">
-                              <img src={itemStack} alt="" />
-                              <p>Css</p>
+                        <h3>Select Technologies</h3>
+                        <div className="stack-fields create-stack-fields">
+                          <div className="stack-fields__add-button">
+                            <ChevronDown />
+                            <p>Add</p>
+                          </div>
+                          <ArrowLeftRight color="#9CA3AF" />
+
+                          <div className="stack-card">
+                            <h4>Stack</h4>
+                            <div className="stack-fields">
+                              <div className="stack-fields-item">
+                                <img src={itemStack} alt="" />
+                                <p>Css</p>
+                                <div className="stack-fields-icon">
+                                  <Trash2 size={15} />
+                                </div>
+                              </div>
+                              <div className="stack-fields-item">
+                                <img src={itemStack} alt="" />
+                                <p>Css</p>
+                                <div className="stack-fields-icon">
+                                  <Trash2 size={15} />
+                                </div>
+                              </div>
+                              <div className="stack-fields-item">
+                                <img src={itemStack} alt="" />
+                                <p>Css</p>
+                                <div className="stack-fields-icon">
+                                  <Trash2 size={15} />
+                                </div>
+                              </div>
+                              <div className="stack-fields-item">
+                                <img src={itemStack} alt="" />
+                                <p>Css</p>
+                                <div className="stack-fields-icon">
+                                  <Trash2 size={15} />
+                                </div>
+                              </div>
+                              <div className="stack-fields-item">
+                                <img src={itemStack} alt="" />
+                                <p>Css</p>
+                                <div className="stack-fields-icon">
+                                  <Trash2 size={15} />
+                                </div>
+                              </div>
+                              <div className="stack-fields-item">
+                                <img src={itemStack} alt="" />
+                                <p>Css</p>
+                                <div className="stack-fields-icon">
+                                  <Trash2 size={15} />
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </>
-                  ) : (
+                      </>
+                    ) : (
+                      ''
+                    )
+                  ) : formMode === 'update' ? (
                     ''
-                  )}
+                  ) : null}
                 </div>
                 <div
                   className="sidebar-foot"
@@ -253,7 +389,13 @@ export const AdminPage = () => {
                   <img src={search} alt="" />
                   <input type="search" placeholder="Search for skills" />
                 </div>
-                <button type="button">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsMenuVisible(true)
+                    setFormMode('create')
+                  }}
+                >
                   <span>+</span> Add new skill
                 </button>
               </div>
@@ -278,6 +420,10 @@ export const AdminPage = () => {
                         <button
                           className="item-table__actions-edit"
                           type="button"
+                          onClick={() => {
+                            setIsMenuVisible(true)
+                            setFormMode('update')
+                          }}
                         >
                           <SquarePen
                             size={15}
@@ -286,7 +432,10 @@ export const AdminPage = () => {
                           Edit
                         </button>
                         <button
-                          onClick={() => setIsMenuVisible(true)}
+                          onClick={() => {
+                            setIsMenuVisible(true)
+                            setFormMode('preview')
+                          }}
                           className="item-table__actions-preview"
                           type="button"
                         >

@@ -1427,4 +1427,64 @@ p {
 
 .stack-fields-item {
   display: flex;
+  align-items: center;
+}
+
+.stack-fields-item img {
+  margin-top: 7px;
+}
+
+.create-fields-container {
+  width: 50%;
+}
+
+.create-fields-container h3 {
+  font-size: 13px;
+}
+
+.create-fields-container input {
+  background-color: #374151;
+  width: 90%;
+  height: 30%;
+  border: 2px solid #606165;
+  padding: 5px;
+  border-radius: 10px;
+  margin: 8px 0 30px 0;
+  color: white;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: none;
+  border: 2px solid #0c5fdd;
+}
+
+.create-stack-fields {
+  margin-top: 40px;
+}
+
+.stack-card {
+  margin-left: 50px;
+  border: 2px solid #606165;
+  border-radius: 15px;
+  width: 40%;
+  padding: 10px;
+}
+
+.stack-card h4 {
+  margin-bottom: 20px;
+}
+
+.stack-fields__add-button {
+  height: 10%;
+  display: flex;
+  border: 2px solid #606165;
+  border-radius: 8px;
+  color: #9ca3af;
+  margin-right: 30px;
+}
+
+.stack-fields-icon {
+  color: #ef4444;
+  margin-right: 20px;
 }
