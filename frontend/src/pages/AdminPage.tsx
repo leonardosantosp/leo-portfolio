@@ -12,12 +12,14 @@ import { useState } from 'react'
 import { ChevronRight } from 'lucide-react'
 import react from '../assets/react.png'
 import reactApp from '../assets/app-images/react.png'
+import { Link } from 'react-router-dom'
 
 export const AdminPage = () => {
   const [isMenuVisible, setIsMenuVisible] = useState(false)
   const [schema, setSchema] = useState('skills')
   const logo = 'https://imgur.com/i9UWRS8.png'
   const mockup = 'https://imgur.com/LtdTASQ.png'
+  const itemStack = 'https://imgur.com/mpjlXh4.png'
 
   return (
     <>
@@ -90,7 +92,7 @@ export const AdminPage = () => {
                         </div>
                       </div>
                       <div>
-                        <div className="title-fields">
+                        <div className="text-fields">
                           <h3>Title</h3>
                           <p>Microsserviços</p>
                         </div>
@@ -112,11 +114,11 @@ export const AdminPage = () => {
                         </div>
                         <div>
                           <div>
-                            <div className="title-fields">
+                            <div className="text-fields">
                               <h3>Slug</h3>
                               <p>react</p>
                             </div>
-                            <div className="title-fields">
+                            <div className="text-fields">
                               <h3>Name</h3>
                               <p>React</p>
                             </div>
@@ -125,7 +127,74 @@ export const AdminPage = () => {
                       </>
                     </>
                   ) : schema === 'projects' ? (
-                    <></>
+                    <>
+                      <h2>Full Stack Spotify</h2>
+                      <div className="images-container">
+                        <div className="image-fields">
+                          <h3>Logo</h3>
+                          <img src={logo} alt="" width={60} height={60} />
+                        </div>
+                        <div className="image-fields">
+                          <h3>Mockup</h3>
+                          <img src={mockup} alt="" width={177} height={134} />
+                        </div>
+                      </div>
+                      <div className="text-fields-container">
+                        <div className="text-fields">
+                          <h3>Title</h3>
+                          <p>Full Stack Spotify</p>
+                        </div>
+                        <div className="text-fields">
+                          <h3>Repository</h3>
+                          <p>full-stack-spotify</p>
+                        </div>
+                        <div className="text-fields">
+                          <h3>Slug</h3>
+                          <p>full-stack-spotify</p>
+                        </div>
+                        <div className="text-fields">
+                          <h3>Site URL</h3>
+                          <Link to="https://github.com/leonardosantosp/full-stack-spotify">
+                            https://github.com/leonardosantosp/full-stack-spotify
+                          </Link>
+                        </div>
+                        <div className="text-fields">
+                          <h3>Video URL</h3>
+                          <Link to="https://github.com/leonardosantosp/full-stack-spotify">
+                            https://github.com/leonardosantosp/full-stack-spotify
+                          </Link>
+                        </div>
+                        <div className="text-fields">
+                          <h3>Stack</h3>
+                          <div className="stack-fields">
+                            <div className="stack-fields-item">
+                              <img src={itemStack} alt="" />
+                              <p>Css</p>
+                            </div>
+                            <div className="stack-fields-item">
+                              <img src={itemStack} alt="" />
+                              <p>Css</p>
+                            </div>
+                            <div className="stack-fields-item">
+                              <img src={itemStack} alt="" />
+                              <p>Css</p>
+                            </div>
+                            <div className="stack-fields-item">
+                              <img src={itemStack} alt="" />
+                              <p>Css</p>
+                            </div>
+                            <div className="stack-fields-item">
+                              <img src={itemStack} alt="" />
+                              <p>Css</p>
+                            </div>
+                            <div className="stack-fields-item">
+                              <img src={itemStack} alt="" />
+                              <p>Css</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </>
                   ) : (
                     ''
                   )}
