@@ -1488,3 +1488,32 @@ input:focus {
   color: #ef4444;
   margin-right: 20px;
 }
+
+.create-stack-fields__buttons button {
+  padding: 10px;
+  border-radius: 10px;
+  margin: 40px 15px 0 0;
+}
+
+.create-stack-fields__buttons-add {
+  background-color: #0c5fdd;
+  color: white;
+  border-style: none;
+  transition: 0.3s ease;
+}
+
+.create-stack-fields__buttons-add:hover {
+  background-color: #05429d;
+}
+
+.create-stack-fields__buttons-discard {
+  color: #9ca3af;
+  border: 2px solid #606165;
+  background-color: #1f2937;
+  transition: 0.3s ease;
+}
+
+.create-stack-fields__buttons-discard:hover {
+  background-color: #374151;
+  color: white;
+}

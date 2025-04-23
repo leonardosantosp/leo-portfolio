@@ -329,6 +329,109 @@ export const AdminPage = () => {
                             </div>
                           </div>
                         </div>
+                        <div className="create-stack-fields__buttons">
+                          <button
+                            className="create-stack-fields__buttons-add"
+                            type="button"
+                          >
+                            Add Project
+                          </button>
+                          <button
+                            className="create-stack-fields__buttons-discard"
+                            type="button"
+                            onClick={() => setIsMenuVisible(false)}
+                          >
+                            Discard
+                          </button>
+                        </div>
+                      </>
+                    ) : schema === 'skills' ? (
+                      <>
+                        <div className="text-fields-container">
+                          <div className="create-fields-container">
+                            <h3>Icon</h3>
+
+                            <input
+                              type="text"
+                              id="title"
+                              name="title"
+                              placeholder="Type icon url"
+                            />
+                          </div>
+                          <div className="create-fields-container">
+                            <h3>Title</h3>
+                            <input
+                              type="text"
+                              id="title"
+                              name="title"
+                              placeholder="Type skill title"
+                            />
+                          </div>
+                        </div>
+                        <div className="create-stack-fields__buttons">
+                          <button
+                            className="create-stack-fields__buttons-add"
+                            type="button"
+                          >
+                            Add Skill
+                          </button>
+                          <button
+                            className="create-stack-fields__buttons-discard"
+                            type="button"
+                            onClick={() => setIsMenuVisible(false)}
+                          >
+                            Discard
+                          </button>
+                        </div>
+                      </>
+                    ) : schema === 'technologies' ? (
+                      <>
+                        <div className="text-fields-container">
+                          <div className="create-fields-container">
+                            <h3>Icon</h3>
+
+                            <input
+                              type="text"
+                              id="title"
+                              name="title"
+                              placeholder="Type icon url"
+                            />
+                          </div>
+                          <div className="create-fields-container">
+                            <h3>AppIcon</h3>
+                            <input
+                              type="text"
+                              id="title"
+                              name="title"
+                              placeholder="Type app icon url"
+                            />
+                          </div>
+
+                          <div className="create-fields-container">
+                            <h3>Name</h3>
+                            <input
+                              type="text"
+                              id="title"
+                              name="title"
+                              placeholder="Type technologie name"
+                            />
+                          </div>
+                        </div>
+                        <div className="create-stack-fields__buttons">
+                          <button
+                            className="create-stack-fields__buttons-add"
+                            type="button"
+                          >
+                            Add Skill
+                          </button>
+                          <button
+                            className="create-stack-fields__buttons-discard"
+                            type="button"
+                            onClick={() => setIsMenuVisible(false)}
+                          >
+                            Discard
+                          </button>
+                        </div>
                       </>
                     ) : (
                       ''
