@@ -1020,7 +1020,7 @@ p {
 .item-management-page__header button:hover {
   transform: scale(1.07);
   color: white;
-  background: #55585f;
+  background: #374151;
 }
 
 .item-management-page__header-schemas {
@@ -1493,6 +1493,7 @@ input:focus {
   padding: 10px;
   border-radius: 10px;
   margin: 40px 15px 0 0;
+  cursor: pointer;
 }
 
 .create-stack-fields__buttons-add {
