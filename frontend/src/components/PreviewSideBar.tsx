@@ -5,21 +5,39 @@ const logo = 'https://imgur.com/i9UWRS8.png'
 const mockup = 'https://imgur.com/LtdTASQ.png'
 const itemStack = 'https://imgur.com/mpjlXh4.png'
 import { PreviewField } from './PreviewField'
+import { useEffect, useState } from 'react'
+import { getSkillById } from '../api-client/skillsApi'
+import { ReturnedSkill } from '../api-client/skillsApi'
 
 type PreviewSideBarSchema = 'skill' | 'technology' | 'project'
 
 type PreviewSideBarProps = {
   schema: PreviewSideBarSchema
+  selectedItem: string | null
 }
 
-export const PreviewSideBar = ({ schema }: PreviewSideBarProps) => {
+export const PreviewSideBar = ({
+  schema,
+  selectedItem
+}: PreviewSideBarProps) => {
+  const [skill, setSkill] = useState<ReturnedSkill>({} as ReturnedSkill)
+
+  useEffect(() => {
+    const fetchSkills = async () => {
+      if (!selectedItem) return
+      const data = await getSkillById(selectedItem)
+      setSkill(data)
+    }
+    fetchSkills()
+  }, [selectedItem])
+
   return (
     <>
       {schema === 'skill' ? (
         <>
-          <h2>Microsserviços</h2>
-          <PreviewField label="Icon" value={microservices} type="image" />
-          <PreviewField label="Title" value="Microsserviços" type="text" />
+          <h2>{skill.name}</h2>
+          <PreviewField label="Icon" value={skill.icon} type="image" />
+          <PreviewField label="Title" value={skill.name} type="text" />
         </>
       ) : schema === 'technology' ? (
         <>

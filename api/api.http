@@ -4,8 +4,8 @@ POST http://localhost:3333/skills
 Content-Type: application/json
 
 {
-  "name": "react",
-  "icon": "http://react"
+  "name": "Api rest",
+  "icon": "https://imgur.com/ajgDP2E"
 }
 
 ###
@@ -38,9 +38,9 @@ POST http://localhost:3333/technologies
 Content-Type: application/json
 
 {
-  "name": "spring",
-  "icon": "http://iconeSpring",
-  "appIcon": "http://spring"
+  "name": "Spring Boot",
+  "icon": "https://imgur.com/hGYSUGQ",
+  "appIcon": "https://imgur.com/alHTVfD"
 }
 
 ###
@@ -73,13 +73,13 @@ POST http://localhost:3333/projects
 Content-Type: application/json
 
 {
-  "title": "react2",
-  "logo": "http://react",
-  "mockup": "htt://react",
-  "repository": "react2",
-  "siteUrl": "htt://react2",
-  "videoUrl": "http://react",
-  "stack": ["67fac495be08b8e50cc33122", "67fac4bcbe08b8e50cc33126"]
+  "title": "Full Stack Spotify",
+  "logo": "https://imgur.com/WgSZoYJ",
+  "mockup": "https://imgur.com/Vy1SDmD",
+  "repository": "full-stack-spotify",
+  "siteUrl": "http://react.dev",
+  "videoUrl": "http://react.dev",
+  "stack": ["680a22be7c6442a8f0f3df51", "680a23417c6442a8f0f3df54"]
 }
 
 ###
@@ -97,14 +97,14 @@ Content-Type: application/json
 
 {
   "title": "react",
-    "logo": "http://react",
-    "mockup": "http:/react",
-    "repository": "react",
-    "siteUrl": "http://react",
-    "videoUrl": "http://react",
-    "stack": [
-      "67fac495be08b8e50cc33122"
-    ]
+  "logo": "http://react",
+  "mockup": "http:/react",
+  "repository": "react",
+  "siteUrl": "http://react",
+  "videoUrl": "http://react",
+  "stack": [
+    "67fac495be08b8e50cc33122"
+  ]
 }
 
 ###

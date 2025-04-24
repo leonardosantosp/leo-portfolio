@@ -6,7 +6,7 @@ import { Sun } from 'lucide-react'
 import { MoonStar } from 'lucide-react'
 import { useState } from 'react'
 import { ChevronRight } from 'lucide-react'
-import { DeleteCard } from '../components/DeleteCard'
+// import { DeleteCard } from '../components/DeleteCard'
 import { PreviewSideBar } from '../components/PreviewSideBar'
 import { CreateSideBar } from '../components/CreateSideBar'
 import { SchemaList } from '../components/SchemaList'
@@ -16,10 +16,13 @@ export const AdminPage = () => {
   const [schema, setSchema] = useState<'skill' | 'technology' | 'project'>(
     'skill'
   )
-  const [showDeleteCard, setShowDeleteCard] = useState(false)
+  // const [showDeleteCard, setShowDeleteCard] = useState(false)
+
   const [formMode, setFormMode] = useState<
     'preview' | 'create' | 'update' | null
   >(null)
+
+  const [selectedItemId, setSelectedItemId] = useState<string | null>(null)
 
   return (
     <>
@@ -78,7 +81,10 @@ export const AdminPage = () => {
               <div className="side-bar">
                 <div className="side-bar__fields">
                   {formMode === 'preview' ? (
-                    <PreviewSideBar schema={schema} />
+                    <PreviewSideBar
+                      schema={schema}
+                      selectedItem={selectedItemId}
+                    />
                   ) : formMode === 'create' ? (
                     <CreateSideBar
                       schema={schema}
@@ -101,12 +107,13 @@ export const AdminPage = () => {
           )}
 
           <div className="item-list-container">
-            {showDeleteCard === true && (
+            {/* {showDeleteCard === true && (
               <DeleteCard
                 schema={schema}
                 onClose={() => setShowDeleteCard(false)}
+                id={selectedItemId}
               />
-            )}
+            )} */}
 
             <SchemaList
               schema={schema}
@@ -114,7 +121,8 @@ export const AdminPage = () => {
               onChangeFormMode={(
                 mode: 'preview' | 'create' | 'update' | null
               ) => setFormMode(mode)}
-              onDeleteClick={() => setShowDeleteCard(true)}
+              // onDeleteClick={() => setShowDeleteCard(true)}
+              setSelectedItemId={(id: string) => setSelectedItemId(id)}
             />
           </div>
         </div>

@@ -986,6 +986,17 @@ p {
   height: 110vh;
 }
 
+.delete-card-container {
+  right: 4%;
+  bottom: -19.7%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 91.3%;
+}
+
 .item-management-page {
   background: #111827;
   width: 91.23%;
@@ -1050,8 +1061,10 @@ p {
 
 .blur {
   position: absolute;
-  width: 91%;
-  height: 100%;
+  right: 4.3%;
+  width: 91.4%;
+  top: 21%;
+  height: 100.5%;
   backdrop-filter: blur(0.6px);
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 0 0 15px 15px;
@@ -1062,7 +1075,7 @@ p {
   position: absolute;
   background-color: #374151;
   width: 35%;
-  height: 35%;
+  height: 40%;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
