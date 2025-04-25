@@ -4,7 +4,7 @@ import { LayoutPanelTop } from 'lucide-react'
 import { Sun } from 'lucide-react'
 import { MoonStar } from 'lucide-react'
 import { SideBar } from '../components/admin-page/SideBar'
-import { AdminProvider, useAdmin } from '../components/admin-page/AdminProvider'
+import { useAdmin } from '../components/admin-page/AdminProvider'
 import { SchemaList } from '../components/admin-page/SchemaList'
 
 export const AdminPage = () => {

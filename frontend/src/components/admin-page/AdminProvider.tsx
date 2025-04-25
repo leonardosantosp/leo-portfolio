@@ -8,10 +8,13 @@ type AdminContextType = {
   setSelectedItemId: (id: string | null) => void
   schema: 'skill' | 'technology' | 'project'
   setSchema: (schema: 'skill' | 'technology' | 'project') => void
+  reloadList: boolean
+  setReloadList: (load: boolean) => void
 }
 const AdminContext = createContext<AdminContextType | null>(null)
 
 export const AdminProvider = ({ children }: { children: React.ReactNode }) => {
+  const [reloadList, setReloadList] = useState(false)
   const [isMenuVisible, setIsMenuVisible] = useState(false)
   const [formMode, setFormMode] = useState<
     'preview' | 'create' | 'update' | null
@@ -24,6 +27,8 @@ export const AdminProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <AdminContext.Provider
       value={{
+        reloadList,
+        setReloadList,
         isMenuVisible,
         setIsMenuVisible,
         formMode,

@@ -4,6 +4,16 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
+input:-webkit-autofill {
+  -webkit-text-fill-color: white !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+}
+
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: white !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -1453,6 +1463,7 @@ p {
 
 .create-fields-container h3 {
   font-size: 13px;
+  margin-bottom: 20px;
 }
 
 .create-fields-container input {
@@ -1470,6 +1481,17 @@ input:focus {
   outline: none;
   box-shadow: none;
   border: 2px solid #0c5fdd;
+}
+
+.error-text {
+  color: #ef4444;
+  font-size: 12px;
+  position: absolute;
+  top: 10%;
+}
+
+.error {
+  border: 2px solid #ef4444 !important;
 }
 
 .create-stack-fields {

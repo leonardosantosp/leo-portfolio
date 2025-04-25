@@ -8,18 +8,54 @@ import { useAdmin } from './AdminProvider'
 
 const itemStack = 'https://imgur.com/mpjlXh4.png'
 
+function isValidUrl(url: string): boolean {
+  try {
+    new URL(url)
+    return true
+  } catch {
+    return false
+  }
+}
+
 export const CreateSideBar = () => {
   const [skillData, setSkillData] = useState({
     name: '',
     icon: ''
   })
 
-  const { schema, setIsMenuVisible } = useAdmin()!
+  const { schema, setIsMenuVisible, setReloadList } = useAdmin()!
+  const [errors, setErrors] = useState<{ name?: string; icon?: string }>({})
 
   const handleSubmit = async () => {
-    if (schema === 'skill') {
-      const newSkill = await createSkill(skillData)
-      setIsMenuVisible(false)
+    const newErrors: { name?: string; icon?: string } = {}
+
+    if (!skillData.name.trim()) {
+      newErrors.name = 'Campo obrigatório'
+    }
+
+    if (!skillData.icon.trim()) {
+      newErrors.icon = 'Campo obrigatório'
+    } else if (!isValidUrl(skillData.icon)) {
+      newErrors.icon = 'URL inválida'
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors)
+      return
+    }
+
+    try {
+      if (schema === 'skill') {
+        const newSkill = await createSkill(skillData)
+        setIsMenuVisible(false)
+        setReloadList(true)
+      }
+    } catch (error: any) {
+      const message = error.response?.data?.message || error.message
+      if (message.includes('already')) {
+        newErrors.name = 'Campo com esse nome já existe'
+        setErrors(newErrors)
+      }
     }
   }
 
@@ -104,11 +140,13 @@ export const CreateSideBar = () => {
               label="icon"
               placeholder="icon url"
               onChange={handleChange}
+              error={errors.icon}
             />
             <FormField
               label="name"
               placeholder={`${schema} name`}
               onChange={handleChange}
+              error={errors.name}
             />
           </div>
         </>
@@ -126,7 +164,9 @@ export const CreateSideBar = () => {
           <button
             className="create-stack-fields__buttons-add"
             type="button"
-            onClick={() => handleSubmit()}
+            onClick={() => {
+              handleSubmit()
+            }}
           >
             {`Add ${schema.charAt(0).toUpperCase() + schema.slice(1)}`}
           </button>

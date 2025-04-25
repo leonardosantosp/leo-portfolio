@@ -1,4 +1,4 @@
-import { Eye } from 'lucide-react'
+import { Eye, Slice } from 'lucide-react'
 import search from '../../assets/search.svg'
 import { Trash2 } from 'lucide-react'
 import { SquarePen } from 'lucide-react'
@@ -14,7 +14,8 @@ export const SkillList = () => {
     setFormMode,
     setIsMenuVisible,
     selectedItemId,
-    isMenuVisible
+    reloadList,
+    setReloadList
   } = useAdmin()!
 
   const [skills, setSkills] = useState<ReturnedSkill[]>([])
@@ -31,6 +32,18 @@ export const SkillList = () => {
     }
     fetchSkills()
   }, [])
+
+  useEffect(() => {
+    if (!reloadList) return
+
+    const fetchSkills = async () => {
+      const data = await getSkills()
+      setSkills(data)
+      setReloadList(false)
+    }
+
+    fetchSkills()
+  }, [reloadList])
 
   return (
     <>
@@ -52,6 +65,7 @@ export const SkillList = () => {
             <img src={search} alt="icon search" />
             <input type="search" placeholder={`Search for ${schema}`} />
           </div>
+
           <button
             type="button"
             onClick={() => {
