@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ProjectsByStackPage } from './pages/ProjectsByStackPage.tsx'
 import { LoginPage } from './pages/LoginPage.tsx'
 import { AdminPage } from './pages/AdminPage.tsx'
+import { AdminProvider } from './components/admin-page/AdminProvider.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -16,7 +17,15 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/project/:id" element={<ProjectDetailsPage />} />
         <Route path="/projects/:stackId" element={<ProjectsByStackPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/admin-page" element={<AdminPage />} />
+
+        <Route
+          path="/admin-page"
+          element={
+            <AdminProvider>
+              <AdminPage />
+            </AdminProvider>
+          }
+        />
       </Routes>
     </BrowserRouter>
   </StrictMode>

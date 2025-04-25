@@ -1,35 +1,26 @@
-import microservices from '../assets/bar-images/microservices.png'
-import react from '../assets/react.png'
-import reactApp from '../assets/app-images/react.png'
+import react from '../../assets/react.png'
+import reactApp from '../../assets/app-images/react.png'
 const logo = 'https://imgur.com/i9UWRS8.png'
 const mockup = 'https://imgur.com/LtdTASQ.png'
 const itemStack = 'https://imgur.com/mpjlXh4.png'
 import { PreviewField } from './PreviewField'
 import { useEffect, useState } from 'react'
-import { getSkillById } from '../api-client/skillsApi'
-import { ReturnedSkill } from '../api-client/skillsApi'
+import { getSkillById } from '../../api-client/skillsApi'
+import type { ReturnedSkill } from '../../api-client/skillsApi'
+import { useAdmin } from './AdminProvider'
 
-type PreviewSideBarSchema = 'skill' | 'technology' | 'project'
-
-type PreviewSideBarProps = {
-  schema: PreviewSideBarSchema
-  selectedItem: string | null
-}
-
-export const PreviewSideBar = ({
-  schema,
-  selectedItem
-}: PreviewSideBarProps) => {
+export const PreviewSideBar = () => {
+  const { schema, selectedItemId } = useAdmin()!
   const [skill, setSkill] = useState<ReturnedSkill>({} as ReturnedSkill)
 
   useEffect(() => {
     const fetchSkills = async () => {
-      if (!selectedItem) return
-      const data = await getSkillById(selectedItem)
+      if (!selectedItemId) return
+      const data = await getSkillById(selectedItemId)
       setSkill(data)
     }
     fetchSkills()
-  }, [selectedItem])
+  }, [selectedItemId])
 
   return (
     <>
@@ -37,7 +28,7 @@ export const PreviewSideBar = ({
         <>
           <h2>{skill.name}</h2>
           <PreviewField label="Icon" value={skill.icon} type="image" />
-          <PreviewField label="Title" value={skill.name} type="text" />
+          <PreviewField label="Name" value={skill.name} type="text" />
         </>
       ) : schema === 'technology' ? (
         <>

@@ -1,28 +1,16 @@
 import { Header } from '../components/Header'
 import { Table } from 'lucide-react'
-
 import { LayoutPanelTop } from 'lucide-react'
 import { Sun } from 'lucide-react'
 import { MoonStar } from 'lucide-react'
-import { useState } from 'react'
-import { ChevronRight } from 'lucide-react'
-// import { DeleteCard } from '../components/DeleteCard'
-import { PreviewSideBar } from '../components/PreviewSideBar'
-import { CreateSideBar } from '../components/CreateSideBar'
-import { SchemaList } from '../components/SchemaList'
+import { SideBar } from '../components/admin-page/SideBar'
+import { AdminProvider, useAdmin } from '../components/admin-page/AdminProvider'
+import { SchemaList } from '../components/admin-page/SchemaList'
 
 export const AdminPage = () => {
-  const [isMenuVisible, setIsMenuVisible] = useState(false)
-  const [schema, setSchema] = useState<'skill' | 'technology' | 'project'>(
-    'skill'
-  )
-  // const [showDeleteCard, setShowDeleteCard] = useState(false)
-
-  const [formMode, setFormMode] = useState<
-    'preview' | 'create' | 'update' | null
-  >(null)
-
-  const [selectedItemId, setSelectedItemId] = useState<string | null>(null)
+  const adminContext = useAdmin()
+  if (!adminContext) return null
+  const { isMenuVisible, setIsMenuVisible, setSchema } = adminContext
 
   return (
     <>
@@ -76,54 +64,10 @@ export const AdminPage = () => {
               </button>
             </div>
           </div>
-          {isMenuVisible && (
-            <div className="menu-overlay">
-              <div className="side-bar">
-                <div className="side-bar__fields">
-                  {formMode === 'preview' ? (
-                    <PreviewSideBar
-                      schema={schema}
-                      selectedItem={selectedItemId}
-                    />
-                  ) : formMode === 'create' ? (
-                    <CreateSideBar
-                      schema={schema}
-                      onDiscard={() => setIsMenuVisible(false)}
-                    />
-                  ) : formMode === 'update' ? (
-                    ''
-                  ) : null}
-                </div>
-                <div
-                  className="sidebar-foot"
-                  onClick={() => setIsMenuVisible(false)}
-                >
-                  <p>voltar</p>
-                  <ChevronRight size={30} />
-                </div>
-              </div>
-              <div className="blur-layer"></div>
-            </div>
-          )}
+          {isMenuVisible && <SideBar />}
 
           <div className="item-list-container">
-            {/* {showDeleteCard === true && (
-              <DeleteCard
-                schema={schema}
-                onClose={() => setShowDeleteCard(false)}
-                id={selectedItemId}
-              />
-            )} */}
-
-            <SchemaList
-              schema={schema}
-              onOpenForm={() => setIsMenuVisible(true)}
-              onChangeFormMode={(
-                mode: 'preview' | 'create' | 'update' | null
-              ) => setFormMode(mode)}
-              // onDeleteClick={() => setShowDeleteCard(true)}
-              setSelectedItemId={(id: string) => setSelectedItemId(id)}
-            />
+            <SchemaList />
           </div>
         </div>
       </div>

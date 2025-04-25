@@ -4,8 +4,8 @@ POST http://localhost:3333/skills
 Content-Type: application/json
 
 {
-  "name": "Api rest",
-  "icon": "https://imgur.com/ajgDP2E"
+  "name": "Api rest25",
+  "icon": "https://imgur.com/ajgDP2E.png"
 }
 
 ###

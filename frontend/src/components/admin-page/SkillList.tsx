@@ -1,32 +1,24 @@
 import { Eye } from 'lucide-react'
-import search from '../assets/search.svg'
+import search from '../../assets/search.svg'
 import { Trash2 } from 'lucide-react'
 import { SquarePen } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { getSkills, ReturnedSkill } from '../api-client/skillsApi'
-import { DeleteCard } from '../components/DeleteCard'
-type SchemaType = 'skill' | 'technology' | 'project'
+import { getSkills, ReturnedSkill } from '../../api-client/skillsApi'
+import { DeleteCard } from '../admin-page/DeleteCard'
+import { useAdmin } from './AdminProvider'
 
-type ModeType = 'preview' | 'create' | 'update' | null
+export const SkillList = () => {
+  const {
+    setSelectedItemId,
+    schema,
+    setFormMode,
+    setIsMenuVisible,
+    selectedItemId,
+    isMenuVisible
+  } = useAdmin()!
 
-type SchemaListProps = {
-  schema: SchemaType
-  onOpenForm: () => void
-  // onDeleteClick: () => void
-  onChangeFormMode: (mode: ModeType) => void
-  setSelectedItemId: (id: string) => void
-}
-
-export const SkillList = ({
-  schema,
-  onOpenForm,
-  // onDeleteClick,
-  onChangeFormMode,
-  setSelectedItemId
-}: SchemaListProps) => {
   const [skills, setSkills] = useState<ReturnedSkill[]>([])
   const [showDeleteCard, setShowDeleteCard] = useState(false)
-  const [currentItem, setCurrentItem] = useState<string | null>(null)
 
   const handleDelete = (idToDelete: string) => {
     setSkills(prev => prev.filter(skill => skill._id !== idToDelete))
@@ -43,12 +35,10 @@ export const SkillList = ({
   return (
     <>
       <div className="item-management-page__item-list">
-        {showDeleteCard && currentItem && (
+        {showDeleteCard && selectedItemId && (
           <DeleteCard
-            schema={schema}
             onClose={() => setShowDeleteCard(false)}
             onDelete={(id: string) => handleDelete(id)}
-            id={currentItem}
           />
         )}
         <div className="item-list__header">
@@ -65,8 +55,8 @@ export const SkillList = ({
           <button
             type="button"
             onClick={() => {
-              onOpenForm()
-              onChangeFormMode('create')
+              setIsMenuVisible(true)
+              setFormMode('create')
             }}
           >
             <span>+</span> {`Add a new ${schema}`}
@@ -96,8 +86,8 @@ export const SkillList = ({
                         className="item-table__actions-edit"
                         type="button"
                         onClick={() => {
-                          onOpenForm()
-                          onChangeFormMode('update')
+                          setIsMenuVisible(true)
+                          setFormMode('update')
                         }}
                       >
                         <SquarePen
@@ -108,8 +98,8 @@ export const SkillList = ({
                       </button>
                       <button
                         onClick={() => {
-                          onOpenForm()
-                          onChangeFormMode('preview')
+                          setIsMenuVisible(true)
+                          setFormMode('preview')
                           setSelectedItemId(skill._id)
                         }}
                         className="item-table__actions-preview"
@@ -122,10 +112,8 @@ export const SkillList = ({
                         className="item-table__actions-delete"
                         type="button"
                         onClick={() => {
-                          // onDeleteClick()
                           setSelectedItemId(skill._id)
                           setShowDeleteCard(true)
-                          setCurrentItem(skill._id)
                         }}
                       >
                         <Trash2

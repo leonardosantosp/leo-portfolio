@@ -1,30 +1,44 @@
 import { ArrowLeftRight } from 'lucide-react'
 import { ChevronDown } from 'lucide-react'
 import { Trash2 } from 'lucide-react'
-import { FormField } from '../components/FormField'
-import { CreateEditButtons } from '../components/CreateEditButtons'
-
-type CreateSchemaType = 'skill' | 'technology' | 'project'
-
-type CreateSideBarProps = {
-  schema: CreateSchemaType
-  onDiscard: () => void
-}
+import { FormField } from './FormField'
+import { useState } from 'react'
+import { createSkill } from '../../api-client/skillsApi'
+import { useAdmin } from './AdminProvider'
 
 const itemStack = 'https://imgur.com/mpjlXh4.png'
 
-export const CreateSideBar = ({ schema, onDiscard }: CreateSideBarProps) => {
+export const CreateSideBar = () => {
+  const [skillData, setSkillData] = useState({
+    name: '',
+    icon: ''
+  })
+
+  const { schema, setIsMenuVisible } = useAdmin()!
+
+  const handleSubmit = async () => {
+    if (schema === 'skill') {
+      const newSkill = await createSkill(skillData)
+      setIsMenuVisible(false)
+    }
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setSkillData({ ...skillData, [name]: value })
+  }
+
   return (
     <>
       {schema === 'project' ? (
         <>
           <div className="text-fields-container">
-            <FormField label="Title" placeholder={`${schema} title`} />
+            {/* <FormField label="Title" placeholder={`${schema} title`} />
             <FormField label="Logo" placeholder="logo url" />
             <FormField label="Mockup" placeholder="mockup url" />
             <FormField label="Repository" placeholder="repository name" />
             <FormField label="Site" placeholder="site url" />
-            <FormField label="Video" placeholder="video url" />
+            <FormField label="Video" placeholder="video url" /> */}
           </div>
           <h3>Select Technologies</h3>
           <div className="stack-fields create-stack-fields">
@@ -86,21 +100,44 @@ export const CreateSideBar = ({ schema, onDiscard }: CreateSideBarProps) => {
       ) : schema === 'skill' ? (
         <>
           <div className="text-fields-container">
-            <FormField label="Icon" placeholder="icon url" />
-            <FormField label="Title" placeholder={`${schema} title`} />
+            <FormField
+              label="icon"
+              placeholder="icon url"
+              onChange={handleChange}
+            />
+            <FormField
+              label="name"
+              placeholder={`${schema} name`}
+              onChange={handleChange}
+            />
           </div>
         </>
       ) : schema === 'technology' ? (
         <>
-          <div className="text-fields-container">
+          {/* <div className="text-fields-container">
             <FormField label="Icon" placeholder="icon url" />
             <FormField label="AppIcon" placeholder="app icon url" />
             <FormField label="Name" placeholder={`${schema} name`} />
-          </div>
+          </div> */}
         </>
       ) : null}
       {['project', 'skill', 'technology'].includes(schema) && (
-        <CreateEditButtons type="Add" schema={schema} onDiscard={onDiscard} />
+        <div className="create-stack-fields__buttons">
+          <button
+            className="create-stack-fields__buttons-add"
+            type="button"
+            onClick={() => handleSubmit()}
+          >
+            {`Add ${schema.charAt(0).toUpperCase() + schema.slice(1)}`}
+          </button>
+          <button
+            className="create-stack-fields__buttons-discard"
+            type="button"
+            onClick={() => setIsMenuVisible(false)}
+          >
+            Discard
+          </button>
+        </div>
       )}
     </>
   )
