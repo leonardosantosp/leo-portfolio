@@ -12,14 +12,15 @@ type UpdateTechnology = {
   appIcon?: string
 }
 
-type ReturnedTechnology = {
+export type ReturnedTechnology = {
   _id: string
   name: string
   icon: string
   appIcon: string
+  slug: string
 }
 
-export const getTechnologies = async (): Promise<ReturnedTechnology> => {
+export const getTechnologies = async (): Promise<ReturnedTechnology[]> => {
   const response = await API.get('/technologies')
   return response.data
 }
@@ -49,6 +50,6 @@ export const updateTechnology = async (
 export const deleteTechnology = async (
   id: string
 ): Promise<ReturnedTechnology> => {
-  const response = await API.delete(`/techonlogies/${id}`)
+  const response = await API.delete(`/technologies/${id}`)
   return response.data
 }

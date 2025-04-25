@@ -2,6 +2,7 @@ import { CircleAlert } from 'lucide-react'
 import { X } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { deleteSkill } from '../../api-client/skillsApi'
+import { deleteTechnology } from '../../api-client/technologiesApi'
 import { useAdmin } from './AdminProvider'
 
 type DeleteCardProps = {
@@ -19,11 +20,19 @@ export const DeleteCard = ({ onClose, onDelete }: DeleteCardProps) => {
 
     const cardDeleteSkill = async () => {
       const data = await deleteSkill(selectedItemId)
-      setDeleted(false)
-      onClose()
-      onDelete(selectedItemId)
     }
-    cardDeleteSkill()
+
+    const cardDeelteTechnology = async () => {
+      const data = await deleteTechnology(selectedItemId)
+    }
+    setDeleted(false)
+    onClose()
+    onDelete(selectedItemId)
+    if (schema === 'skill') {
+      cardDeleteSkill()
+    } else if (schema === 'technology') {
+      cardDeelteTechnology()
+    }
   }, [selectedItemId, deleted, onClose, onDelete])
 
   return (

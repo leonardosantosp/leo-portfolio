@@ -8,18 +8,32 @@ import { useEffect, useState } from 'react'
 import { getSkillById } from '../../api-client/skillsApi'
 import type { ReturnedSkill } from '../../api-client/skillsApi'
 import { useAdmin } from './AdminProvider'
+import type { ReturnedTechnology } from '../../api-client/technologiesApi'
+import { getTechnologyById } from '../../api-client/technologiesApi'
 
 export const PreviewSideBar = () => {
   const { schema, selectedItemId } = useAdmin()!
   const [skill, setSkill] = useState<ReturnedSkill>({} as ReturnedSkill)
+  const [technology, setTechnology] = useState<ReturnedTechnology>(
+    {} as ReturnedTechnology
+  )
 
   useEffect(() => {
+    if (!selectedItemId) return
     const fetchSkills = async () => {
-      if (!selectedItemId) return
       const data = await getSkillById(selectedItemId)
       setSkill(data)
     }
-    fetchSkills()
+    const fetchTechnology = async () => {
+      const data = await getTechnologyById(selectedItemId)
+      setTechnology(data)
+    }
+
+    if (schema === 'skill') {
+      fetchSkills()
+    } else if (schema === 'technology') {
+      fetchTechnology()
+    }
   }, [selectedItemId])
 
   return (
@@ -35,11 +49,15 @@ export const PreviewSideBar = () => {
           <h2>React</h2>
           <>
             <div className="images-container">
-              <PreviewField label="Icon" value={react} type="image" />
-              <PreviewField label="AppIcon" value={reactApp} type="image" />
+              <PreviewField label="Icon" value={technology.icon} type="image" />
+              <PreviewField
+                label="AppIcon"
+                value={technology.appIcon}
+                type="image"
+              />
             </div>
-            <PreviewField label="Slug" value="react" type="text" />
-            <PreviewField label="Name" value="React" type="text" />
+            <PreviewField label="Slug" value={technology.slug} type="text" />
+            <PreviewField label="Name" value={technology.name} type="text" />
           </>
         </>
       ) : schema === 'project' ? (

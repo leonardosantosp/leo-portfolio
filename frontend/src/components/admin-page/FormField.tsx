@@ -15,7 +15,11 @@ export const FormField = ({
     <>
       <div className="create-fields-container">
         <h3>{label.charAt(0).toUpperCase() + label.slice(1)}</h3>
-        {error && <span className="error-text">{error}</span>}
+
+        <div className="error-text">
+          {error ? <span className="error-text">{error}</span> : ''}
+        </div>
+
         <input
           className={error && 'error'}
           type="text"

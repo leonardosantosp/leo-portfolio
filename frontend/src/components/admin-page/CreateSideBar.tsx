@@ -4,6 +4,7 @@ import { Trash2 } from 'lucide-react'
 import { FormField } from './FormField'
 import { useState } from 'react'
 import { createSkill } from '../../api-client/skillsApi'
+import { createTechnology } from '../../api-client/technologiesApi'
 import { useAdmin } from './AdminProvider'
 
 const itemStack = 'https://imgur.com/mpjlXh4.png'
@@ -23,30 +24,68 @@ export const CreateSideBar = () => {
     icon: ''
   })
 
+  const [technologyData, setTechnologyData] = useState({
+    name: '',
+    icon: '',
+    appIcon: ''
+  })
+
   const { schema, setIsMenuVisible, setReloadList } = useAdmin()!
-  const [errors, setErrors] = useState<{ name?: string; icon?: string }>({})
+  const [errors, setErrors] = useState<{
+    name?: string
+    icon?: string
+    appIcon?: string
+  }>({})
 
   const handleSubmit = async () => {
-    const newErrors: { name?: string; icon?: string } = {}
+    const newErrors: { name?: string; icon?: string; appIcon?: string } = {}
 
-    if (!skillData.name.trim()) {
-      newErrors.name = 'Campo obrigatório'
-    }
+    if (schema === 'skill') {
+      if (!skillData.name.trim()) {
+        newErrors.name = 'Campo obrigatório'
+      }
 
-    if (!skillData.icon.trim()) {
-      newErrors.icon = 'Campo obrigatório'
-    } else if (!isValidUrl(skillData.icon)) {
-      newErrors.icon = 'URL inválida'
-    }
+      if (!skillData.icon.trim()) {
+        newErrors.icon = 'Campo obrigatório'
+      } else if (!isValidUrl(skillData.icon)) {
+        newErrors.icon = 'URL inválida'
+      }
 
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors)
-      return
+      if (Object.keys(newErrors).length > 0) {
+        setErrors(newErrors)
+        return
+      }
+    } else if (schema === 'technology') {
+      if (!technologyData.name.trim()) {
+        newErrors.name = 'Campo obrigatório'
+      }
+
+      if (!technologyData.icon.trim()) {
+        newErrors.icon = 'Campo obrigatório'
+      } else if (!isValidUrl(technologyData.icon)) {
+        newErrors.icon = 'URL inválida'
+      }
+
+      if (!technologyData.appIcon.trim()) {
+        newErrors.appIcon = 'Campo obrigatório'
+      } else if (!isValidUrl(technologyData.appIcon)) {
+        newErrors.appIcon = 'URL inválida'
+      }
+
+      if (Object.keys(newErrors).length > 0) {
+        setErrors(newErrors)
+        return
+      }
     }
 
     try {
       if (schema === 'skill') {
         const newSkill = await createSkill(skillData)
+        setIsMenuVisible(false)
+        setReloadList(true)
+      }
+      if (schema === 'technology') {
+        const newTechnology = await createTechnology(technologyData)
         setIsMenuVisible(false)
         setReloadList(true)
       }
@@ -61,7 +100,12 @@ export const CreateSideBar = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-    setSkillData({ ...skillData, [name]: value })
+
+    if (schema === 'skill') {
+      setSkillData({ ...skillData, [name]: value })
+    } else if (schema === 'technology') {
+      setTechnologyData({ ...technologyData, [name]: value })
+    }
   }
 
   return (
@@ -152,11 +196,26 @@ export const CreateSideBar = () => {
         </>
       ) : schema === 'technology' ? (
         <>
-          {/* <div className="text-fields-container">
-            <FormField label="Icon" placeholder="icon url" />
-            <FormField label="AppIcon" placeholder="app icon url" />
-            <FormField label="Name" placeholder={`${schema} name`} />
-          </div> */}
+          <div className="text-fields-container">
+            <FormField
+              label="icon"
+              placeholder="icon url"
+              onChange={handleChange}
+              error={errors.icon}
+            />
+            <FormField
+              label="appIcon"
+              placeholder="app icon url"
+              onChange={handleChange}
+              error={errors.appIcon}
+            />
+            <FormField
+              label="name"
+              placeholder={`${schema} name`}
+              onChange={handleChange}
+              error={errors.name}
+            />
+          </div>
         </>
       ) : null}
       {['project', 'skill', 'technology'].includes(schema) && (

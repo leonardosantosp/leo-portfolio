@@ -1484,10 +1484,12 @@ input:focus {
 }
 
 .error-text {
+  height: 12px;
+}
+
+.error-text span {
   color: #ef4444;
   font-size: 12px;
-  position: absolute;
-  top: 10%;
 }
 
 .error {
