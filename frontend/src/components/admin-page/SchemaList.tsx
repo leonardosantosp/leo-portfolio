@@ -1,5 +1,6 @@
 import { SkillList } from '../admin-page/SkillList'
 import { useAdmin } from './AdminProvider'
+import { ProjectList } from './ProjectList'
 import { TechnologyList } from './TechnologyList'
 
 export const SchemaList = () => {
@@ -10,6 +11,8 @@ export const SchemaList = () => {
         <SkillList />
       ) : schema === 'technology' ? (
         <TechnologyList />
+      ) : schema === 'project' ? (
+        <ProjectList />
       ) : null}
     </>
   )

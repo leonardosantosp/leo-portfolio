@@ -43,7 +43,7 @@ export const TechnologyList = () => {
   return (
     <div className="item-management-page__item-list">
       <ItemTableList
-        headers={['NAME', 'ICON', 'APPICON']}
+        headers={['NAME', 'ICON', 'SLUG', 'APPICON']}
         itens={technologies}
         onDelete={technology => setSelectedItemId(technology._id)}
         onDeleteCard={(id: string) => handleDelete(id)}
@@ -64,6 +64,9 @@ export const TechnologyList = () => {
             </td>
             <td className="item-table__icon">
               <img src={technology.icon} alt="" height={35} width={35} />
+            </td>
+            <td className="item-table__name">
+              <strong>{technology.slug}</strong>
             </td>
             <td className="item-table__icon">
               <img src={technology.appIcon} alt="" height={35} width={35} />

@@ -92,18 +92,16 @@ GET http://localhost:3333/projects
 GET http://localhost:3333/projects/{{ projectId }}
 
 ###
-PATCH http://localhost:3333/projects/{{projectId}}
+PATCH http://localhost:3333/projects/680a239d7c6442a8f0f3df59
 Content-Type: application/json
 
 {
-  "title": "react",
-  "logo": "http://react",
-  "mockup": "http:/react",
-  "repository": "react",
-  "siteUrl": "http://react",
-  "videoUrl": "http://react",
+  
   "stack": [
-    "67fac495be08b8e50cc33122"
+    "680a6377fe5161808d0175d9",
+    "680a7d58c1101686632f8b59",
+    "680c017d39a123e88e50b46f",
+    "680c0fb239a123e88e50b4a7"
   ]
 }
 

@@ -1,9 +1,5 @@
 import { API } from './api'
 
-type StackItem = {
-  id: string
-}
-
 type CreateProject = {
   title: string
   logo: string
@@ -11,7 +7,7 @@ type CreateProject = {
   repository: string
   siteUrl: string
   videoUrl: string
-  stack: StackItem[]
+  stack: string[]
 }
 
 type UpdateProject = {
@@ -21,10 +17,10 @@ type UpdateProject = {
   repository?: string
   siteUrl?: string
   videoUrl?: string
-  stack?: StackItem[]
+  stack?: string[]
 }
 
-type ReturnedProject = {
+export type ReturnedProject = {
   _id: string
   title: string
   logo: string
@@ -33,7 +29,7 @@ type ReturnedProject = {
   slug: string
   siteUrl: string
   videoUrl: string
-  stack: StackItem[]
+  stack: string[]
 }
 
 export const getProjects = async (): Promise<ReturnedProject[]> => {

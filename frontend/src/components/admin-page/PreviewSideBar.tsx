@@ -10,6 +10,7 @@ import type { ReturnedSkill } from '../../api-client/skillsApi'
 import { useAdmin } from './AdminProvider'
 import type { ReturnedTechnology } from '../../api-client/technologiesApi'
 import { getTechnologyById } from '../../api-client/technologiesApi'
+import { getProjectById, ReturnedProject } from '../../api-client/projectsApi'
 
 export const PreviewSideBar = () => {
   const { schema, selectedItemId } = useAdmin()!
@@ -17,22 +18,41 @@ export const PreviewSideBar = () => {
   const [technology, setTechnology] = useState<ReturnedTechnology>(
     {} as ReturnedTechnology
   )
+  const [project, setProject] = useState<ReturnedProject>({} as ReturnedProject)
+  const [projectStack, setProjectStack] = useState<ReturnedSkill[]>([])
 
   useEffect(() => {
     if (!selectedItemId) return
-    const fetchSkills = async () => {
+
+    const fetchSkill = async () => {
       const data = await getSkillById(selectedItemId)
       setSkill(data)
     }
+
     const fetchTechnology = async () => {
       const data = await getTechnologyById(selectedItemId)
       setTechnology(data)
     }
 
+    const fetchStack = async (list: string[]) => {
+      const stack = await Promise.all(
+        list.map(async item => getSkillById(item))
+      )
+      setProjectStack(stack)
+    }
+
+    const fetchProject = async () => {
+      const data = await getProjectById(selectedItemId)
+      await fetchStack(data.stack)
+      setProject(data)
+    }
+
     if (schema === 'skill') {
-      fetchSkills()
+      fetchSkill()
     } else if (schema === 'technology') {
       fetchTechnology()
+    } else if (schema === 'project') {
+      fetchProject()
     }
   }, [selectedItemId])
 
@@ -62,67 +82,43 @@ export const PreviewSideBar = () => {
         </>
       ) : schema === 'project' ? (
         <>
-          <h2>Full Stack Spotify</h2>
+          <h2>{project.title}</h2>
           <div className="images-container">
-            <PreviewField label="Logo" value={logo} type="image" />
+            <PreviewField label="Logo" value={project.logo} type="image" />
             <PreviewField
               label="Mockup"
-              value={mockup}
+              value={project.mockup}
               type="image"
               width={177}
               height={134}
             />
           </div>
           <div className="text-fields-container">
-            <PreviewField
-              label="Title"
-              value="Full Stack Spotify"
-              type="text"
-            />
+            <PreviewField label="Title" value={project.title} type="text" />
             <PreviewField
               label="Repository"
-              value="full-stack-spotify"
+              value={project.repository}
               type="text"
             />
-            <PreviewField label="Slug" value="full-stack-spotify" type="text" />
-            <PreviewField
-              label="Site URL"
-              value="https://github.com/leonardosantosp/full-stack-spotify"
-              type="url"
-            />
+            <PreviewField label="Slug" value={project.slug} type="text" />
+            <PreviewField label="Site URL" value={project.siteUrl} type="url" />
             <PreviewField
               label="Video URL"
-              value="https://github.com/leonardosantosp/full-stack-spotify"
+              value={project.videoUrl}
               type="url"
             />
 
             <div className="text-fields">
               <h3>Stack</h3>
               <div className="stack-fields">
-                <div className="stack-fields-item">
-                  <img src={itemStack} alt="" />
-                  <p>Css</p>
-                </div>
-                <div className="stack-fields-item">
-                  <img src={itemStack} alt="" />
-                  <p>Css</p>
-                </div>
-                <div className="stack-fields-item">
-                  <img src={itemStack} alt="" />
-                  <p>Css</p>
-                </div>
-                <div className="stack-fields-item">
-                  <img src={itemStack} alt="" />
-                  <p>Css</p>
-                </div>
-                <div className="stack-fields-item">
-                  <img src={itemStack} alt="" />
-                  <p>Css</p>
-                </div>
-                <div className="stack-fields-item">
-                  <img src={itemStack} alt="" />
-                  <p>Css</p>
-                </div>
+                {projectStack.map(skill => (
+                  <>
+                    <div className="stack-fields-item" key={skill._id}>
+                      <img src={skill.icon} alt="" height={15} width={15} />
+                      <p>{skill.name}</p>
+                    </div>
+                  </>
+                ))}
               </div>
             </div>
           </div>

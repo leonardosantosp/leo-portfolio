@@ -64,9 +64,7 @@ export const ItemTableList = <T,>({
           <thead>
             <tr>
               {headers.map(item => (
-                <th key={item}>
-                  {schema.toUpperCase()} {item}
-                </th>
+                <th key={item}>{item}</th>
               ))}
 
               <th>ACTIONS</th>
@@ -77,33 +75,38 @@ export const ItemTableList = <T,>({
               <tr key={index}>
                 {renderRow(item)}
                 <td className="item-table__actions">
-                  <button
-                    className="item-table__actions-edit"
-                    type="button"
-                    onClick={() => onEdit(item)}
-                  >
-                    <SquarePen size={15} className="item-table__actions-img" />
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => onPreview(item)}
-                    className="item-table__actions-preview"
-                    type="button"
-                  >
-                    <Eye size={15} className="item-table__actions-img" />
-                    Preview
-                  </button>
-                  <button
-                    className="item-table__actions-delete"
-                    type="button"
-                    onClick={() => {
-                      onDelete(item)
-                      setShowDeleteCard(true)
-                    }}
-                  >
-                    <Trash2 size={15} className="item-table__actions-img " />
-                    Delete
-                  </button>
+                  <div className="item-table__actions-container">
+                    <button
+                      className="item-table__actions-edit"
+                      type="button"
+                      onClick={() => onEdit(item)}
+                    >
+                      <SquarePen
+                        size={15}
+                        className="item-table__actions-img"
+                      />
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => onPreview(item)}
+                      className="item-table__actions-preview"
+                      type="button"
+                    >
+                      <Eye size={15} className="item-table__actions-img" />
+                      Preview
+                    </button>
+                    <button
+                      className="item-table__actions-delete"
+                      type="button"
+                      onClick={() => {
+                        onDelete(item)
+                        setShowDeleteCard(true)
+                      }}
+                    >
+                      <Trash2 size={15} className="item-table__actions-img " />
+                      Delete
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}
