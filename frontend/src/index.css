@@ -1463,7 +1463,7 @@ p {
 }
 
 .stack-fields-item {
-  width: 33%;
+  width: 45%;
   display: flex;
   align-items: center;
   margin-bottom: 10px;
@@ -1476,6 +1476,7 @@ p {
 .stack-fields-item p {
   font-size: 10px;
   white-space: nowrap;
+  width: 15%;
 }
 
 .create-fields-container {
@@ -1508,7 +1509,7 @@ input:focus {
   height: 12px;
 }
 
-.error-text span {
+.error-text {
   color: #ef4444;
   font-size: 12px;
 }
@@ -1518,10 +1519,11 @@ input:focus {
 }
 
 .create-stack-fields {
-  margin-top: 40px;
+  margin-top: 10px;
 }
 
 .stack-card {
+  height: 105px;
   margin-left: 50px;
   border: 2px solid #606165;
   border-radius: 15px;
@@ -1530,7 +1532,8 @@ input:focus {
 }
 
 .stack-card h4 {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  font-size: 12px;
 }
 
 .stack-fields__add-button {
@@ -1540,6 +1543,28 @@ input:focus {
   border-radius: 8px;
   color: #9ca3af;
   margin-right: 30px;
+  width: 116px;
+}
+
+.stack-fields__add-button-active {
+  display: flex;
+  flex-direction: column;
+  width: 116px;
+}
+
+.add-button-active {
+  display: flex;
+}
+
+.stack-fields-item-active {
+  cursor: pointer;
+  padding: 3px;
+}
+
+.stack-fields-item-active:hover {
+  width: 95%;
+  background: #393a3c;
+  color: white;
 }
 
 .stack-fields-icon {

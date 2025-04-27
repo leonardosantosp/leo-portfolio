@@ -6,7 +6,13 @@ import { Link } from 'lucide-react'
 
 export const ProjectList = () => {
   const [projects, setProjects] = useState<ReturnedProject[]>([])
-  const { setFormMode, setIsMenuVisible, setSelectedItemId } = useAdmin()!
+  const {
+    setFormMode,
+    setIsMenuVisible,
+    setSelectedItemId,
+    reloadList,
+    setReloadList
+  } = useAdmin()!
 
   const handleDelete = (idToDelete: string) => {
     setProjects(prev => prev.filter(project => project._id !== idToDelete))
@@ -19,6 +25,16 @@ export const ProjectList = () => {
     }
     fetchProjects()
   }, [])
+
+  useEffect(() => {
+    if (!reloadList) return
+    const fetchProjects = async () => {
+      const data = await getProjects()
+      setProjects(data)
+      setReloadList(false)
+    }
+    fetchProjects()
+  }, [reloadList])
 
   return (
     <div className="item-management-page__item-list">
