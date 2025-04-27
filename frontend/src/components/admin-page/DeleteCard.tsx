@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { deleteSkill } from '../../api-client/skillsApi'
 import { deleteTechnology } from '../../api-client/technologiesApi'
 import { useAdmin } from './AdminProvider'
+import { deleteProject } from '../../api-client/projectsApi'
 
 type DeleteCardProps = {
   onClose: () => void
@@ -22,16 +23,23 @@ export const DeleteCard = ({ onClose, onDelete }: DeleteCardProps) => {
       const data = await deleteSkill(selectedItemId)
     }
 
-    const cardDeelteTechnology = async () => {
+    const cardDeleteTechnology = async () => {
       const data = await deleteTechnology(selectedItemId)
     }
+
+    const cardDeleteProject = async () => {
+      const data = await deleteProject(selectedItemId)
+    }
+
     setDeleted(false)
     onClose()
     onDelete(selectedItemId)
     if (schema === 'skill') {
       cardDeleteSkill()
     } else if (schema === 'technology') {
-      cardDeelteTechnology()
+      cardDeleteTechnology()
+    } else if (schema === 'project') {
+      cardDeleteProject()
     }
   }, [selectedItemId, deleted, onClose, onDelete])
 

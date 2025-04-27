@@ -35,6 +35,13 @@ export const CreateSideBar = () => {
     name?: string
     icon?: string
     appIcon?: string
+    title?: string
+    logo?: string
+    mockup?: string
+    stack?: string
+    repository?: string
+    siteUrl?: string
+    videoUrl?: string
   }>({})
 
   const handleSubmit = async () => {

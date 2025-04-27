@@ -74,12 +74,12 @@ Content-Type: application/json
 
 {
   "title": "Full Stack Spotify",
-  "logo": "https://imgur.com/WgSZoYJ",
-  "mockup": "https://imgur.com/Vy1SDmD",
+  "logo": "https://imgur.com/WgSZoYJ.png",
+  "mockup": "https://imgur.com/Vy1SDmD.png",
   "repository": "full-stack-spotify",
   "siteUrl": "http://react.dev",
   "videoUrl": "http://react.dev",
-  "stack": ["680a22be7c6442a8f0f3df51", "680a23417c6442a8f0f3df54"]
+  "stack": ["680a22be7c6442a8f0f3df51", "680c052239a123e88e50b47e", "680cbe2010845cc5aaa85702"]
 }
 
 ###

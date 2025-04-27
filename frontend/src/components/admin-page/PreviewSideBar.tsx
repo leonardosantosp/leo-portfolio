@@ -36,7 +36,15 @@ export const PreviewSideBar = () => {
 
     const fetchStack = async (list: string[]) => {
       const stack = await Promise.all(
-        list.map(async item => getSkillById(item))
+        list.map(async item => {
+          try {
+            const skill = await getTechnologyById(item)
+            return skill
+          } catch (error) {
+            console.warn(`Skill com id ${item} não encontrada. Ignorando.`)
+            return null
+          }
+        })
       )
       setProjectStack(stack)
     }
@@ -111,14 +119,21 @@ export const PreviewSideBar = () => {
             <div className="text-fields">
               <h3>Stack</h3>
               <div className="stack-fields">
-                {projectStack.map(skill => (
-                  <>
-                    <div className="stack-fields-item" key={skill._id}>
-                      <img src={skill.icon} alt="" height={15} width={15} />
-                      <p>{skill.name}</p>
-                    </div>
-                  </>
-                ))}
+                {projectStack.map(technology =>
+                  technology ? (
+                    <>
+                      <div className="stack-fields-item" key={technology._id}>
+                        <img
+                          src={technology.icon}
+                          alt=""
+                          height={15}
+                          width={15}
+                        />
+                        <p>{technology.name}</p>
+                      </div>
+                    </>
+                  ) : null
+                )}
               </div>
             </div>
           </div>
