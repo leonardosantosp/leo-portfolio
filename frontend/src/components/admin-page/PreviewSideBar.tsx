@@ -1,8 +1,3 @@
-import react from '../../assets/react.png'
-import reactApp from '../../assets/app-images/react.png'
-const logo = 'https://imgur.com/i9UWRS8.png'
-const mockup = 'https://imgur.com/LtdTASQ.png'
-const itemStack = 'https://imgur.com/mpjlXh4.png'
 import { PreviewField } from './PreviewField'
 import { useEffect, useState } from 'react'
 import { getSkillById } from '../../api-client/skillsApi'
@@ -12,7 +7,11 @@ import type { ReturnedTechnology } from '../../api-client/technologiesApi'
 import { getTechnologyById } from '../../api-client/technologiesApi'
 import { getProjectById, ReturnedProject } from '../../api-client/projectsApi'
 
-export const PreviewSideBar = () => {
+type PreviewSideBarProps = {
+  theme?: boolean
+}
+
+export const PreviewSideBar = ({ theme }: PreviewSideBarProps) => {
   const { schema, selectedItemId } = useAdmin()!
   const [skill, setSkill] = useState<ReturnedSkill>({} as ReturnedSkill)
   const [technology, setTechnology] = useState<ReturnedTechnology>(
@@ -68,13 +67,13 @@ export const PreviewSideBar = () => {
     <>
       {schema === 'skill' ? (
         <>
-          <h2>{skill.name}</h2>
+          <h2 style={{ color: theme ? 'black' : '' }}>{skill.name}</h2>
           <PreviewField label="Icon" value={skill.icon} type="image" />
           <PreviewField label="Name" value={skill.name} type="text" />
         </>
       ) : schema === 'technology' ? (
         <>
-          <h2>React</h2>
+          <h2>{technology.name}</h2>
           <>
             <div className="images-container">
               <PreviewField label="Icon" value={technology.icon} type="image" />

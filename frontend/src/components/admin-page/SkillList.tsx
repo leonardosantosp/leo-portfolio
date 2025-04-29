@@ -3,7 +3,11 @@ import { getSkills, ReturnedSkill } from '../../api-client/skillsApi'
 import { useAdmin } from './AdminProvider'
 import { ItemTableList } from './ItemTableList'
 
-export const SkillList = () => {
+type SkillListProps = {
+  isLight?: boolean
+}
+
+export const SkillList = ({ isLight }: SkillListProps) => {
   const {
     setSelectedItemId,
     setFormMode,
@@ -39,8 +43,13 @@ export const SkillList = () => {
   }, [reloadList])
 
   return (
-    <div className="item-management-page__item-list">
+    <div
+      className={`item-management-page__item-list ${
+        isLight ? 'item-management-page__item-list-light' : ''
+      }`}
+    >
       <ItemTableList
+        isLight={isLight}
         itens={skills}
         onDelete={skill => {
           setSelectedItemId(skill._id)

@@ -3,21 +3,28 @@ import { PreviewSideBar } from './PreviewSideBar'
 import { CreateSideBar } from './CreateSideBar'
 import { useAdmin } from './AdminProvider'
 
-export const SideBar = () => {
+type SideBarProps = {
+  theme?: boolean
+}
+
+export const SideBar = ({ theme }: SideBarProps) => {
   const { formMode, setIsMenuVisible } = useAdmin()!
   return (
     <div className="menu-overlay">
-      <div className="side-bar">
+      <div className={`side-bar ${theme && 'side-bar__light'}`}>
         <div className="side-bar__fields">
           {formMode === 'preview' ? (
-            <PreviewSideBar />
+            <PreviewSideBar theme={theme} />
           ) : formMode === 'create' ? (
             <CreateSideBar />
           ) : formMode === 'update' ? (
             ''
           ) : null}
         </div>
-        <div className="sidebar-foot" onClick={() => setIsMenuVisible(false)}>
+        <div
+          className={`sidebar-foot ${theme && 'sidebar-foot__light'}`}
+          onClick={() => setIsMenuVisible(false)}
+        >
           <p>voltar</p>
           <ChevronRight size={30} />
         </div>

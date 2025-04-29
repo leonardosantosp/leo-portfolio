@@ -15,7 +15,8 @@ export const PreviewField = ({
   value,
   type,
   width,
-  height
+  height,
+  theme
 }: PreviewFieldProps) => {
   return (
     <>

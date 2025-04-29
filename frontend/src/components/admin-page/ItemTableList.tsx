@@ -5,7 +5,7 @@ import search from '../../assets/search.svg'
 import { Eye } from 'lucide-react'
 import { Trash2 } from 'lucide-react'
 import { SquarePen } from 'lucide-react'
-
+import { Search } from 'lucide-react'
 type ItemTableListProps<T> = {
   itens: T[]
   renderRow: (item: T) => React.ReactNode
@@ -14,6 +14,7 @@ type ItemTableListProps<T> = {
   onDelete: (item: T) => void
   headers: string[]
   onDeleteCard: (id: string) => void
+  isLight?: boolean
 }
 
 export const ItemTableList = <T,>({
@@ -23,7 +24,8 @@ export const ItemTableList = <T,>({
   onPreview,
   onDelete,
   headers,
-  onDeleteCard
+  onDeleteCard,
+  isLight
 }: ItemTableListProps<T>) => {
   const { schema, setIsMenuVisible, setFormMode, selectedItemId } = useAdmin()!
 
@@ -37,15 +39,21 @@ export const ItemTableList = <T,>({
           onDelete={() => onDeleteCard(selectedItemId)}
         />
       )}
-      <div className="item-list__header">
+      <div
+        className={`item-list__header ${isLight && 'item-list__header-light'}`}
+      >
         <h2 className="item-list__header-title">
           {schema.charAt(0).toUpperCase() + schema.slice(1)}
         </h2>
         <p className="item-list__header-results">{itens.length} results</p>
       </div>
-      <div className="item-list__toolbar">
+      <div
+        className={`item-list__toolbar ${
+          isLight && 'item-list__toolbar-light'
+        }`}
+      >
         <div className="item-search">
-          <img src={search} alt="icon search" />
+          <Search size={18} className="item-search-img" />
           <input type="search" placeholder={`Search for ${schema}`} />
         </div>
 

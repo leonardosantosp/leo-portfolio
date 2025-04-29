@@ -288,7 +288,7 @@ export const CreateSideBar = () => {
                     cursor={'pointer'}
                     size={20}
                   />
-                  <p>add</p>
+                  <p>Add</p>
                 </div>
                 {allTechnologies
                   .filter(
