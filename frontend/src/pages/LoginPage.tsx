@@ -1,12 +1,17 @@
 import { Header } from '../components/Header'
-import user from '../assets/user.png'
-import password from '../assets/password.png'
-// import visible from '../assets/visible.png'
-import invisible from '../assets/invisible.png'
+import { UserRound } from 'lucide-react'
+import { EyeOff } from 'lucide-react'
+import { LockKeyhole } from 'lucide-react'
+import { Eye } from 'lucide-react'
 import arrow from '../assets/down-arrow.png'
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
 
 export const LoginPage = () => {
+  useEffect(() => {
+    import('bootstrap/dist/css/bootstrap.min.css')
+  }, [])
+
   return (
     <div className="admin-signin">
       <div className="admin-signin__left">
@@ -21,28 +26,32 @@ export const LoginPage = () => {
           <form className="admin-signin__form">
             <h2 className="admin-signin__title">SIGN IN</h2>
             <label className="admin-signin__label">Enter your username</label>
-            <div className="admin-signin__input-group">
-              <img src={user} alt="icon user" height={30} width={30} />
+            <div className="input-group flex-nowrap admin-signin__input">
+              <span className="input-group-text" id="addon-wrapping">
+                <UserRound color="#aca7ad" />
+              </span>
               <input
                 type="text"
-                placeholder="your username"
-                className="admin-signin__input"
+                className="form-control "
+                placeholder="Username"
+                aria-label="Username"
+                aria-describedby="addon-wrapping"
               />
             </div>
             <label className="admin-signin__label">Enter your password</label>
-            <div className="admin-signin__input-group">
-              <img src={password} alt="icon password" height={30} width={30} />
+            <div className="input-group mb-3 admin-signin__input ">
+              <span className="input-group-text">
+                <LockKeyhole color="#aca7ad" />
+              </span>
               <input
                 type="password"
-                placeholder="your password"
-                className="admin-signin__input"
+                className="form-control "
+                placeholder="Password"
+                aria-label="Amount (to the nearest dollar)"
               />
-              <img
-                src={invisible}
-                alt="icon closed eye"
-                height={25}
-                width={25}
-              />
+              <span className="input-group-text">
+                <EyeOff color="#aca7ad" />
+              </span>
             </div>
             <button type="button" className="admin-signin__button">
               Sign in

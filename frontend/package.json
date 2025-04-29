@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "axios": "^1.8.4",
+    "bootstrap": "^5.3.5",
     "github-markdown-css": "^5.8.1",
     "lucide-react": "^0.501.0",
     "react": "^19.0.0",

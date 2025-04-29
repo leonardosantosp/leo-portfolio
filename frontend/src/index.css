@@ -19,6 +19,10 @@ input:-webkit-autofill:focus {
   padding: 0;
 }
 
+a {
+  text-decoration: none !important;
+}
+
 table {
   border-spacing: 0;
 }
@@ -871,6 +875,7 @@ p {
 /* Login */
 
 .admin-signin {
+  color: white;
   display: flex;
   height: 100vh;
 }
@@ -932,6 +937,7 @@ p {
   background-color: #261046;
   border-radius: 10px;
   padding: 0 1rem;
+  height: 60px;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -942,6 +948,7 @@ p {
   background-color: #261046;
   border-style: none;
   width: 79%;
+  border-radius: 15px;
 }
 
 .admin-signin__button {
@@ -966,6 +973,10 @@ p {
   display: flex;
   color: white;
   transition: 0.7s ease;
+}
+
+.admin-signin__back p {
+  margin-bottom: 0;
 }
 
 .admin-signin__back a:hover {
