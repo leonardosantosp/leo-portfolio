@@ -1120,7 +1120,7 @@ p {
   position: absolute;
   right: 4.3%;
   width: 91.4%;
-  top: 21%;
+  top: 21.5%;
   height: 100.5%;
   backdrop-filter: blur(0.6px);
   background-color: rgba(0, 0, 0, 0.5);
@@ -1214,7 +1214,11 @@ p {
 
 .item-management-page__item-list-light {
   background: #e8e8ed;
-  border: 2px solid #9d9fa4;
+  border: 2px solid #cacbcd;
+}
+
+.item-management-page__item-list-light .item-table__icon {
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
 }
 
 .item-list__header {
@@ -1226,7 +1230,7 @@ p {
 
 .item-list__header-light {
   color: rgb(65, 63, 63);
-  border-bottom: 2px solid #5c5d5d;
+  border-bottom: 2px solid #cacbcd;
 }
 
 .item-list__header h2,
@@ -1292,7 +1296,7 @@ p {
 
 .item-list__toolbar-light .item-search {
   border: 2px solid #a6a6ab;
-  background: #d2d3d5;
+  background: white;
   color: rgb(72, 70, 70);
 }
 
@@ -1302,7 +1306,7 @@ p {
 }
 
 .item-list__toolbar-light .item-search input {
-  background: #d2d3d5;
+  background: white;
 }
 
 .item-search-img {
@@ -1322,6 +1326,11 @@ p {
   color: #9ca3af;
 }
 
+.item-list__table-light thead th {
+  background: rgb(187, 185, 185);
+  color: black;
+}
+
 .item-list__table tbody tr:first-child td {
   padding-top: 5px;
 }
@@ -1332,6 +1341,11 @@ p {
 
 .item-list__table td {
   border-bottom: 1px solid #374151;
+}
+
+.item-list__table-light td {
+  border-bottom: 1px solid #a6a6ab;
+  color: black;
 }
 
 .item-list__table th,
@@ -1394,6 +1408,10 @@ p {
   transition: 0.5s ease;
 }
 
+.item-table__actions-preview-light {
+  color: #5e5c5c;
+}
+
 .item-table__actions-preview:hover {
   color: white;
   background-color: #a4a4a4;
@@ -1428,10 +1446,11 @@ p {
   flex-direction: column;
   justify-content: space-between;
   font-family: 'Inter', sans-serif;
+  z-index: 10;
 }
 
 .side-bar__light {
-  background: #a7a7a9;
+  background: white;
 }
 
 .blur-layer {
@@ -1457,7 +1476,7 @@ p {
   width: 20%;
   height: 30%;
   background-color: #374151;
-  border: 1px solid #606165;
+  border: 2px solid #606165;
   border-radius: 10px;
   padding: 10px 18px 18px 18px;
   margin: 15px 0;
@@ -1469,20 +1488,35 @@ p {
 
 .image-fields img {
   align-self: center;
+  filter: drop-shadow(0 0 2px #c5c3c3);
 }
 
 .image-fields h3 {
   margin-left: 10px;
 }
 
+.image-fields__light img {
+  filter: drop-shadow(0 0 2px #000);
+}
+
 .text-fields {
   width: 40%;
   max-height: 70px;
   background-color: #374151;
-  border: 1px solid #606165;
+  border: 2px solid #606165;
   border-radius: 10px;
   margin: 15px 15px 0 0;
   padding: 12px;
+}
+
+.text-fields__light,
+.image-fields__light {
+  background: #d1d1d1;
+  border: 2px solid #afafb0;
+}
+
+.text-fields__light img {
+  filter: drop-shadow(0 0 0.5px #000);
 }
 
 .text-fields a {
@@ -1496,9 +1530,18 @@ p {
   font-size: 14px;
 }
 
+.image-fields__light h3,
+.text-fields__light h3 {
+  color: black;
+}
+
 .text-fields p {
   color: #9ca3af;
   font-size: 12px;
+}
+
+.text-fields__light p {
+  color: #3c3c3d;
 }
 
 .sidebar-foot {
@@ -1544,6 +1587,14 @@ p {
   margin-bottom: 10px;
 }
 
+.stack-fields-item__light {
+  color: black;
+}
+
+.stack-fields-item__light img {
+  filter: drop-shadow(0 0 0.4px #000);
+}
+
 .stack-fields-item img {
   margin-right: 7px;
 }
@@ -1572,6 +1623,16 @@ p {
   border-radius: 10px;
   margin: 8px 0 30px 0;
   color: white;
+}
+
+.text-fields-container__light {
+  color: black;
+}
+
+.text-fields-container__light .create-fields-container input {
+  background-color: #d6d7da;
+  border: 2px solid #cdced1;
+  color: black;
 }
 
 input:focus {
@@ -1621,6 +1682,12 @@ input:focus {
   width: 116px;
 }
 
+.stack-fields__add-button-light,
+.stack-fields__add-button-light-active {
+  border: 2px solid #d7d9dc;
+  color: black;
+}
+
 .stack-fields__add-button-active {
   display: flex;
   flex-direction: column;
@@ -1640,6 +1707,15 @@ input:focus {
   width: 95%;
   background: #393a3c;
   color: white;
+}
+
+.stack-fields__add-button-light .stack-fields-item img {
+  filter: drop-shadow(0 0 0.3px #4c4c4c);
+}
+
+.stack-fields__add-button-light-active .stack-fields-item-active:hover {
+  background: #cacccf;
+  color: black;
 }
 
 .stack-fields-icon {
@@ -1672,7 +1748,19 @@ input:focus {
   transition: 0.3s ease;
 }
 
+.create-stack-fields__buttons-discard-light {
+  color: black;
+  background: white;
+  transition: 0.3s ease;
+  border: 2px solid #babbbc;
+}
+
 .create-stack-fields__buttons-discard:hover {
   background-color: #374151;
   color: white;
+}
+
+.create-stack-fields__buttons-discard-light:hover {
+  background: rgb(212, 210, 210);
+  color: rgb(74, 72, 72);
 }

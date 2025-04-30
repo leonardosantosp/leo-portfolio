@@ -68,54 +68,103 @@ export const PreviewSideBar = ({ theme }: PreviewSideBarProps) => {
       {schema === 'skill' ? (
         <>
           <h2 style={{ color: theme ? 'black' : '' }}>{skill.name}</h2>
-          <PreviewField label="Icon" value={skill.icon} type="image" />
-          <PreviewField label="Name" value={skill.name} type="text" />
+          <PreviewField
+            label="Icon"
+            value={skill.icon}
+            type="image"
+            theme={theme}
+          />
+          <PreviewField
+            label="Name"
+            value={skill.name}
+            type="text"
+            theme={theme}
+          />
         </>
       ) : schema === 'technology' ? (
         <>
           <h2>{technology.name}</h2>
           <>
             <div className="images-container">
-              <PreviewField label="Icon" value={technology.icon} type="image" />
+              <PreviewField
+                label="Icon"
+                value={technology.icon}
+                type="image"
+                theme={theme}
+              />
               <PreviewField
                 label="AppIcon"
                 value={technology.appIcon}
                 type="image"
+                theme={theme}
               />
             </div>
-            <PreviewField label="Slug" value={technology.slug} type="text" />
-            <PreviewField label="Name" value={technology.name} type="text" />
+            <PreviewField
+              label="Slug"
+              value={technology.slug}
+              type="text"
+              theme={theme}
+            />
+            <PreviewField
+              label="Name"
+              value={technology.name}
+              type="text"
+              theme={theme}
+            />
           </>
         </>
       ) : schema === 'project' ? (
         <>
           <h2>{project.title}</h2>
           <div className="images-container">
-            <PreviewField label="Logo" value={project.logo} type="image" />
+            <PreviewField
+              label="Logo"
+              value={project.logo}
+              type="image"
+              theme={theme}
+            />
             <PreviewField
               label="Mockup"
               value={project.mockup}
               type="image"
               width={177}
               height={134}
+              theme={theme}
             />
           </div>
           <div className="text-fields-container">
-            <PreviewField label="Title" value={project.title} type="text" />
+            <PreviewField
+              label="Title"
+              value={project.title}
+              type="text"
+              theme={theme}
+            />
             <PreviewField
               label="Repository"
               value={project.repository}
               type="text"
+              theme={theme}
             />
-            <PreviewField label="Slug" value={project.slug} type="text" />
-            <PreviewField label="Site URL" value={project.siteUrl} type="url" />
+            <PreviewField
+              label="Slug"
+              value={project.slug}
+              type="text"
+              theme={theme}
+            />
+            <PreviewField
+              label="Site URL"
+              value={project.siteUrl}
+              type="url"
+              theme={theme}
+            />
             <PreviewField
               label="Video URL"
               value={project.videoUrl}
               type="url"
+              theme={theme}
             />
 
-            <div className="text-fields">
+            <div className={`text-fields ${theme && 'text-fields__light'}`}>
               <h3>Stack</h3>
               <div className="stack-fields">
                 {projectStack.map(technology =>

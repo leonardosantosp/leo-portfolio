@@ -14,9 +14,9 @@ export const SchemaList = ({ isLight }: SchemaListProps) => {
       {schema === 'skill' ? (
         <SkillList isLight={isLight} />
       ) : schema === 'technology' ? (
-        <TechnologyList />
+        <TechnologyList isLight={isLight} />
       ) : schema === 'project' ? (
-        <ProjectList />
+        <ProjectList isLight={isLight} />
       ) : null}
     </>
   )

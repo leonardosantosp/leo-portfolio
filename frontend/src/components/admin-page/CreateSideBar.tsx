@@ -20,7 +20,11 @@ function isValidUrl(url: string): boolean {
   }
 }
 
-export const CreateSideBar = () => {
+type CreateSideBarProps = {
+  theme?: boolean
+}
+
+export const CreateSideBar = ({ theme }: CreateSideBarProps) => {
   const [allTechnologies, setAllTechnologies] = useState<ReturnedTechnology[]>(
     []
   )
@@ -240,7 +244,11 @@ export const CreateSideBar = () => {
     <>
       {schema === 'project' ? (
         <>
-          <div className="text-fields-container">
+          <div
+            className={`text-fields-container ${
+              theme && 'text-fields-container__light'
+            }`}
+          >
             <FormField
               label="title"
               placeholder={`${schema} title`}
@@ -278,10 +286,15 @@ export const CreateSideBar = () => {
               error={errors.videoUrl}
             />
           </div>
-          <h3>Select Technologies</h3>
+          <h3 style={theme ? { color: 'black' } : {}}>Select Technologies</h3>
           <div className="stack-fields create-stack-fields">
             {dropdownOpen ? (
-              <div className="stack-fields__add-button stack-fields__add-button-active">
+              <div
+                className={`stack-fields__add-button stack-fields__add-button-active ${
+                  theme &&
+                  'stack-fields__add-button-light stack-fields__add-button-light-active'
+                }`}
+              >
                 <div className="add-button-active">
                   <ChevronUp
                     onClick={() => setDropdownOpen(false)}
@@ -312,7 +325,11 @@ export const CreateSideBar = () => {
                   ))}
               </div>
             ) : (
-              <div className="stack-fields__add-button">
+              <div
+                className={`stack-fields__add-button ${
+                  theme && 'stack-fields__add-button-light'
+                }`}
+              >
                 <ChevronDown
                   onClick={() => setDropdownOpen(true)}
                   cursor={'pointer'}
@@ -333,7 +350,12 @@ export const CreateSideBar = () => {
 
               <div className="stack-fields">
                 {stack.map(item => (
-                  <div className="stack-fields-item" key={item._id}>
+                  <div
+                    key={item._id}
+                    className={`stack-fields-item ${
+                      theme && 'stack-fields-item__light'
+                    }`}
+                  >
                     <img src={item.icon} alt="" height={15} width={15} />
                     <p>{item.name}</p>
                     <div className="stack-fields-icon">
@@ -351,7 +373,11 @@ export const CreateSideBar = () => {
         </>
       ) : schema === 'skill' ? (
         <>
-          <div className="text-fields-container">
+          <div
+            className={`text-fields-container ${
+              theme && 'text-fields-container__light'
+            }`}
+          >
             <FormField
               label="icon"
               placeholder="icon url"
@@ -368,7 +394,11 @@ export const CreateSideBar = () => {
         </>
       ) : schema === 'technology' ? (
         <>
-          <div className="text-fields-container">
+          <div
+            className={`text-fields-container ${
+              theme && 'text-fields-container__light'
+            }`}
+          >
             <FormField
               label="icon"
               placeholder="icon url"
@@ -402,7 +432,9 @@ export const CreateSideBar = () => {
             {`Add ${schema.charAt(0).toUpperCase() + schema.slice(1)}`}
           </button>
           <button
-            className="create-stack-fields__buttons-discard"
+            className={`create-stack-fields__buttons-discard ${
+              theme && 'create-stack-fields__buttons-discard-light'
+            }`}
             type="button"
             onClick={() => setIsMenuVisible(false)}
           >

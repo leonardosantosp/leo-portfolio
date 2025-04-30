@@ -16,7 +16,7 @@ export const SideBar = ({ theme }: SideBarProps) => {
           {formMode === 'preview' ? (
             <PreviewSideBar theme={theme} />
           ) : formMode === 'create' ? (
-            <CreateSideBar />
+            <CreateSideBar theme={theme} />
           ) : formMode === 'update' ? (
             ''
           ) : null}

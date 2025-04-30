@@ -67,7 +67,9 @@ export const ItemTableList = <T,>({
           <span>+</span> {`Add a new ${schema}`}
         </button>
       </div>
-      <div className="item-list__table">
+      <div
+        className={`item-list__table ${isLight && 'item-list__table-light'}`}
+      >
         <table>
           <thead>
             <tr>
@@ -97,7 +99,9 @@ export const ItemTableList = <T,>({
                     </button>
                     <button
                       onClick={() => onPreview(item)}
-                      className="item-table__actions-preview"
+                      className={`item-table__actions-preview ${
+                        isLight && 'item-table__actions-preview-light'
+                      }`}
                       type="button"
                     >
                       <Eye size={15} className="item-table__actions-img" />

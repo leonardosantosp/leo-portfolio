@@ -4,7 +4,11 @@ import { ItemTableList } from './ItemTableList'
 import { useAdmin } from './AdminProvider'
 import { Link } from 'lucide-react'
 
-export const ProjectList = () => {
+type ProjectListProps = {
+  isLight?: boolean
+}
+
+export const ProjectList = ({ isLight }: ProjectListProps) => {
   const [projects, setProjects] = useState<ReturnedProject[]>([])
   const {
     setFormMode,
@@ -37,8 +41,13 @@ export const ProjectList = () => {
   }, [reloadList])
 
   return (
-    <div className="item-management-page__item-list">
+    <div
+      className={`item-management-page__item-list ${
+        isLight ? 'item-management-page__item-list-light' : ''
+      }`}
+    >
       <ItemTableList
+        isLight={isLight}
         headers={[
           'TITLE',
           'LOGO',
