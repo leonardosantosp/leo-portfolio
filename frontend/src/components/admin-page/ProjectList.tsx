@@ -4,18 +4,15 @@ import { ItemTableList } from './ItemTableList'
 import { useAdmin } from './AdminProvider'
 import { Link } from 'lucide-react'
 
-type ProjectListProps = {
-  isLight?: boolean
-}
-
-export const ProjectList = ({ isLight }: ProjectListProps) => {
+export const ProjectList = () => {
   const [projects, setProjects] = useState<ReturnedProject[]>([])
   const {
     setFormMode,
     setIsMenuVisible,
     setSelectedItemId,
     reloadList,
-    setReloadList
+    setReloadList,
+    isLight
   } = useAdmin()!
 
   const handleDelete = (idToDelete: string) => {
@@ -47,7 +44,6 @@ export const ProjectList = ({ isLight }: ProjectListProps) => {
       }`}
     >
       <ItemTableList
-        isLight={isLight}
         headers={[
           'TITLE',
           'LOGO',

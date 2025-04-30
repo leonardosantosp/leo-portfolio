@@ -7,18 +7,14 @@ import type { ReturnedTechnology } from '../../api-client/technologiesApi'
 import { getTechnologyById } from '../../api-client/technologiesApi'
 import { getProjectById, ReturnedProject } from '../../api-client/projectsApi'
 
-type PreviewSideBarProps = {
-  theme?: boolean
-}
-
-export const PreviewSideBar = ({ theme }: PreviewSideBarProps) => {
-  const { schema, selectedItemId } = useAdmin()!
+export const PreviewSideBar = () => {
+  const { schema, selectedItemId, isLight } = useAdmin()!
   const [skill, setSkill] = useState<ReturnedSkill>({} as ReturnedSkill)
   const [technology, setTechnology] = useState<ReturnedTechnology>(
     {} as ReturnedTechnology
   )
   const [project, setProject] = useState<ReturnedProject>({} as ReturnedProject)
-  const [projectStack, setProjectStack] = useState<ReturnedSkill[]>([])
+  const [projectStack, setProjectStack] = useState<ReturnedTechnology[]>([])
 
   useEffect(() => {
     if (!selectedItemId) return
@@ -45,7 +41,9 @@ export const PreviewSideBar = ({ theme }: PreviewSideBarProps) => {
           }
         })
       )
-      setProjectStack(stack)
+      setProjectStack(
+        stack.filter((item): item is ReturnedTechnology => item !== null)
+      )
     }
 
     const fetchProject = async () => {
@@ -67,104 +65,55 @@ export const PreviewSideBar = ({ theme }: PreviewSideBarProps) => {
     <>
       {schema === 'skill' ? (
         <>
-          <h2 style={{ color: theme ? 'black' : '' }}>{skill.name}</h2>
-          <PreviewField
-            label="Icon"
-            value={skill.icon}
-            type="image"
-            theme={theme}
-          />
-          <PreviewField
-            label="Name"
-            value={skill.name}
-            type="text"
-            theme={theme}
-          />
+          <h2 style={{ color: isLight ? 'black' : '' }}>{skill.name}</h2>
+          <PreviewField label="Icon" value={skill.icon} type="image" />
+          <PreviewField label="Name" value={skill.name} type="text" />
         </>
       ) : schema === 'technology' ? (
         <>
           <h2>{technology.name}</h2>
           <>
             <div className="images-container">
-              <PreviewField
-                label="Icon"
-                value={technology.icon}
-                type="image"
-                theme={theme}
-              />
+              <PreviewField label="Icon" value={technology.icon} type="image" />
               <PreviewField
                 label="AppIcon"
                 value={technology.appIcon}
                 type="image"
-                theme={theme}
               />
             </div>
-            <PreviewField
-              label="Slug"
-              value={technology.slug}
-              type="text"
-              theme={theme}
-            />
-            <PreviewField
-              label="Name"
-              value={technology.name}
-              type="text"
-              theme={theme}
-            />
+            <PreviewField label="Slug" value={technology.slug} type="text" />
+            <PreviewField label="Name" value={technology.name} type="text" />
           </>
         </>
       ) : schema === 'project' ? (
         <>
           <h2>{project.title}</h2>
           <div className="images-container">
-            <PreviewField
-              label="Logo"
-              value={project.logo}
-              type="image"
-              theme={theme}
-            />
+            <PreviewField label="Logo" value={project.logo} type="image" />
             <PreviewField
               label="Mockup"
               value={project.mockup}
               type="image"
               width={177}
               height={134}
-              theme={theme}
             />
           </div>
           <div className="text-fields-container">
-            <PreviewField
-              label="Title"
-              value={project.title}
-              type="text"
-              theme={theme}
-            />
+            <PreviewField label="Title" value={project.title} type="text" />
             <PreviewField
               label="Repository"
               value={project.repository}
               type="text"
-              theme={theme}
             />
-            <PreviewField
-              label="Slug"
-              value={project.slug}
-              type="text"
-              theme={theme}
-            />
-            <PreviewField
-              label="Site URL"
-              value={project.siteUrl}
-              type="url"
-              theme={theme}
-            />
+            <PreviewField label="Slug" value={project.slug} type="text" />
+            <PreviewField label="Site URL" value={project.siteUrl} type="url" />
             <PreviewField
               label="Video URL"
               value={project.videoUrl}
               type="url"
-              theme={theme}
             />
 
-            <div className={`text-fields ${theme && 'text-fields__light'}`}>
+            <div className={`text-fields ${isLight && 'text-fields__light'}`}>
               <h3>Stack</h3>
               <div className="stack-fields">
                 {projectStack.map(technology =>

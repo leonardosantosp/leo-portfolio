@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useAdmin } from './AdminProvider'
 
 type PreviewFieldType = 'text' | 'image' | 'url'
 
@@ -8,7 +9,6 @@ type PreviewFieldProps = {
   type: PreviewFieldType
   width?: number
   height?: number
-  theme?: boolean
 }
 
 export const PreviewField = ({
@@ -16,13 +16,14 @@ export const PreviewField = ({
   value,
   type,
   width,
-  height,
-  theme
+  height
 }: PreviewFieldProps) => {
+  const { isLight } = useAdmin()!
+
   return (
     <>
       {type === 'image' ? (
-        <div className={`image-fields ${theme && 'image-fields__light'}`}>
+        <div className={`image-fields ${isLight && 'image-fields__light'}`}>
           <h3>{label}</h3>
           <img
             src={value}
@@ -32,12 +33,12 @@ export const PreviewField = ({
           />
         </div>
       ) : type === 'text' ? (
-        <div className={`text-fields ${theme && 'text-fields__light'}`}>
+        <div className={`text-fields ${isLight && 'text-fields__light'}`}>
           <h3>{label}</h3>
           <p>{value}</p>
         </div>
       ) : type === 'url' ? (
-        <div className={`text-fields ${theme && 'text-fields__light'}`}>
+        <div className={`text-fields ${isLight && 'text-fields__light'}`}>
           <h3>{label}</h3>
           <Link to={value}>{value}</Link>
         </div>

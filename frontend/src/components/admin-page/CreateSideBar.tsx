@@ -20,11 +20,7 @@ function isValidUrl(url: string): boolean {
   }
 }
 
-type CreateSideBarProps = {
-  theme?: boolean
-}
-
-export const CreateSideBar = ({ theme }: CreateSideBarProps) => {
+export const CreateSideBar = () => {
   const [allTechnologies, setAllTechnologies] = useState<ReturnedTechnology[]>(
     []
   )
@@ -61,7 +57,7 @@ export const CreateSideBar = ({ theme }: CreateSideBarProps) => {
 
   const [dropdownOpen, setDropdownOpen] = useState(false)
 
-  const { schema, setIsMenuVisible, setReloadList } = useAdmin()!
+  const { schema, setIsMenuVisible, setReloadList, isLight } = useAdmin()!
   const [errors, setErrors] = useState<{
     name?: string
     icon?: string
@@ -246,7 +242,7 @@ export const CreateSideBar = ({ theme }: CreateSideBarProps) => {
         <>
           <div
             className={`text-fields-container ${
-              theme && 'text-fields-container__light'
+              isLight && 'text-fields-container__light'
             }`}
           >
             <FormField
@@ -286,12 +282,12 @@ export const CreateSideBar = ({ theme }: CreateSideBarProps) => {
               error={errors.videoUrl}
             />
           </div>
-          <h3 style={theme ? { color: 'black' } : {}}>Select Technologies</h3>
+          <h3 style={isLight ? { color: 'black' } : {}}>Select Technologies</h3>
           <div className="stack-fields create-stack-fields">
             {dropdownOpen ? (
               <div
                 className={`stack-fields__add-button stack-fields__add-button-active ${
-                  theme &&
+                  isLight &&
                   'stack-fields__add-button-light stack-fields__add-button-light-active'
                 }`}
               >
@@ -327,7 +323,7 @@ export const CreateSideBar = ({ theme }: CreateSideBarProps) => {
             ) : (
               <div
                 className={`stack-fields__add-button ${
-                  theme && 'stack-fields__add-button-light'
+                  isLight && 'stack-fields__add-button-light'
                 }`}
               >
                 <ChevronDown
@@ -353,7 +349,7 @@ export const CreateSideBar = ({ theme }: CreateSideBarProps) => {
                   <div
                     key={item._id}
                     className={`stack-fields-item ${
-                      theme && 'stack-fields-item__light'
+                      isLight && 'stack-fields-item__light'
                     }`}
                   >
                     <img src={item.icon} alt="" height={15} width={15} />
@@ -375,7 +371,7 @@ export const CreateSideBar = ({ theme }: CreateSideBarProps) => {
         <>
           <div
             className={`text-fields-container ${
-              theme && 'text-fields-container__light'
+              isLight && 'text-fields-container__light'
             }`}
           >
             <FormField
@@ -396,7 +392,7 @@ export const CreateSideBar = ({ theme }: CreateSideBarProps) => {
         <>
           <div
             className={`text-fields-container ${
-              theme && 'text-fields-container__light'
+              isLight && 'text-fields-container__light'
             }`}
           >
             <FormField
@@ -433,7 +429,7 @@ export const CreateSideBar = ({ theme }: CreateSideBarProps) => {
           </button>
           <button
             className={`create-stack-fields__buttons-discard ${
-              theme && 'create-stack-fields__buttons-discard-light'
+              isLight && 'create-stack-fields__buttons-discard-light'
             }`}
             type="button"
             onClick={() => setIsMenuVisible(false)}

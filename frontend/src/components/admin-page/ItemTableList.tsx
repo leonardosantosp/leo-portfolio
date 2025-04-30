@@ -1,7 +1,6 @@
 import { useAdmin } from './AdminProvider'
 import { useState } from 'react'
 import { DeleteCard } from './DeleteCard'
-import search from '../../assets/search.svg'
 import { Eye } from 'lucide-react'
 import { Trash2 } from 'lucide-react'
 import { SquarePen } from 'lucide-react'
@@ -14,7 +13,6 @@ type ItemTableListProps<T> = {
   onDelete: (item: T) => void
   headers: string[]
   onDeleteCard: (id: string) => void
-  isLight?: boolean
 }
 
 export const ItemTableList = <T,>({
@@ -24,10 +22,10 @@ export const ItemTableList = <T,>({
   onPreview,
   onDelete,
   headers,
-  onDeleteCard,
-  isLight
+  onDeleteCard
 }: ItemTableListProps<T>) => {
-  const { schema, setIsMenuVisible, setFormMode, selectedItemId } = useAdmin()!
+  const { schema, setIsMenuVisible, setFormMode, selectedItemId, isLight } =
+    useAdmin()!
 
   const [showDeleteCard, setShowDeleteCard] = useState(false)
 

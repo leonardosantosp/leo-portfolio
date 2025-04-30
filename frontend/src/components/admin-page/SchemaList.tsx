@@ -3,20 +3,16 @@ import { useAdmin } from './AdminProvider'
 import { ProjectList } from './ProjectList'
 import { TechnologyList } from './TechnologyList'
 
-type SchemaListProps = {
-  isLight?: boolean
-}
-
-export const SchemaList = ({ isLight }: SchemaListProps) => {
+export const SchemaList = () => {
   const { schema } = useAdmin()!
   return (
     <>
       {schema === 'skill' ? (
-        <SkillList isLight={isLight} />
+        <SkillList />
       ) : schema === 'technology' ? (
-        <TechnologyList isLight={isLight} />
+        <TechnologyList />
       ) : schema === 'project' ? (
-        <ProjectList isLight={isLight} />
+        <ProjectList />
       ) : null}
     </>
   )

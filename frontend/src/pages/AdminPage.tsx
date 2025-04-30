@@ -11,8 +11,8 @@ import { useState } from 'react'
 export const AdminPage = () => {
   const adminContext = useAdmin()
   if (!adminContext) return null
-  const { isMenuVisible, setIsMenuVisible, setSchema } = adminContext
-  const [isLightTheme, setIsLightTheme] = useState(false)
+  const { isMenuVisible, setIsMenuVisible, setSchema, isLight, setIsLight } =
+    adminContext
   const [isTableView, setIsTableView] = useState(true)
 
   return (
@@ -21,12 +21,12 @@ export const AdminPage = () => {
       <div className="item-management-container">
         <div
           className={`item-management-page ${
-            isLightTheme && 'item-management-page__light-mode'
+            isLight && 'item-management-page__light-mode'
           }`}
         >
           <div
             className={`item-management-page__header ${
-              isLightTheme && 'item-management-page__header-light-mode'
+              isLight && 'item-management-page__header-light-mode'
             }`}
           >
             <div className="item-management-page__header-schemas">
@@ -78,25 +78,25 @@ export const AdminPage = () => {
               <div className="toggle-group">
                 <button
                   type="button"
-                  className={`toggle-btn ${!isLightTheme ? 'visible' : ''}`}
-                  onClick={() => setIsLightTheme(true)}
+                  className={`toggle-btn ${!isLight ? 'visible' : ''}`}
+                  onClick={() => setIsLight(true)}
                 >
                   <Sun cursor={'pointer'} />
                 </button>
                 <button
                   type="button"
-                  className={`toggle-btn ${isLightTheme ? 'visible' : ''}`}
-                  onClick={() => setIsLightTheme(false)}
+                  className={`toggle-btn ${isLight ? 'visible' : ''}`}
+                  onClick={() => setIsLight(false)}
                 >
                   <MoonStar cursor={'pointer'} />
                 </button>
               </div>
             </div>
           </div>
-          {isMenuVisible && <SideBar theme={isLightTheme} />}
+          {isMenuVisible && <SideBar />}
 
           <div className="item-list-container">
-            <SchemaList isLight={isLightTheme} />
+            <SchemaList />
           </div>
         </div>
       </div>

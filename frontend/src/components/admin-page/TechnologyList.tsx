@@ -6,18 +6,15 @@ import { useEffect, useState } from 'react'
 import { useAdmin } from './AdminProvider'
 import { ItemTableList } from './ItemTableList'
 
-type TechnologyListProps = {
-  isLight?: boolean
-}
-
-export const TechnologyList = ({ isLight }: TechnologyListProps) => {
+export const TechnologyList = () => {
   const [technologies, setTechnologies] = useState<ReturnedTechnology[]>([])
   const {
     setFormMode,
     setIsMenuVisible,
     setSelectedItemId,
     reloadList,
-    setReloadList
+    setReloadList,
+    isLight
   } = useAdmin()!
 
   const handleDelete = (idToDelete: string) => {
@@ -51,7 +48,6 @@ export const TechnologyList = ({ isLight }: TechnologyListProps) => {
       }`}
     >
       <ItemTableList
-        isLight={isLight}
         headers={['NAME', 'ICON', 'SLUG', 'APPICON']}
         itens={technologies}
         onDelete={technology => setSelectedItemId(technology._id)}
