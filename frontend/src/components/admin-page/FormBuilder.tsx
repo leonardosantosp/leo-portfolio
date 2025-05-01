@@ -9,7 +9,9 @@ import {
 import type { ReturnedTechnology } from '../../api-client/technologiesApi'
 import {
   createTechnology,
-  getTechnologies
+  getTechnologies,
+  getTechnologyById,
+  updateTechnology
 } from '../../api-client/technologiesApi'
 import { useAdmin } from './AdminProvider'
 
@@ -100,13 +102,26 @@ export const FormBuilder = () => {
   }, [schema, stack])
 
   useEffect(() => {
-    if (formMode === 'update' && schema === 'skill' && selectedItemId) {
+    if (formMode === 'update' && selectedItemId) {
       const fetchSkill = async () => {
         const data = await getSkillById(selectedItemId)
         setSkillData({ name: data.name, icon: data.icon })
       }
 
-      fetchSkill()
+      const fetchTechnology = async () => {
+        const data = await getTechnologyById(selectedItemId)
+        setTechnologyData({
+          name: data.name,
+          icon: data.icon,
+          appIcon: data.appIcon
+        })
+      }
+
+      if (schema === 'skill') {
+        fetchSkill()
+      } else if (schema === 'technology') {
+        fetchTechnology()
+      }
     }
   }, [formMode, schema, selectedItemId])
 
@@ -230,7 +245,11 @@ export const FormBuilder = () => {
           setReloadList(true)
         }
         if (schema === 'technology') {
-          const newTechnology = await createTechnology(technologyData)
+          if (!selectedItemId) return
+          const technology = await updateTechnology(
+            technologyData,
+            selectedItemId
+          )
           setIsMenuVisible(false)
           setReloadList(true)
         }
@@ -430,12 +449,14 @@ export const FormBuilder = () => {
               placeholder="icon url"
               onChange={handleChange}
               error={errors.icon}
+              skill={skillData}
             />
             <FormField
               label="name"
               placeholder={`${schema} name`}
               onChange={handleChange}
               error={errors.name}
+              skill={skillData}
             />
           </div>
         </>
@@ -451,18 +472,21 @@ export const FormBuilder = () => {
               placeholder="icon url"
               onChange={handleChange}
               error={errors.icon}
+              technology={technologyData}
             />
             <FormField
               label="appIcon"
               placeholder="app icon url"
               onChange={handleChange}
               error={errors.appIcon}
+              technology={technologyData}
             />
             <FormField
               label="name"
               placeholder={`${schema} name`}
               onChange={handleChange}
               error={errors.name}
+              technology={technologyData}
             />
           </div>
         </>
@@ -476,7 +500,9 @@ export const FormBuilder = () => {
               handleSubmit()
             }}
           >
-            {`Add ${schema.charAt(0).toUpperCase() + schema.slice(1)}`}
+            {`${formMode === 'update' ? 'Edit' : 'Add'} ${
+              schema.charAt(0).toUpperCase() + schema.slice(1)
+            }`}
           </button>
           <button
             className={`create-stack-fields__buttons-discard ${

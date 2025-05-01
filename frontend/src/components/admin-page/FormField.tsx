@@ -1,37 +1,28 @@
 import { useAdmin } from './AdminProvider'
-import { useEffect, useState } from 'react'
-import { getSkillById } from '../../api-client/skillsApi'
+import type { ReturnedSkill } from '../../api-client/skillsApi'
+import type { ReturnedTechnology } from '../../api-client/technologiesApi'
+import type { ReturnedProject } from '../../api-client/projectsApi'
 
 type FormFieldProps = {
   label: string
   placeholder: string
   onChange: any
   error: string | undefined
+  skill?: ReturnedSkill
+  technology?: ReturnedTechnology
+  project?: ReturnedProject
 }
 
 export const FormField = ({
   label,
   placeholder,
   onChange,
-  error
+  error,
+  skill,
+  technology
 }: FormFieldProps) => {
-  const { formMode, selectedItemId, schema } = useAdmin()!
+  const { formMode } = useAdmin()!
 
-  const [skillData, setSkillData] = useState({
-    name: '',
-    icon: ''
-  })
-
-  useEffect(() => {
-    if (formMode === 'update' && schema === 'skill' && selectedItemId) {
-      const fetchSkill = async () => {
-        const data = await getSkillById(selectedItemId)
-        setSkillData({ name: data.name, icon: data.icon })
-      }
-
-      fetchSkill()
-    }
-  }, [formMode, schema, selectedItemId])
   return (
     <>
       {formMode === 'create' ? (
@@ -59,15 +50,33 @@ export const FormField = ({
             {error ? <span className="error-text">{error}</span> : ''}
           </div>
 
-          <input
-            className={error && 'error'}
-            type="text"
-            id={label}
-            name={label}
-            placeholder={`Type ${placeholder}`}
-            defaultValue={label === 'name' ? skillData.name : skillData.icon}
-            onChange={onChange}
-          />
+          {skill ? (
+            <input
+              className={error && 'error'}
+              type="text"
+              id={label}
+              name={label}
+              placeholder={`Type ${placeholder}`}
+              defaultValue={label === 'name' ? skill.name : skill.icon}
+              onChange={onChange}
+            />
+          ) : technology ? (
+            <input
+              className={error && 'error'}
+              type="text"
+              id={label}
+              name={label}
+              placeholder={`Type ${placeholder}`}
+              defaultValue={
+                label === 'name'
+                  ? technology.name
+                  : label === 'icon'
+                  ? technology.icon
+                  : technology.appIcon
+              }
+              onChange={onChange}
+            />
+          ) : null}
         </div>
       )}
     </>
