@@ -1,10 +1,8 @@
 import { useAdmin } from './AdminProvider'
 import { useState } from 'react'
 import { DeleteCard } from './DeleteCard'
-import { Eye } from 'lucide-react'
-import { Trash2 } from 'lucide-react'
-import { SquarePen } from 'lucide-react'
-import { Search } from 'lucide-react'
+import { Eye, Trash2, SquarePen, Search } from 'lucide-react'
+
 type ItemTableListProps<T> = {
   itens: T[]
   renderRow: (item: T) => React.ReactNode

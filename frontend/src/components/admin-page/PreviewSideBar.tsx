@@ -5,7 +5,8 @@ import type { ReturnedSkill } from '../../api-client/skillsApi'
 import { useAdmin } from './AdminProvider'
 import type { ReturnedTechnology } from '../../api-client/technologiesApi'
 import { getTechnologyById } from '../../api-client/technologiesApi'
-import { getProjectById, ReturnedProject } from '../../api-client/projectsApi'
+import type { ReturnedProject } from '../../api-client/projectsApi'
+import { getProjectById } from '../../api-client/projectsApi'
 
 export const PreviewSideBar = () => {
   const { schema, selectedItemId, isLight } = useAdmin()!
@@ -71,7 +72,7 @@ export const PreviewSideBar = () => {
         </>
       ) : schema === 'technology' ? (
         <>
-          <h2>{technology.name}</h2>
+          <h2 style={{ color: isLight ? 'black' : '' }}>{technology.name}</h2>
           <>
             <div className="images-container">
               <PreviewField label="Icon" value={technology.icon} type="image" />
@@ -87,7 +88,7 @@ export const PreviewSideBar = () => {
         </>
       ) : schema === 'project' ? (
         <>
-          <h2>{project.title}</h2>
+          <h2 style={{ color: isLight ? 'black' : '' }}>{project.title}</h2>
           <div className="images-container">
             <PreviewField label="Logo" value={project.logo} type="image" />
             <PreviewField
@@ -122,7 +123,7 @@ export const PreviewSideBar = () => {
                       <div className="stack-fields-item" key={technology._id}>
                         <img
                           src={technology.icon}
-                          alt=""
+                          alt={technology.name}
                           height={15}
                           width={15}
                         />

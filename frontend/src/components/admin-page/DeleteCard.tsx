@@ -1,5 +1,4 @@
-import { CircleAlert } from 'lucide-react'
-import { X } from 'lucide-react'
+import { CircleAlert, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { deleteSkill } from '../../api-client/skillsApi'
 import { deleteTechnology } from '../../api-client/technologiesApi'

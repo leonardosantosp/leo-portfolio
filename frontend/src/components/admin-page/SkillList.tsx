@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { getSkills, ReturnedSkill } from '../../api-client/skillsApi'
+import type { ReturnedSkill } from '../../api-client/skillsApi'
+import { getSkills } from '../../api-client/skillsApi'
 import { useAdmin } from './AdminProvider'
 import { ItemTableList } from './ItemTableList'
 
@@ -66,7 +67,7 @@ export const SkillList = () => {
         renderRow={skill => (
           <>
             <td className="item-table__icon">
-              <img src={skill.icon} alt="" height={35} width={35} />
+              <img src={skill.icon} alt={skill.name} height={35} width={35} />
             </td>
             <td className="item-table__name">
               <strong>{skill.name}</strong>

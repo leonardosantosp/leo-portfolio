@@ -1,7 +1,5 @@
-import {
-  getTechnologies,
-  ReturnedTechnology
-} from '../../api-client/technologiesApi'
+import type { ReturnedTechnology } from '../../api-client/technologiesApi'
+import { getTechnologies } from '../../api-client/technologiesApi'
 import { useEffect, useState } from 'react'
 import { useAdmin } from './AdminProvider'
 import { ItemTableList } from './ItemTableList'
@@ -68,13 +66,23 @@ export const TechnologyList = () => {
               <strong>{technology.name}</strong>
             </td>
             <td className="item-table__icon">
-              <img src={technology.icon} alt="" height={35} width={35} />
+              <img
+                src={technology.icon}
+                alt={technology.name}
+                height={35}
+                width={35}
+              />
             </td>
             <td className="item-table__name">
               <strong>{technology.slug}</strong>
             </td>
             <td className="item-table__icon">
-              <img src={technology.appIcon} alt="" height={35} width={35} />
+              <img
+                src={technology.appIcon}
+                alt={technology.name}
+                height={35}
+                width={35}
+              />
             </td>
           </>
         )}

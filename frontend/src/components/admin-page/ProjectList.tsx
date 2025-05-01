@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { getProjects, ReturnedProject } from '../../api-client/projectsApi'
+import { getProjects } from '../../api-client/projectsApi'
+import type { ReturnedProject } from '../../api-client/projectsApi'
 import { ItemTableList } from './ItemTableList'
 import { useAdmin } from './AdminProvider'
 import { Link } from 'lucide-react'

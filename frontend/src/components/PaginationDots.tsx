@@ -1,5 +1,4 @@
-import { CircleChevronLeft } from 'lucide-react'
-import { CircleChevronRight } from 'lucide-react'
+import { CircleChevronLeft, CircleChevronRight } from 'lucide-react'
 
 interface PaginationDotsProps<T> {
   array: T[]

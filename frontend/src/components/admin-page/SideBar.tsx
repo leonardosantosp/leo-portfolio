@@ -1,6 +1,7 @@
 import { ChevronRight } from 'lucide-react'
 import { PreviewSideBar } from './PreviewSideBar'
 import { CreateSideBar } from './CreateSideBar'
+import { EditSideBar } from './EditSidebar'
 import { useAdmin } from './AdminProvider'
 
 export const SideBar = () => {
@@ -14,7 +15,7 @@ export const SideBar = () => {
           ) : formMode === 'create' ? (
             <CreateSideBar />
           ) : formMode === 'update' ? (
-            ''
+            <EditSideBar />
           ) : null}
         </div>
         <div
