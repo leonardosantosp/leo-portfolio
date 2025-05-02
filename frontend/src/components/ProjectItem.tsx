@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import arrow from '../assets/down-arrow.png'
 import { Link } from 'react-router-dom'
-
+import { ChevronDown, ChevronUp } from 'lucide-react'
 interface ProjectItemProps {
   logo: string
   title: string
@@ -32,11 +31,10 @@ export const ProjectItem = ({
               <img src={logo} alt="logo do projeto" />
               <h2>{title}</h2>
             </div>
-            <img
-              className="arrow arrow-down"
-              src={arrow}
-              alt="seta para baixo"
+            <ChevronDown
               onClick={() => setIsVisible(true)}
+              className="arrow arrow-down"
+              size={60}
             />
           </div>
         ) : (
@@ -45,11 +43,10 @@ export const ProjectItem = ({
               <div className="stack">
                 <ProjectStack stack={stack} />
               </div>
-              <img
+              <ChevronUp
                 className="arrow arrow-up"
-                src={arrow}
-                alt="seta para cima"
                 onClick={() => setIsVisible(false)}
+                size={60}
               />
             </div>
             <div className="project-item__detail-content">

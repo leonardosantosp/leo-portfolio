@@ -279,7 +279,7 @@ a {
   align-items: center;
 }
 
-.phone__search img {
+.phone__search-icon {
   margin: 0 10px;
 }
 
@@ -547,12 +547,11 @@ a {
 }
 
 .arrow-up {
-  transform: rotate(180deg);
   transition: transform 0.5s ease;
 }
 
 .arrow-up:hover {
-  transform: rotate(180deg) translateY(10px);
+  transform: translateY(-10px);
 }
 
 /* Footer */
@@ -1512,7 +1511,7 @@ p {
   background-color: #374151;
   border: 2px solid #606165;
   border-radius: 10px;
-  margin: 15px 15px 0 0;
+  margin: 10px 15px 0 0;
   padding: 12px;
 }
 
@@ -1618,7 +1617,7 @@ p {
 
 .create-fields-container h3 {
   font-size: 13px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 .create-fields-container input {

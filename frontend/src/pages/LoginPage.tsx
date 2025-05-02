@@ -1,10 +1,10 @@
 import { Header } from '../components/Header'
-import { UserRound, EyeOff, LockKeyhole, Eye } from 'lucide-react'
-import arrow from '../assets/down-arrow.png'
+import { UserRound, EyeOff, LockKeyhole, Eye, ChevronLeft } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { useEffect } from 'react'
-
+import { useEffect, useState } from 'react'
 export const LoginPage = () => {
+  const [viewPassword, setViewPassword] = useState(false)
+
   useEffect(() => {
     import('bootstrap/dist/css/bootstrap.min.css')
   }, [])
@@ -41,14 +41,28 @@ export const LoginPage = () => {
                 <LockKeyhole color="#aca7ad" />
               </span>
               <input
-                type="password"
+                type={viewPassword ? 'text' : 'password'}
                 className="form-control "
                 placeholder="Password"
                 aria-label="Amount (to the nearest dollar)"
               />
-              <span className="input-group-text">
-                <EyeOff color="#aca7ad" />
-              </span>
+              {!viewPassword ? (
+                <span className="input-group-text">
+                  <EyeOff
+                    cursor={'pointer'}
+                    color="#aca7ad"
+                    onClick={() => setViewPassword(true)}
+                  />
+                </span>
+              ) : (
+                <span className="input-group-text">
+                  <Eye
+                    cursor={'pointer'}
+                    color="#aca7ad"
+                    onClick={() => setViewPassword(false)}
+                  />
+                </span>
+              )}
             </div>
             <button type="button" className="admin-signin__button">
               Sign in
@@ -58,7 +72,7 @@ export const LoginPage = () => {
         <div className="admin-signin__footer">
           <div className="admin-signin__back">
             <Link to="/">
-              <img src={arrow} alt="arrow icon" height={25} width={25} />
+              <ChevronLeft size={25} />
               <p>voltar</p>
             </Link>
           </div>

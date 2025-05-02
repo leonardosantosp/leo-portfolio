@@ -8,6 +8,7 @@ import { usePhoneBoot } from '../hooks/usePhoneBoot'
 import { PaginationDots } from './PaginationDots'
 import { useState } from 'react'
 import react from '../assets/app-images/react.png'
+import { Search } from 'lucide-react'
 
 const Phone = () => {
   const { phoneOn, phoneLoading, text, showApps, appsLoading, bootPhone } =
@@ -49,7 +50,7 @@ const Phone = () => {
             <>
               <Clock />
               <div className="phone__search">
-                <img src={search} alt="Ícone de busca" />
+                <Search size={14} className="phone__search-icon" />
                 <p>{text}</p>
               </div>
               <div className={`phone__apps ${showApps ? 'show' : ''}`}>
