@@ -1,16 +1,21 @@
 import { Header } from '../components/Header'
-import { Table, LayoutPanelTop, Sun, MoonStar } from 'lucide-react'
+import { Table, LayoutList, Sun, MoonStar } from 'lucide-react'
 import { SideBar } from '../components/admin-page/SideBar'
 import { useAdmin } from '../components/admin-page/AdminProvider'
 import { SchemaList } from '../components/admin-page/SchemaList'
-import { useState } from 'react'
 
 export const AdminPage = () => {
   const adminContext = useAdmin()
   if (!adminContext) return null
-  const { isMenuVisible, setIsMenuVisible, setSchema, isLight, setIsLight } =
-    adminContext
-  const [isTableView, setIsTableView] = useState(true)
+  const {
+    isMenuVisible,
+    setIsMenuVisible,
+    setSchema,
+    isLight,
+    setIsLight,
+    isTable,
+    setIsTable
+  } = adminContext
 
   return (
     <>
@@ -59,17 +64,17 @@ export const AdminPage = () => {
               <div className="toggle-group">
                 <button
                   type="button"
-                  className={`toggle-btn ${isTableView ? 'visible' : ''}`}
-                  onClick={() => setIsTableView(false)}
+                  className={`toggle-btn ${isTable ? 'visible' : ''}`}
+                  onClick={() => setIsTable(false)}
                 >
                   <Table cursor={'pointer'} />
                 </button>
                 <button
                   type="button"
-                  className={`toggle-btn ${!isTableView ? 'visible' : ''}`}
-                  onClick={() => setIsTableView(true)}
+                  className={`toggle-btn ${!isTable ? 'visible' : ''}`}
+                  onClick={() => setIsTable(true)}
                 >
-                  <LayoutPanelTop cursor={'pointer'} />
+                  <LayoutList cursor={'pointer'} />
                 </button>
               </div>
               <div className="toggle-group">

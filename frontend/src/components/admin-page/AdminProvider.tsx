@@ -2,6 +2,8 @@ import { createContext, useState, useContext } from 'react'
 type AdminContextType = {
   isMenuVisible: boolean
   isLight: boolean
+  isTable: boolean
+  setIsTable: (isTable: boolean) => void
   setIsLight: (isLight: boolean) => void
   setIsMenuVisible: (visible: boolean) => void
   formMode: 'preview' | 'create' | 'update' | null
@@ -19,6 +21,7 @@ export const AdminProvider = ({ children }: { children: React.ReactNode }) => {
   const [reloadList, setReloadList] = useState(false)
   const [isMenuVisible, setIsMenuVisible] = useState(false)
   const [isLight, setIsLight] = useState(false)
+  const [isTable, setIsTable] = useState(true)
   const [formMode, setFormMode] = useState<
     'preview' | 'create' | 'update' | null
   >(null)
@@ -41,7 +44,9 @@ export const AdminProvider = ({ children }: { children: React.ReactNode }) => {
         schema,
         setSchema,
         isLight,
-        setIsLight
+        setIsLight,
+        isTable,
+        setIsTable
       }}
     >
       {children}

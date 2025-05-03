@@ -2,6 +2,7 @@ import { useAdmin } from './AdminProvider'
 import { useState } from 'react'
 import { DeleteCard } from './DeleteCard'
 import { Eye, Trash2, SquarePen, Search } from 'lucide-react'
+import { SchemaListHeader } from './SchemaListHeader'
 
 type ItemTableListProps<T> = {
   itens: T[]
@@ -35,34 +36,7 @@ export const ItemTableList = <T,>({
           onDelete={() => onDeleteCard(selectedItemId)}
         />
       )}
-      <div
-        className={`item-list__header ${isLight && 'item-list__header-light'}`}
-      >
-        <h2 className="item-list__header-title">
-          {schema.charAt(0).toUpperCase() + schema.slice(1)}
-        </h2>
-        <p className="item-list__header-results">{itens.length} results</p>
-      </div>
-      <div
-        className={`item-list__toolbar ${
-          isLight && 'item-list__toolbar-light'
-        }`}
-      >
-        <div className="item-search">
-          <Search size={18} className="item-search-img" />
-          <input type="search" placeholder={`Search for ${schema}`} />
-        </div>
-
-        <button
-          type="button"
-          onClick={() => {
-            setIsMenuVisible(true)
-            setFormMode('create')
-          }}
-        >
-          <span>+</span> {`Add a new ${schema}`}
-        </button>
-      </div>
+      <SchemaListHeader itens={itens} />
       <div
         className={`item-list__table ${isLight && 'item-list__table-light'}`}
       >

@@ -3,6 +3,8 @@ import type { ReturnedSkill } from '../../api-client/skillsApi'
 import { getSkills } from '../../api-client/skillsApi'
 import { useAdmin } from './AdminProvider'
 import { ItemTableList } from './ItemTableList'
+import { ItemCard } from './ItemCard'
+import { SchemaListHeader } from './SchemaListHeader'
 
 export const SkillList = () => {
   const {
@@ -11,7 +13,8 @@ export const SkillList = () => {
     setIsMenuVisible,
     reloadList,
     setReloadList,
-    isLight
+    isLight,
+    isTable
   } = useAdmin()!
 
   const [skills, setSkills] = useState<ReturnedSkill[]>([])
@@ -46,36 +49,77 @@ export const SkillList = () => {
         isLight ? 'item-management-page__item-list-light' : ''
       }`}
     >
-      <ItemTableList
-        itens={skills}
-        onDelete={skill => {
-          setSelectedItemId(skill._id)
-        }}
-        onDeleteCard={(id: string) => {
-          handleDelete(id)
-        }}
-        onEdit={skill => {
-          setFormMode('update')
-          setSelectedItemId(skill._id)
-          setIsMenuVisible(true)
-        }}
-        onPreview={skill => {
-          setFormMode('preview')
-          setSelectedItemId(skill._id)
-          setIsMenuVisible(true)
-        }}
-        renderRow={skill => (
-          <>
-            <td className="item-table__icon">
-              <img src={skill.icon} alt={skill.name} height={35} width={35} />
-            </td>
-            <td className="item-table__name">
-              <strong>{skill.name}</strong>
-            </td>
-          </>
-        )}
-        headers={['ICON', 'NAME']}
-      />
+      {isTable ? (
+        <ItemTableList
+          itens={skills}
+          onDelete={skill => {
+            setSelectedItemId(skill._id)
+          }}
+          onDeleteCard={(id: string) => {
+            handleDelete(id)
+          }}
+          onEdit={skill => {
+            setFormMode('update')
+            setSelectedItemId(skill._id)
+            setIsMenuVisible(true)
+          }}
+          onPreview={skill => {
+            setFormMode('preview')
+            setSelectedItemId(skill._id)
+            setIsMenuVisible(true)
+          }}
+          renderRow={skill => (
+            <>
+              <td className="item-table__icon">
+                <img src={skill.icon} alt={skill.name} height={35} width={35} />
+              </td>
+              <td className="item-table__name">
+                <strong>{skill.name}</strong>
+              </td>
+            </>
+          )}
+          headers={['ICON', 'NAME']}
+        />
+      ) : (
+        <>
+          <SchemaListHeader itens={skills} />
+          <div className="view-mode-card__container">
+            {skills.map(skill => (
+              <ItemCard
+                onDelete={skill => {
+                  setSelectedItemId(skill._id)
+                }}
+                onDeleteCard={(id: string) => {
+                  handleDelete(id)
+                }}
+                onEdit={skill => {
+                  setFormMode('update')
+                  setSelectedItemId(skill._id)
+                  setIsMenuVisible(true)
+                }}
+                onPreview={skill => {
+                  setFormMode('preview')
+                  setSelectedItemId(skill._id)
+                  setIsMenuVisible(true)
+                }}
+                item={skill}
+                key={skill._id}
+                renderRow={skill => (
+                  <>
+                    <img
+                      src={skill.icon}
+                      alt={skill.name}
+                      height={35}
+                      width={35}
+                    />
+                    <strong>{skill.name}</strong>
+                  </>
+                )}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   )
 }
