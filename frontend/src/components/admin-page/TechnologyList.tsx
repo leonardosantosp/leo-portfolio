@@ -3,6 +3,8 @@ import { getTechnologies } from '../../api-client/technologiesApi'
 import { useEffect, useState } from 'react'
 import { useAdmin } from './AdminProvider'
 import { ItemTableList } from './ItemTableList'
+import { ItemCard } from './ItemCard'
+import { SchemaListHeader } from './SchemaListHeader'
 
 export const TechnologyList = () => {
   const [technologies, setTechnologies] = useState<ReturnedTechnology[]>([])
@@ -12,7 +14,8 @@ export const TechnologyList = () => {
     setSelectedItemId,
     reloadList,
     setReloadList,
-    isLight
+    isLight,
+    isTable
   } = useAdmin()!
 
   const handleDelete = (idToDelete: string) => {
@@ -45,48 +48,86 @@ export const TechnologyList = () => {
         isLight && 'item-management-page__item-list-light'
       }`}
     >
-      <ItemTableList
-        headers={['NAME', 'ICON', 'SLUG', 'APPICON']}
-        itens={technologies}
-        onDelete={technology => setSelectedItemId(technology._id)}
-        onDeleteCard={(id: string) => handleDelete(id)}
-        onEdit={technology => {
-          setFormMode('update')
-          setIsMenuVisible(true)
-          setSelectedItemId(technology._id)
-        }}
-        onPreview={technology => {
-          setFormMode('preview')
-          setIsMenuVisible(true)
-          setSelectedItemId(technology._id)
-        }}
-        renderRow={technology => (
-          <>
-            <td className="item-table__name">
-              <strong>{technology.name}</strong>
-            </td>
-            <td className="item-table__icon">
-              <img
-                src={technology.icon}
-                alt={technology.name}
-                height={35}
-                width={35}
+      {isTable ? (
+        <ItemTableList
+          headers={['NAME', 'ICON', 'SLUG', 'APPICON']}
+          itens={technologies}
+          onDelete={technology => setSelectedItemId(technology._id)}
+          onDeleteCard={(id: string) => handleDelete(id)}
+          onEdit={technology => {
+            setFormMode('update')
+            setIsMenuVisible(true)
+            setSelectedItemId(technology._id)
+          }}
+          onPreview={technology => {
+            setFormMode('preview')
+            setIsMenuVisible(true)
+            setSelectedItemId(technology._id)
+          }}
+          renderRow={technology => (
+            <>
+              <td className="item-table__name">
+                <strong>{technology.name}</strong>
+              </td>
+              <td className="item-table__icon">
+                <img
+                  src={technology.icon}
+                  alt={technology.name}
+                  height={35}
+                  width={35}
+                />
+              </td>
+              <td className="item-table__name">
+                <strong>{technology.slug}</strong>
+              </td>
+              <td className="item-table__icon">
+                <img
+                  src={technology.appIcon}
+                  alt={technology.name}
+                  height={35}
+                  width={35}
+                />
+              </td>
+            </>
+          )}
+        />
+      ) : (
+        <>
+          <SchemaListHeader itens={technologies} />
+          <div className="view-mode-card__container">
+            {technologies.map(technology => (
+              <ItemCard
+                key={technology._id}
+                item={technology}
+                onDelete={technology => setSelectedItemId(technology._id)}
+                onDeleteCard={(id: string) => handleDelete(id)}
+                onEdit={technology => {
+                  setFormMode('update')
+                  setIsMenuVisible(true)
+                  setSelectedItemId(technology._id)
+                }}
+                onPreview={technology => {
+                  setFormMode('preview')
+                  setIsMenuVisible(true)
+                  setSelectedItemId(technology._id)
+                }}
+                renderRow={technology => (
+                  <>
+                    <img
+                      src={technology.icon}
+                      alt={technology.name}
+                      height={35}
+                      width={35}
+                    />
+
+                    <strong>{technology.name}</strong>
+                  </>
+                )}
               />
-            </td>
-            <td className="item-table__name">
-              <strong>{technology.slug}</strong>
-            </td>
-            <td className="item-table__icon">
-              <img
-                src={technology.appIcon}
-                alt={technology.name}
-                height={35}
-                width={35}
-              />
-            </td>
-          </>
-        )}
-      />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   )
 }
