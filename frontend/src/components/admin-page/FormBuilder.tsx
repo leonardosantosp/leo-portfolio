@@ -32,6 +32,8 @@ export const FormBuilder = () => {
   )
   const [stack, setStack] = useState<ReturnedTechnology[]>([])
 
+  const isStackFull = stack.length === 6
+
   const [skillData, setSkillData] = useState({
     name: '',
     icon: ''
@@ -348,6 +350,7 @@ export const FormBuilder = () => {
             />
           </div>
           <h3 style={isLight ? { color: 'black' } : {}}>Select Technologies</h3>
+          {isStackFull ? <p className="stack-full-message">Stack Full</p> : ''}
           <div className="stack-fields create-stack-fields">
             {dropdownOpen ? (
               <div
@@ -370,19 +373,23 @@ export const FormBuilder = () => {
                       !stack.map(item => item._id).includes(technology._id)
                   )
                   .map(technology => (
-                    <div
-                      className="stack-fields-item stack-fields-item-active"
-                      key={technology._id}
-                      onClick={() => handleAddToStack(technology)}
-                    >
-                      <img
-                        src={technology.icon}
-                        alt={technology.name}
-                        height={15}
-                        width={15}
-                      />
-                      <p>{technology.name}</p>
-                    </div>
+                    <>
+                      <div
+                        className="stack-fields-item stack-fields-item-active"
+                        key={technology._id}
+                        onClick={() =>
+                          !isStackFull && handleAddToStack(technology)
+                        }
+                      >
+                        <img
+                          src={technology.icon}
+                          alt={technology.name}
+                          height={15}
+                          width={15}
+                        />
+                        <p>{technology.name}</p>
+                      </div>
+                    </>
                   ))}
               </div>
             ) : (
@@ -401,7 +408,9 @@ export const FormBuilder = () => {
             )}
 
             <ArrowLeftRight color="#9CA3AF" />
-
+            <p className={`${isLight ? 'stack-size__light' : 'stack-size'}`}>
+              {stack.length}/6
+            </p>
             <div className={`${errors.stack && 'error'} stack-card`}>
               {errors.stack ? (
                 <span className="error-text">{errors.stack}</span>
