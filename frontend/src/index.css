@@ -1520,7 +1520,7 @@ p {
 }
 
 .side-bar h2 {
-  font-size: 40px;
+  font-size: 30px;
   margin-bottom: 15px;
 }
 
@@ -1645,6 +1645,10 @@ p {
   margin-bottom: 10px;
 }
 
+.stack-fields-item__preview {
+  width: 30%;
+}
+
 .stack-fields-item__light {
   color: black;
 }
@@ -1727,7 +1731,7 @@ input:focus {
 }
 
 .stack-card {
-  height: 105px;
+  height: 80px;
   margin-left: 50px;
   border: 2px solid #606165;
   border-radius: 15px;

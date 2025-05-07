@@ -15,7 +15,11 @@ import {
 } from '../../api-client/technologiesApi'
 import { useAdmin } from './AdminProvider'
 import { toast } from 'react-toastify'
-import { createProject } from '../../api-client/projectsApi'
+import {
+  createProject,
+  getProjectById,
+  updateProject
+} from '../../api-client/projectsApi'
 
 function isValidUrl(url: string): boolean {
   try {
@@ -119,10 +123,47 @@ export const FormBuilder = () => {
         })
       }
 
+      const fetchProject = async () => {
+        const data = await getProjectById(selectedItemId)
+
+        const stackTechnologies = await Promise.all(
+          data.stack.map(async (techId: string) => {
+            try {
+              return await getTechnologyById(techId)
+            } catch (error: any) {
+              if (error.response?.status === 404) {
+                // Tecnologia deletada, ignora
+                return null
+              }
+              return null
+            }
+          })
+        )
+        if (!stackTechnologies || stackTechnologies.length === 0) return
+
+        const validStack = stackTechnologies.filter(
+          (tech): tech is ReturnedTechnology => tech !== null
+        )
+
+        setStack(validStack)
+
+        setProjectData({
+          logo: data.logo,
+          mockup: data.mockup,
+          repository: data.repository,
+          siteUrl: data.siteUrl,
+          stack: validStack,
+          title: data.title,
+          videoUrl: data.videoUrl
+        })
+      }
+
       if (schema === 'skill') {
         fetchSkill()
       } else if (schema === 'technology') {
         fetchTechnology()
+      } else {
+        fetchProject()
       }
     }
   }, [formMode, schema, selectedItemId])
@@ -267,11 +308,15 @@ export const FormBuilder = () => {
         }
 
         if (schema === 'project') {
+          if (!selectedItemId) return
           const formattedProjectData = {
             ...projectData,
             stack: projectData.stack.map(tech => tech._id)
           }
-          const newProject = await createProject(formattedProjectData)
+          const project = await updateProject(
+            formattedProjectData,
+            selectedItemId
+          )
           toast.success('Project updated succesfully!')
           setIsMenuVisible(false)
           setReloadList(true)
@@ -303,7 +348,6 @@ export const FormBuilder = () => {
         [name]: value,
         stack: stack
       }))
-      setProjectData({ ...projectData, [name]: value })
     }
   }
 
@@ -329,36 +373,42 @@ export const FormBuilder = () => {
               placeholder={`${schema} title`}
               onChange={handleChange}
               error={errors.title}
+              project={projectData}
             />
             <FormField
               label="logo"
               placeholder="logo url"
               onChange={handleChange}
               error={errors.logo}
+              project={projectData}
             />
             <FormField
               label="mockup"
               placeholder="mockup url"
               onChange={handleChange}
               error={errors.mockup}
+              project={projectData}
             />
             <FormField
               label="repository"
               placeholder="repository name"
               onChange={handleChange}
               error={errors.repository}
+              project={projectData}
             />
             <FormField
               label="siteUrl"
               placeholder="site url"
               onChange={handleChange}
               error={errors.siteUrl}
+              project={projectData}
             />
             <FormField
               label="videoUrl"
               placeholder="video url"
               onChange={handleChange}
               error={errors.videoUrl}
+              project={projectData}
             />
           </div>
           <h3 style={isLight ? { color: 'black' } : {}}>Select Technologies</h3>

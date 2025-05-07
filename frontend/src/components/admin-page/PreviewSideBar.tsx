@@ -120,7 +120,10 @@ export const PreviewSideBar = () => {
                 {projectStack.map(technology =>
                   technology ? (
                     <>
-                      <div className="stack-fields-item" key={technology._id}>
+                      <div
+                        className="stack-fields-item stack-fields-item__preview"
+                        key={technology._id}
+                      >
                         <img
                           src={technology.icon}
                           alt={technology.name}

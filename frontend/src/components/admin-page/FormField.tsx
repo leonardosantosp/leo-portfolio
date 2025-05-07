@@ -19,7 +19,8 @@ export const FormField = ({
   onChange,
   error,
   skill,
-  technology
+  technology,
+  project
 }: FormFieldProps) => {
   const { formMode } = useAdmin()!
 
@@ -73,6 +74,30 @@ export const FormField = ({
                   : label === 'icon'
                   ? technology.icon
                   : technology.appIcon
+              }
+              onChange={onChange}
+            />
+          ) : project ? (
+            <input
+              className={error && 'error'}
+              type="text"
+              id={label}
+              name={label}
+              placeholder={`Type ${placeholder}`}
+              defaultValue={
+                label === 'title'
+                  ? project.title
+                  : label === 'logo'
+                  ? project.logo
+                  : label === 'mockup'
+                  ? project.mockup
+                  : label === 'repository'
+                  ? project.repository
+                  : label === 'siteUrl'
+                  ? project.siteUrl
+                  : label === 'videoUrl'
+                  ? project.videoUrl
+                  : ''
               }
               onChange={onChange}
             />
