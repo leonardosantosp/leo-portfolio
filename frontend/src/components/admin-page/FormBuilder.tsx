@@ -14,7 +14,7 @@ import {
   updateTechnology
 } from '../../api-client/technologiesApi'
 import { useAdmin } from './AdminProvider'
-
+import { toast } from 'react-toastify'
 import { createProject } from '../../api-client/projectsApi'
 
 function isValidUrl(url: string): boolean {
@@ -153,7 +153,9 @@ export const FormBuilder = () => {
       }
 
       if (Object.keys(newErrors).length > 0) {
+        toast.error(`Error while ${formMode}d ${schema}`)
         setErrors(newErrors)
+
         return
       }
     } else if (schema === 'technology') {
@@ -174,6 +176,7 @@ export const FormBuilder = () => {
       }
 
       if (Object.keys(newErrors).length > 0) {
+        toast.error(`Error while ${formMode}d ${schema}`)
         setErrors(newErrors)
         return
       }
@@ -209,9 +212,11 @@ export const FormBuilder = () => {
 
       if (stack.length === 0) {
         newErrors.stack = 'Stack vazia'
+        toast.error('Stack vazia')
       }
 
       if (Object.keys(newErrors).length > 0) {
+        toast.error(`Error while ${formMode}d ${schema}`)
         setErrors(newErrors)
         return
       }
@@ -221,11 +226,13 @@ export const FormBuilder = () => {
       if (formMode === 'create') {
         if (schema === 'skill') {
           const newSkill = await createSkill(skillData)
+          toast.success('Skill created successfully!')
           setIsMenuVisible(false)
           setReloadList(true)
         }
         if (schema === 'technology') {
           const newTechnology = await createTechnology(technologyData)
+          toast.success('Technology created succesfully!')
           setIsMenuVisible(false)
           setReloadList(true)
         }
@@ -236,6 +243,7 @@ export const FormBuilder = () => {
             stack: projectData.stack.map(tech => tech._id)
           }
           const newProject = await createProject(formattedProjectData)
+          toast.success('Project created succesfully!')
           setIsMenuVisible(false)
           setReloadList(true)
         }
@@ -243,6 +251,7 @@ export const FormBuilder = () => {
         if (schema === 'skill') {
           if (!selectedItemId) return
           const skill = await updateSkill(skillData, selectedItemId)
+          toast.success('Skill updated succesfully!')
           setIsMenuVisible(false)
           setReloadList(true)
         }
@@ -252,6 +261,7 @@ export const FormBuilder = () => {
             technologyData,
             selectedItemId
           )
+          toast.success('Technology updated succesfully!')
           setIsMenuVisible(false)
           setReloadList(true)
         }
@@ -262,12 +272,14 @@ export const FormBuilder = () => {
             stack: projectData.stack.map(tech => tech._id)
           }
           const newProject = await createProject(formattedProjectData)
+          toast.success('Project updated succesfully!')
           setIsMenuVisible(false)
           setReloadList(true)
         }
       }
     } catch (error: any) {
       const message = error.response?.data?.message || error.message
+      toast.error(`${message}`)
       if (message.includes('already')) {
         newErrors.name = 'Campo com algum desses valores já existe'
         newErrors.title = 'Campo com algum desses valores já existe'

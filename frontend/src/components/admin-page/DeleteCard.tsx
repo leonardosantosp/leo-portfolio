@@ -4,6 +4,7 @@ import { deleteSkill } from '../../api-client/skillsApi'
 import { deleteTechnology } from '../../api-client/technologiesApi'
 import { useAdmin } from './AdminProvider'
 import { deleteProject } from '../../api-client/projectsApi'
+import { toast } from 'react-toastify'
 
 type DeleteCardProps = {
   onClose: () => void
@@ -20,14 +21,17 @@ export const DeleteCard = ({ onClose, onDelete }: DeleteCardProps) => {
 
     const cardDeleteSkill = async () => {
       const data = await deleteSkill(selectedItemId)
+      toast.success(`Deleted ${schema} successfully!`)
     }
 
     const cardDeleteTechnology = async () => {
       const data = await deleteTechnology(selectedItemId)
+      toast.success(`Deleted ${schema} successfully!`)
     }
 
     const cardDeleteProject = async () => {
       const data = await deleteProject(selectedItemId)
+      toast.success(`Deleted ${schema} successfully!`)
     }
 
     setDeleted(false)

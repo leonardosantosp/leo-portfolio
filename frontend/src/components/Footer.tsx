@@ -6,7 +6,7 @@ import zap from '../assets/whatsapp-icon.png'
 export const Footer = () => {
   return (
     <footer className="footer">
-      <Header />
+      <Header showMenu={false} text="léo" />
       <div className="footer__contact">
         <p>Contato: </p>
         <a href="https://github.com/leonardosantosp" target="_blank">

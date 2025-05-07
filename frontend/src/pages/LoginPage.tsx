@@ -12,7 +12,7 @@ export const LoginPage = () => {
   return (
     <div className="admin-signin">
       <div className="admin-signin__left">
-        <Header showMenu={false} />
+        <Header showMenu={false} text="admin" />
         <div className="admin-signin__greeting">
           <p>Sign in as</p>
           <span className="admin-signin__greeting-role">ADMIN!</span>

@@ -3,6 +3,8 @@ import { Table, LayoutList, Sun, MoonStar } from 'lucide-react'
 import { SideBar } from '../components/admin-page/SideBar'
 import { useAdmin } from '../components/admin-page/AdminProvider'
 import { SchemaList } from '../components/admin-page/SchemaList'
+import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify'
 
 export const AdminPage = () => {
   const adminContext = useAdmin()
@@ -19,7 +21,8 @@ export const AdminPage = () => {
 
   return (
     <>
-      <Header showMenu={false} />
+      <ToastContainer position="top-right" autoClose={3000} />
+      <Header showMenu={false} text="admin" />
       <div className="item-management-container">
         <div
           className={`item-management-page ${

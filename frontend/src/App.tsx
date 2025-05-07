@@ -14,7 +14,7 @@ function App() {
 
   return (
     <div>
-      <Header showMenu={!loading} />
+      <Header showMenu={!loading} text="léo" />
       <Main loading={loading} />
     </div>
   )

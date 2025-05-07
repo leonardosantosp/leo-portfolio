@@ -159,7 +159,7 @@ const projects = [
 export const ProjectsByStackPage = () => {
   return (
     <div className="project-by-stack">
-      <Header showMenu={false} />
+      <Header showMenu={false} text="léo" />
       <div className="project-by-stack__header">
         <img src={iconReact} alt="logo da technologia X" />
         <h2>React</h2>

@@ -21,7 +21,7 @@ export const ProjectDetailsPage = () => {
       <div
         style={{ opacity: loading ? 0 : 1, transition: 'opacity 0.5s ease' }}
       >
-        <Header showMenu={false} />
+        <Header showMenu={false} text="léo" />
         <div className="project-page">
           <div className="project-page__header">
             <img src="https://imgur.com/i9UWRS8.png" alt="logo do projeto X" />
