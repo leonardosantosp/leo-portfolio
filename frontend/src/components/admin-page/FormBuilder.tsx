@@ -470,7 +470,7 @@ export const FormBuilder = () => {
             )}
 
             <ArrowLeftRight color="#9CA3AF" />
-            <p className={`${isLight ? 'stack-size__light' : 'stack-size'}`}>
+            <p className={` stack-size ${isLight ? 'stack-size__light' : ''}`}>
               {stack.length}/6
             </p>
             <div className={`${errors.stack && 'error'} stack-card`}>

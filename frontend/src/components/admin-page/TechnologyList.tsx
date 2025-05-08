@@ -5,6 +5,7 @@ import { useAdmin } from './AdminProvider'
 import { ItemTableList } from './ItemTableList'
 import { ItemCard } from './ItemCard'
 import { SchemaListHeader } from './SchemaListHeader'
+import { ListCards } from './ListCards'
 
 export const TechnologyList = () => {
   const [technologies, setTechnologies] = useState<ReturnedTechnology[]>([])
@@ -94,38 +95,34 @@ export const TechnologyList = () => {
       ) : (
         <>
           <SchemaListHeader itens={technologies} />
-          <div className="view-mode-card__container">
-            {technologies.map(technology => (
-              <ItemCard
-                key={technology._id}
-                item={technology}
-                onDelete={technology => setSelectedItemId(technology._id)}
-                onDeleteCard={(id: string) => handleDelete(id)}
-                onEdit={technology => {
-                  setFormMode('update')
-                  setIsMenuVisible(true)
-                  setSelectedItemId(technology._id)
-                }}
-                onPreview={technology => {
-                  setFormMode('preview')
-                  setIsMenuVisible(true)
-                  setSelectedItemId(technology._id)
-                }}
-                renderRow={technology => (
-                  <>
-                    <img
-                      src={technology.icon}
-                      alt={technology.name}
-                      height={35}
-                      width={35}
-                    />
+          <ListCards
+            itens={technologies}
+            renderRow={technology => (
+              <>
+                <img
+                  src={technology.icon}
+                  alt={technology.name}
+                  height={35}
+                  width={35}
+                />
 
-                    <strong>{technology.name}</strong>
-                  </>
-                )}
-              />
-            ))}
-          </div>
+                <strong>{technology.name}</strong>
+              </>
+            )}
+            onEdit={technology => {
+              setFormMode('update')
+              setIsMenuVisible(true)
+              setSelectedItemId(technology._id)
+            }}
+            onPreview={technology => {
+              setFormMode('preview')
+              setIsMenuVisible(true)
+              setSelectedItemId(technology._id)
+            }}
+            onDelete={technology => setSelectedItemId(technology._id)}
+            onDeleteCard={(id: string) => handleDelete(id)}
+            getId={technology => technology._id}
+          />
         </>
       )}
     </div>

@@ -1,8 +1,9 @@
 import { useAdmin } from './AdminProvider'
 import { useState } from 'react'
 import { DeleteCard } from './DeleteCard'
-import { Eye, Trash2, SquarePen, Search } from 'lucide-react'
+import { Eye, Trash2, SquarePen } from 'lucide-react'
 import { SchemaListHeader } from './SchemaListHeader'
+import { PaginationDots } from '../PaginationDots'
 
 type ItemTableListProps<T> = {
   itens: T[]
@@ -27,6 +28,13 @@ export const ItemTableList = <T,>({
     useAdmin()!
 
   const [showDeleteCard, setShowDeleteCard] = useState(false)
+  const [page, setPage] = useState(0)
+
+  const size = schema === 'project' ? 5 : 8
+  const startIndex = page * size
+  const endIndex = (page + 1) * size
+
+  const paginatedItens = itens.slice(startIndex, endIndex)
 
   return (
     <>
@@ -51,7 +59,7 @@ export const ItemTableList = <T,>({
             </tr>
           </thead>
           <tbody>
-            {itens.map((item, index) => (
+            {paginatedItens.map((item, index) => (
               <tr key={index}>
                 {renderRow(item)}
                 <td className="item-table__actions">
@@ -95,7 +103,15 @@ export const ItemTableList = <T,>({
           </tbody>
         </table>
       </div>
-      <div className="item-list__pagination"></div>
+      <div className={` pagination-list ${isLight && 'pagination__light'}`}>
+        <PaginationDots
+          array={itens}
+          currentPage={page}
+          onChange={(page: number) => setPage(page)}
+          pageSize={size}
+          color="#7c3aed"
+        />
+      </div>
     </>
   )
 }

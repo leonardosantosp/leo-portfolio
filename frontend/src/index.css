@@ -239,7 +239,7 @@ a {
 
 .load__app {
   width: 235px;
-  height: 224px;
+  height: 275px;
 }
 
 .load__app .loading-screen .spinner {
@@ -844,6 +844,7 @@ p {
   border-style: none;
   font-size: 20px;
   cursor: pointer;
+  color: white;
 }
 
 .pagination__arrow:disabled {
@@ -859,6 +860,7 @@ p {
   width: 10px;
   height: 10px;
   margin: 0 5px;
+  cursor: pointer;
 }
 
 .pagination__dot-active {
@@ -1236,7 +1238,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px;
+  padding: 7px;
   border-radius: 30px;
   transition: 0.5s ease;
   border: 2px solid #606165;
@@ -1870,5 +1872,21 @@ input:focus {
 }
 
 .stack-size__light {
+  color: black;
+}
+
+.pagination__light .pagination__arrow {
+  color: rgb(81, 78, 78) !important;
+}
+
+.pagination__light .pagination__dot {
+  background-color: rgb(80, 80, 80) !important;
+}
+
+.pagination__light .pagination__dot-active {
+  background-color: #7c3aed !important;
+}
+
+.pagination__light .pagination__info {
   color: black;
 }

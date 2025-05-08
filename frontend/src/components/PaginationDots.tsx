@@ -5,15 +5,23 @@ interface PaginationDotsProps<T> {
   pageSize: number
   currentPage: number
   onChange: (newPage: number) => void
+  color?: string
 }
 
 export const PaginationDots = <T,>({
   array,
   pageSize,
   currentPage,
-  onChange
+  onChange,
+  color
 }: PaginationDotsProps<T>) => {
   const totalPages = Math.ceil(array.length / pageSize)
+
+  const buttonStyle = (i: number) => {
+    return {
+      backgroundColor: i === (color && currentPage) ? color : ''
+    }
+  }
 
   return (
     <div className="pagination">
@@ -24,11 +32,12 @@ export const PaginationDots = <T,>({
           onClick={() => onChange(Math.max(currentPage - 1, 0))}
           disabled={currentPage === 0}
         >
-          <CircleChevronLeft size={20} color="white" />
+          <CircleChevronLeft size={20} />
         </button>
         {Array.from({ length: totalPages }).map((_, i) => {
           return (
             <button
+              style={buttonStyle(i)}
               className={`pagination__dot ${
                 i === currentPage ? 'pagination__dot-active' : ''
               }`}
@@ -47,7 +56,7 @@ export const PaginationDots = <T,>({
           onClick={() => onChange(Math.min(currentPage + 1, totalPages))}
           disabled={currentPage + 1 === totalPages}
         >
-          <CircleChevronRight size={20} color="white" />
+          <CircleChevronRight size={20} />
         </button>
       </div>
       <div className="pagination__info">{`${

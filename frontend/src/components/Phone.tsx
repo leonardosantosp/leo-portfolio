@@ -1,5 +1,4 @@
 import { Clock } from './Clock'
-import search from '../assets/search-icon.png'
 import { AppList } from './AppList'
 import onGif from '../assets/ligar-gif.gif'
 import onPng from '../assets/ligar.png'
@@ -53,6 +52,7 @@ const Phone = () => {
                 <Search size={14} className="phone__search-icon" />
                 <p>{text}</p>
               </div>
+
               <div className={`phone__apps ${showApps ? 'show' : ''}`}>
                 {appsLoading ? (
                   <div className="load__app">

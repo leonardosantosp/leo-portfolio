@@ -23,7 +23,6 @@ export const ProjectItem = ({
 
   return (
     <>
-      <img src={image} alt="" style={{ display: 'none' }} />
       <div className="project-item">
         {!isVisible ? (
           <div className="project-item__initial">

@@ -6,6 +6,7 @@ import { useAdmin } from './AdminProvider'
 import { Link } from 'lucide-react'
 import { ItemCard } from './ItemCard'
 import { SchemaListHeader } from './SchemaListHeader'
+import { ListCards } from './ListCards'
 
 export const ProjectList = () => {
   const [projects, setProjects] = useState<ReturnedProject[]>([])
@@ -128,41 +129,37 @@ export const ProjectList = () => {
       ) : (
         <>
           <SchemaListHeader itens={projects} />
-          <div className="view-mode-card__container">
-            {projects.map(project => (
-              <ItemCard
-                key={project._id}
-                item={project}
-                onDelete={project => {
-                  setSelectedItemId(project._id)
-                }}
-                onDeleteCard={(id: string) => {
-                  handleDelete(id)
-                }}
-                onEdit={project => {
-                  setIsMenuVisible(true)
-                  setFormMode('update')
-                  setSelectedItemId(project._id)
-                }}
-                onPreview={project => {
-                  setFormMode('preview')
-                  setIsMenuVisible(true)
-                  setSelectedItemId(project._id)
-                }}
-                renderRow={project => (
-                  <>
-                    <img
-                      src={project.logo}
-                      alt={project.title}
-                      height={35}
-                      width={35}
-                    />
-                    <strong>{project.title}</strong>
-                  </>
-                )}
-              />
-            ))}
-          </div>
+          <ListCards
+            itens={projects}
+            onDelete={project => {
+              setSelectedItemId(project._id)
+            }}
+            onDeleteCard={(id: string) => {
+              handleDelete(id)
+            }}
+            onEdit={project => {
+              setIsMenuVisible(true)
+              setFormMode('update')
+              setSelectedItemId(project._id)
+            }}
+            onPreview={project => {
+              setFormMode('preview')
+              setIsMenuVisible(true)
+              setSelectedItemId(project._id)
+            }}
+            renderRow={project => (
+              <>
+                <img
+                  src={project.logo}
+                  alt={project.title}
+                  height={35}
+                  width={35}
+                />
+                <strong>{project.title}</strong>
+              </>
+            )}
+            getId={project => project._id}
+          />
         </>
       )}
     </div>
