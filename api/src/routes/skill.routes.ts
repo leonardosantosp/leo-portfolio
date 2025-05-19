@@ -59,7 +59,9 @@ export function skillRoutes(app) {
 
   app.post(
     '/skills',
+
     {
+      preHandler: [app.authenticate],
       schema: {
         description: 'Create a new skill',
         summary: 'Adds a new skill to the database using the provided data',
@@ -86,6 +88,7 @@ export function skillRoutes(app) {
   app.patch(
     '/skills/:id',
     {
+      preHandler: [app.authenticate],
       schema: {
         summary: 'Update a skill',
         description:
@@ -116,6 +119,7 @@ export function skillRoutes(app) {
   app.delete(
     '/skills/:id',
     {
+      preHandler: [app.authenticate],
       schema: {
         summary: 'Delete a skill',
         description:

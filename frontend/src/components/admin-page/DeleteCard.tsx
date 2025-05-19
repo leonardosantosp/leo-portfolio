@@ -19,32 +19,31 @@ export const DeleteCard = ({ onClose, onDelete }: DeleteCardProps) => {
     if (!selectedItemId) return
     if (!deleted) return
 
-    const cardDeleteSkill = async () => {
-      const data = await deleteSkill(selectedItemId)
-      toast.success(`Deleted ${schema} successfully!`)
+    const handleDelete = async () => {
+      try {
+        if (schema === 'skill') {
+          await deleteSkill(selectedItemId)
+        } else if (schema === 'technology') {
+          await deleteTechnology(selectedItemId)
+        } else if (schema === 'project') {
+          await deleteProject(selectedItemId)
+        }
+        toast.success(`Deleted ${schema} successfully!`)
+        onDelete(selectedItemId) // só remove localmente se sucesso
+        onClose() // fecha modal depois de sucesso
+      } catch (error: any) {
+        if (error.response?.status === 401) {
+          toast.error('Você precisa estar autenticado para deletar.')
+        } else {
+          toast.error('Erro ao deletar. Tente novamente.')
+        }
+      } finally {
+        setDeleted(false) // reseta estado independente do resultado
+      }
     }
 
-    const cardDeleteTechnology = async () => {
-      const data = await deleteTechnology(selectedItemId)
-      toast.success(`Deleted ${schema} successfully!`)
-    }
-
-    const cardDeleteProject = async () => {
-      const data = await deleteProject(selectedItemId)
-      toast.success(`Deleted ${schema} successfully!`)
-    }
-
-    setDeleted(false)
-    onClose()
-    onDelete(selectedItemId)
-    if (schema === 'skill') {
-      cardDeleteSkill()
-    } else if (schema === 'technology') {
-      cardDeleteTechnology()
-    } else if (schema === 'project') {
-      cardDeleteProject()
-    }
-  }, [selectedItemId, deleted, onClose, onDelete])
+    handleDelete()
+  }, [selectedItemId, deleted, onClose, onDelete, schema])
 
   return (
     <>

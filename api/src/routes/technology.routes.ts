@@ -64,6 +64,7 @@ export function technologyRoutes(app) {
   app.post(
     '/technologies',
     {
+      preHandler: [app.authenticate],
       schema: {
         summary: 'create a new technology',
         description: 'Creates a new technology record with the provided data.',
@@ -87,6 +88,7 @@ export function technologyRoutes(app) {
   app.patch(
     '/technologies/:id',
     {
+      preHandler: [app.authenticate],
       schema: {
         summary: 'Update an existing technology',
         description:
@@ -120,6 +122,7 @@ export function technologyRoutes(app) {
   app.delete(
     '/technologies/:id',
     {
+      preHandler: [app.authenticate],
       schema: {
         summary: 'Delete an existing technology',
         description:

@@ -64,6 +64,7 @@ export function projectRoutes(app) {
   app.post(
     '/projects',
     {
+      preHandler: [app.authenticate],
       schema: {
         summary: 'Create a new project',
         description:
@@ -92,6 +93,7 @@ export function projectRoutes(app) {
   app.patch(
     '/projects/:id',
     {
+      preHandler: [app.authenticate],
       schema: {
         summary: 'Update an existing project',
         description:
@@ -125,6 +127,7 @@ export function projectRoutes(app) {
   app.delete(
     '/projects/:id',
     {
+      preHandler: [app.authenticate],
       schema: {
         summary: 'Delete a project',
         description: 'Deletes a project from the database using its unique ID.',

@@ -11,8 +11,29 @@ import { skillRoutes } from './routes/skill.routes.ts'
 import { technologyRoutes } from './routes/technology.routes.ts'
 import { projectRoutes } from './routes/project.routes.ts'
 import cors from '@fastify/cors'
+import jwt from '@fastify/jwt'
+import dotenv from 'dotenv'
+import { autenticateRoutes } from './routes/autenticate.routes.ts'
+
+dotenv.config()
 
 const app = fastify()
+
+const jwt_secret = process.env.JWT_SECRET!
+
+app.register(jwt, {
+  secret: jwt_secret
+})
+
+app.decorate('authenticate', async function (request, reply) {
+  try {
+    await request.jwtVerify()
+  } catch (err) {
+    return reply.status(401).send({
+      message: 'Você Precisar estar autenticado para fazer essas operações'
+    })
+  }
+})
 
 connectDb()
 
@@ -21,7 +42,8 @@ app.setSerializerCompiler(serializerCompiler)
 
 app.register(cors, {
   origin: 'http://localhost:5173',
-  methods: ['GET', 'POST', 'DELETE', 'PUT', 'PATCH']
+  methods: ['GET', 'POST', 'DELETE', 'PUT', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 })
 
 app.register(fastifySwagger, {
@@ -41,6 +63,7 @@ app.register(fastifySwaggerUi, {
 app.register(skillRoutes)
 app.register(technologyRoutes)
 app.register(projectRoutes)
+app.register(autenticateRoutes)
 
 app.listen({ port: 3333 }, (err, address) => {
   console.log(`app listening at ${address}`)

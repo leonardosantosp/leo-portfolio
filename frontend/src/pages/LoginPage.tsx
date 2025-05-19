@@ -1,12 +1,53 @@
 import { Header } from '../components/Header'
 import { UserRound, EyeOff, LockKeyhole, Eye, ChevronLeft } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
+
 export const LoginPage = () => {
   const [viewPassword, setViewPassword] = useState(false)
+  const [user, setUser] = useState('')
+  const [password, setPassword] = useState('')
+  const navigate = useNavigate()
+
+  const handleLogin = async () => {
+    try {
+      const response = await fetch(`http://localhost:3333/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ user, password })
+      })
+
+      const data = await response.json()
+      console.log(data)
+      if (!response.ok) {
+        toast.error(data.message || 'Erro inesperado')
+        console.error('Erro no login:', data)
+        return
+      }
+      localStorage.setItem('token', data.token)
+      toast.success('Logado com sucesso')
+      navigate('/admin-page')
+    } catch (error) {
+      toast.error('Erro ao fazer login')
+      console.error('Erro inesperado:', error)
+    }
+  }
 
   useEffect(() => {
-    import('bootstrap/dist/css/bootstrap.min.css')
+    const link = document.createElement('link')
+    link.rel = 'stylesheet'
+    link.href =
+      'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css'
+    link.id = 'bootstrap-css'
+    document.head.appendChild(link)
+
+    return () => {
+      const existing = document.getElementById('bootstrap-css')
+      if (existing) existing.remove()
+    }
   }, [])
 
   return (
@@ -33,6 +74,7 @@ export const LoginPage = () => {
                 placeholder="Username"
                 aria-label="Username"
                 aria-describedby="addon-wrapping"
+                onChange={e => setUser(e.target.value)}
               />
             </div>
             <label className="admin-signin__label">Enter your password</label>
@@ -45,6 +87,7 @@ export const LoginPage = () => {
                 className="form-control "
                 placeholder="Password"
                 aria-label="Amount (to the nearest dollar)"
+                onChange={e => setPassword(e.target.value)}
               />
               {!viewPassword ? (
                 <span className="input-group-text">
@@ -64,7 +107,11 @@ export const LoginPage = () => {
                 </span>
               )}
             </div>
-            <button type="button" className="admin-signin__button">
+            <button
+              type="button"
+              className="admin-signin__button"
+              onClick={handleLogin}
+            >
               Sign in
             </button>
           </form>

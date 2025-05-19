@@ -107,3 +107,12 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:3333/projects/{{projectId}}
+
+###
+POST http://localhost:3333/login
+Content-Type: application/json
+
+{
+  "user": "LeoAdminPortfolio04/11026464858",
+  "password": "bf9ae3fcc1ba19f05d53a534e111a89407bb5d8c589e11ef68d486da9858dbb8baa7fdefb66b74733cad57c96e5a340f6566b1bc68004deaad024b57f0f42758"
+}

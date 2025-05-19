@@ -8,16 +8,18 @@ import { ProjectsByStackPage } from './pages/ProjectsByStackPage.tsx'
 import { LoginPage } from './pages/LoginPage.tsx'
 import { AdminPage } from './pages/AdminPage.tsx'
 import { AdminProvider } from './components/admin-page/AdminProvider.tsx'
+import { ToastContainer } from 'react-toastify'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+    <ToastContainer />
+
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/project/:id" element={<ProjectDetailsPage />} />
         <Route path="/projects/:stackId" element={<ProjectsByStackPage />} />
         <Route path="/login" element={<LoginPage />} />
-
         <Route
           path="/admin-page"
           element={
