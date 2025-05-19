@@ -473,37 +473,39 @@ export const FormBuilder = () => {
             <p className={` stack-size ${isLight ? 'stack-size__light' : ''}`}>
               {stack.length}/6
             </p>
-            <div className={`${errors.stack && 'error'} stack-card`}>
-              {errors.stack ? (
-                <span className="error-text">{errors.stack}</span>
-              ) : (
-                ''
-              )}
+            <div className="stack-card-wrapper">
+              <div className={`${errors.stack && 'error'} stack-card`}>
+                {errors.stack ? (
+                  <span className="error-text">{errors.stack}</span>
+                ) : (
+                  ''
+                )}
 
-              <div className="stack-fields">
-                {stack.map(item => (
-                  <div
-                    key={item._id}
-                    className={`stack-fields-item ${
-                      isLight && 'stack-fields-item__light'
-                    }`}
-                  >
-                    <img
-                      src={item.icon}
-                      alt={item.name}
-                      height={15}
-                      width={15}
-                    />
-                    <p>{item.name}</p>
-                    <div className="stack-fields-icon">
-                      <Trash2
-                        cursor={'pointer'}
-                        size={15}
-                        onClick={() => handleRemoveFromStack(item._id)}
+                <div className="stack-fields">
+                  {stack.map(item => (
+                    <div
+                      key={item._id}
+                      className={`stack-fields-item ${
+                        isLight && 'stack-fields-item__light'
+                      }`}
+                    >
+                      <img
+                        src={item.icon}
+                        alt={item.name}
+                        height={15}
+                        width={15}
                       />
+                      <p>{item.name}</p>
+                      <div className="stack-fields-icon">
+                        <Trash2
+                          cursor={'pointer'}
+                          size={15}
+                          onClick={() => handleRemoveFromStack(item._id)}
+                        />
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
