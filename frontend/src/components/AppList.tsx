@@ -1,9 +1,10 @@
 import react from '../assets/app-images/react.png'
+import type { ReturnedTechnology } from '../api-client/technologiesApi'
 
 interface AppListProps {
   currentPage: number
   pageSize: number
-  apps: string[]
+  apps: ReturnedTechnology[]
 }
 
 export const AppList = ({ currentPage, pageSize, apps }: AppListProps) => {
@@ -13,8 +14,8 @@ export const AppList = ({ currentPage, pageSize, apps }: AppListProps) => {
   )
   return (
     <div className="apps">
-      {visibleApps.map((app, i) => (
-        <img key={i} src={react} alt="" />
+      {visibleApps.map(app => (
+        <img key={app._id} src={app.appIcon} alt="" />
       ))}
     </div>
   )

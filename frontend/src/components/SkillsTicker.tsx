@@ -1,14 +1,9 @@
 import { useEffect, useState } from 'react'
+import type { ReturnedSkill } from '../api-client/skillsApi'
 import { getSkills } from '../api-client/skillsApi'
 
-type Skill = {
-  _id: string
-  icon: string
-  name: string
-}
-
 export const SkillsTicker = () => {
-  const [skills, setSkills] = useState<Skill[]>([])
+  const [skills, setSkills] = useState<ReturnedSkill[]>([])
 
   useEffect(() => {
     const fetchSkills = async () => {

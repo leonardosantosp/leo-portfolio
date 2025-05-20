@@ -5,13 +5,16 @@ import onPng from '../assets/ligar.png'
 import { LoadingScreen } from './LoadingScreen'
 import { usePhoneBoot } from '../hooks/usePhoneBoot'
 import { PaginationDots } from './PaginationDots'
-import { useState } from 'react'
-import react from '../assets/app-images/react.png'
+import { useEffect, useState } from 'react'
 import { Search } from 'lucide-react'
+import type { ReturnedTechnology } from '../api-client/technologiesApi'
+import { getTechnologies } from '../api-client/technologiesApi'
 
 const Phone = () => {
   const { phoneOn, phoneLoading, text, showApps, appsLoading, bootPhone } =
     usePhoneBoot()
+
+  const [technologies, setTechnologies] = useState<ReturnedTechnology[]>([])
 
   const pageSize = 16
   const [currentPage, setCurrentPage] = useState(0)
@@ -19,7 +22,14 @@ const Phone = () => {
   const onChange = (newPage: number) => {
     setCurrentPage(newPage)
   }
-  const apps = Array(40).fill({ react })
+
+  useEffect(() => {
+    const fetchTechnologies = async () => {
+      const response = await getTechnologies()
+      setTechnologies(response)
+    }
+    fetchTechnologies()
+  }, [])
 
   return (
     <div className="phone">
@@ -61,7 +71,7 @@ const Phone = () => {
                 ) : (
                   <>
                     <AppList
-                      apps={apps}
+                      apps={technologies}
                       currentPage={currentPage}
                       pageSize={pageSize}
                     />
@@ -69,7 +79,7 @@ const Phone = () => {
                       currentPage={currentPage}
                       pageSize={pageSize}
                       onChange={onChange}
-                      array={apps}
+                      array={technologies}
                     />
                   </>
                 )}
