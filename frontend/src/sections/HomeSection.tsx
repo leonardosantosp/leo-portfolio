@@ -11,25 +11,29 @@ export const HomeSection = () => {
         <div className="home__text">
           👋 Olá! eu sou Leonardo Paiva <br /> e sou desenvolvedor Junior Full
           Stack.
+          <div className="home__contact">
+            <div className="home__contact-line">{''}</div>
+            <a href="https://github.com/leonardosantosp" target="_blank">
+              <img src={github} alt=" icon github" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/leonardospaiva"
+              target="_blank"
+            >
+              <img src={linkedin} alt="icon linkedin" />
+            </a>
+            <a href="https://wa.me/35999754750" target="_blank">
+              <img src={zap} alt="icon whatsapp" />
+            </a>
+
+            <div className="home__contact-line">{''}</div>
+          </div>
         </div>
         <div className="home__phone">
           <Phone />
         </div>
       </div>
-      <div className="home__contact">
-        <div className="home__contact-line">{''}</div>
-        <a href="https://github.com/leonardosantosp" target="_blank">
-          <img src={github} alt=" icon github" />
-        </a>
-        <a href="https://www.linkedin.com/in/leonardospaiva" target="_blank">
-          <img src={linkedin} alt="icon linkedin" />
-        </a>
-        <a href="https://wa.me/35999754750" target="_blank">
-          <img src={zap} alt="icon whatsapp" />
-        </a>
 
-        <div className="home__contact-line">{''}</div>
-      </div>
       <SkillsTicker />
     </div>
   )

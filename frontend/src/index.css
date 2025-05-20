@@ -65,7 +65,7 @@ a {
   display: flex;
   justify-content: space-between;
   color: white;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', sans-serif !important;
 }
 
 .header__logo a {
@@ -118,6 +118,7 @@ a {
 
 .home__text {
   display: flex;
+  flex-direction: column;
   height: 30px;
   font-weight: bold;
   font-size: 30px;
@@ -125,8 +126,7 @@ a {
 }
 
 .home__contact {
-  position: absolute;
-  top: 70% !important;
+  margin-top: 60px;
   width: 50%;
   display: flex;
   align-items: center;
@@ -146,7 +146,7 @@ a {
 .home__contact-line {
   flex-grow: 0.1;
   height: 2px;
-  width: 10%;
+  width: 300px;
   background: rgba(255, 255, 255, 0.5);
   margin-right: 30px;
 }
@@ -1900,6 +1900,392 @@ input:focus {
 }
 
 @media (max-width: 600px) {
+  .header {
+    display: flex;
+    align-items: center;
+    padding: 5px 0 0 5px;
+  }
+
+  .header__logo a {
+    font-size: 15px;
+    width: 100px;
+  }
+
+  .header__menu li {
+    margin: 0 10px 0 0;
+    width: 55px;
+  }
+
+  .header__menu li a {
+    font-size: 10px;
+    width: 60px;
+  }
+
+  .home__text {
+    font-size: 10px;
+    height: auto;
+    width: 50%;
+  }
+
+  .home-container {
+    display: flex;
+    padding: 10px;
+  }
+
+  .home__contact {
+    margin: 60px 0 0 10px;
+    width: 100%;
+    gap: 5px;
+  }
+
+  .home__contact img {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+  }
+
+  .home__contact a {
+    margin: 0;
+  }
+
+  .home__contact-line {
+    height: 1px;
+    width: 100%;
+    margin: 0 5px;
+    border-radius: 10px;
+  }
+
+  .apps {
+    width: 100%;
+    height: 70%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-top: 5px;
+  }
+
+  .phone,
+  .home__phone {
+    width: 100px;
+    height: 200px;
+    border-radius: 0;
+  }
+
+  .clock__time {
+    font-size: 15px;
+    margin: 35% 80% 0 0;
+  }
+
+  .clock__date {
+    font-size: 5px;
+    margin-top: 5px;
+    margin-right: 80%;
+  }
+
+  .phone__search {
+    margin: 26px 0 0 0;
+    padding: 2px;
+    height: 4%;
+  }
+
+  .phone__search svg {
+    width: 7px;
+    height: 7px;
+    margin: 0 5px 0 0;
+  }
+
+  .phone__search p {
+    font-size: 3.87px;
+    margin: 0;
+  }
+
+  .phone__apps {
+    height: 70%;
+  }
+
+  .phone__apps img {
+    width: 15px;
+    height: 15px;
+    margin: 5px;
+  }
+
+  .pagination {
+    margin: -25% 0 0 -6%;
+    align-items: center;
+  }
+
+  .pagination__dot {
+    width: 3px;
+    height: 3px;
+    margin: 0 2px;
+  }
+
+  .pagination__info {
+    font-size: 5px;
+  }
+
+  .pagination__arrow svg {
+    width: 7px;
+    height: 7px;
+  }
+
+  .img__container {
+    width: 14%;
+    height: 40px;
+  }
+
+  .phone__png,
+  .phone__gif {
+    width: 30px;
+    height: 30px;
+  }
+
+  .pulse-ring {
+    left: 15px;
+    top: 15px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .loading-screen {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .loading-screen p {
+    margin: 20px 0 0 10px;
+    font-size: 0.5rem;
+  }
+
+  .spinner {
+    border: 5px solid rgba(255, 255, 255, 0.5);
+    border-top: 5px solid #b008ca;
+    width: 25px;
+    height: 25px;
+  }
+
+  .skills-ticker {
+    height: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .skills-ticker__ticker-item {
+    font-size: 10px;
+  }
+
+  .skills-ticker__ticker-item .icon {
+    margin: 0;
+    width: auto;
+    height: auto;
+  }
+  .skills-ticker__ticker-item span img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .chat {
+    margin-top: 0;
+    margin-left: 30px;
+  }
+
+  .chat img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .chat-bubble {
+    margin: 0 10px;
+    padding: 15px 20px;
+    max-width: 100px;
+    line-height: 1.2;
+    font-size: 8px;
+    width: 50%;
+  }
+
+  .signature {
+    width: 200px;
+    height: 200px;
+    margin-right: 10px;
+  }
+
+  .project-item {
+    width: 100%;
+    min-height: auto;
+  }
+
+  .project-item__logo img {
+    width: 40px;
+  }
+
+  .project-item__logo h2 {
+    font-size: 20px;
+  }
+
+  .project-item__detail img {
+    width: 200px;
+  }
+
+  .project-item__detail-content h2 {
+    font-size: 20px;
+  }
+
+  .project-item__detail-content a {
+    border-radius: 20px;
+    width: 33%;
+    height: 27px;
+    font-size: 12px;
+  }
+
+  .stack {
+    width: 220%;
+  }
+
+  .stack__item {
+    width: 39px;
+    padding: 0;
+    display: flex;
+    height: 9px;
+    font-size: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .stack__item p {
+    margin: 0;
+    text-align: center;
+  }
+
+  .stack__item img {
+    width: 15px;
+    height: 15px;
+  }
+
+  .footer__contact p {
+    font-size: 13px;
+  }
+
+  .footer__contact img {
+    width: 25px;
+    height: 25px;
+    margin: 10px;
+  }
+
+  /* Project Page */
+
+  .project-page__header img {
+    width: 40px;
+  }
+
+  .project-page__header h2 {
+    font-size: 20px;
+  }
+
+  .link-text {
+    font-size: 8px;
+  }
+
+  .links-container a {
+    width: 100px;
+  }
+
+  .links-container a img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .readme-wrapper {
+    width: 90%;
+  }
+
+  .markdown-body.collapsed,
+  .markdown-body.expanded {
+    padding: 30px;
+  }
+
+  .markdown-body.collapsed h3,
+  .markdown-body.expanded h3 {
+    font-size: 15px;
+  }
+
+  .markdown-body.collapsed h2,
+  .markdown-body.expanded h2 {
+    font-size: 20px;
+  }
+
+  .markdown-body.collapsed p,
+  .markdown-body.expanded p,
+  .markdown-body.collapsed li,
+  .markdown-body.expanded li {
+    font-size: 12px;
+  }
+
+  /* Login Page */
+
+  #root {
+    overflow: hidden;
+  }
+
+  .admin-signin__greeting {
+    font-size: 20px;
+  }
+
+  .admin-signin__right {
+    width: 50%;
+    padding: 40px 10px 0 10px;
+  }
+
+  .admin-signin__title {
+    font-size: 30px;
+  }
+
+  .admin-signin__label {
+    font-size: 12px;
+  }
+
+  .input-group {
+    height: 30px;
+  }
+
+  .input-group-text {
+    padding: 4px !important;
+  }
+
+  .input-group-text svg {
+    width: 15px;
+  }
+
+  .form-control,
+  .form-control::placeholder {
+    font-size: 10px !important;
+  }
+
+  .admin-signin__button {
+    height: 30px;
+    width: 135px;
+    font-size: 15px;
+  }
+
+  .admin-signin__note {
+    font-size: 8px;
+    width: 60px;
+    margin: 0;
+  }
+
+  /* Project By Stack */
+
+  .project-by-stack__header img {
+    width: 60px;
+    height: 60px;
+    margin-top: 30px;
+  }
+
+  .project-by-stack__header h2 {
+    font-size: 30px;
+  }
+
+  /* Admin Page */
+
   .side-bar__fields {
     padding: 10px 0 0 10px;
   }
