@@ -318,7 +318,7 @@ a {
 .skills-ticker__ticker {
   display: flex;
   gap: 40px;
-  animation: scroll 20s linear infinite;
+  animation: scroll 30s linear infinite;
   width: fit-content;
 }
 
@@ -339,9 +339,9 @@ a {
   opacity: 1;
 }
 
-.skills-ticker__ticker-item .icon {
-  width: 24px;
-  height: 24px;
+.skills-ticker__ticker-item .icon img {
+  width: 30px;
+  height: 30px;
   margin-right: 10px;
 }
 
@@ -2075,7 +2075,7 @@ input:focus {
     font-size: 10px;
   }
 
-  .skills-ticker__ticker-item .icon {
+  .skills-ticker__ticker-item .icon img {
     margin: 0;
     width: auto;
     height: auto;

@@ -1,37 +1,32 @@
-import api from '../assets/bar-images/api-rest.png'
-import clean_code from '../assets/bar-images/clean-code.png'
-import ddd from '../assets/bar-images/ddd.png'
-import elastic from '../assets/bar-images/elastic-search.png'
-import git from '../assets/bar-images/git.png'
-import microservices from '../assets/bar-images/microservices.png'
-import mvc from '../assets/bar-images/mvc.png'
-import solid from '../assets/bar-images/solid.png'
-import tdd from '../assets/bar-images/tdd.png'
-import sockets from '../assets/bar-images/web-sockets.png'
+import { useEffect, useState } from 'react'
+import { getSkills } from '../api-client/skillsApi'
 
-const skills = [
-  { icon: api, label: 'REST API' },
-  { icon: clean_code, label: 'Clean Code' },
-  { icon: ddd, label: 'DDD' },
-  { icon: elastic, label: 'Elastic' },
-  { icon: git, label: 'GIT' },
-  { icon: microservices, label: 'Microsserviços' },
-  { icon: mvc, label: 'MVC' },
-  { icon: solid, label: 'SOLID' },
-  { icon: tdd, label: 'TDD' },
-  { icon: sockets, label: 'WebSockets' }
-]
+type Skill = {
+  _id: string
+  icon: string
+  name: string
+}
 
 export const SkillsTicker = () => {
+  const [skills, setSkills] = useState<Skill[]>([])
+
+  useEffect(() => {
+    const fetchSkills = async () => {
+      const response = await getSkills()
+      setSkills(response)
+    }
+    fetchSkills()
+  }, [])
+
   return (
     <div className="skills-ticker">
       <div className="skills-ticker__ticker">
-        {[...skills, ...skills].map((item, index) => (
-          <div className="skills-ticker__ticker-item" key={`${index}`}>
+        {[...skills, ...skills].map(item => (
+          <div className="skills-ticker__ticker-item" key={`${item._id}`}>
             <span className="icon">
-              <img src={item.icon} alt={`Iconde de ${item.label}`} />
+              <img src={item.icon} alt={`Iconde de ${item.name}`} />
             </span>
-            <span>{item.label}</span>
+            <span>{item.name}</span>
           </div>
         ))}
       </div>
