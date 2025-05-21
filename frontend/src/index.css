@@ -1541,12 +1541,12 @@ p {
 .image-fields {
   display: flex;
   flex-direction: column;
-  width: 20%;
+  width: auto;
   height: 30%;
   background-color: #374151;
   border: 2px solid #606165;
   border-radius: 10px;
-  padding: 10px 18px 18px 18px;
+  padding: 15px;
   margin: 15px 0;
 }
 
@@ -1740,12 +1740,17 @@ input:focus {
   margin-top: 10px;
 }
 
+.stack-card-wrapper {
+  width: 84%;
+  display: flex;
+}
+
 .stack-card {
   height: 80px;
   margin-left: 50px;
   border: 2px solid #606165;
   border-radius: 15px;
-  width: 40%;
+  width: 70%;
   padding: 10px;
 }
 
@@ -1876,7 +1881,7 @@ input:focus {
 }
 
 .stack-size {
-  margin-left: 10px;
+  margin: 0 0 0 10px;
 }
 
 .stack-size__light {
@@ -2008,14 +2013,9 @@ input:focus {
     margin: 5px;
   }
 
-  .pagination {
-    margin: -25% 0 0 -6%;
-    align-items: center;
-  }
-
   .pagination__dot {
-    width: 3px;
-    height: 3px;
+    width: 5px;
+    height: 5px;
     margin: 0 2px;
   }
 
@@ -2024,8 +2024,8 @@ input:focus {
   }
 
   .pagination__arrow svg {
-    width: 7px;
-    height: 7px;
+    width: 10px;
+    height: 10px;
   }
 
   .img__container {
@@ -2287,16 +2287,12 @@ input:focus {
   /* Admin Page */
 
   .side-bar__fields {
-    padding: 10px 0 0 10px;
+    padding: 10px 10px 0 10px;
   }
 
   .side-bar {
     width: 470%;
     border-radius: 0 0 20px 20px;
-  }
-
-  .text-fields-container {
-    flex-direction: column;
   }
 
   .item-management-page__header {
@@ -2318,6 +2314,7 @@ input:focus {
 
   .stack-fields__add-button {
     max-width: 32%;
+    margin: 0;
   }
 
   .create-fields-container {
@@ -2325,7 +2322,7 @@ input:focus {
   }
 
   .create-fields-container input {
-    max-width: 50%;
+    max-width: 80%;
     margin: 5px;
     font-size: 10px;
   }
@@ -2338,7 +2335,7 @@ input:focus {
 
   .stack-card {
     border-radius: 10px;
-    width: 75%;
+    width: 44%;
     overflow-y: auto;
     margin: 0 10px 0 0;
     overflow-y: auto;
@@ -2376,7 +2373,8 @@ input:focus {
   .stack-fields {
     display: flex;
     margin-bottom: 10px;
-    justify-content: space-evenly;
+    flex-direction: column;
+    gap: 5px;
   }
 
   .stack-fields-item {
@@ -2387,6 +2385,38 @@ input:focus {
     font-size: 8px;
     margin-right: 25px;
     width: 30px;
+  }
+
+  .stack-fields-item img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .text-fields {
+    width: 36%;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .text-fields::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  .text-fields::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+  }
+
+  .text-fields::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+
+  .text-fields::-webkit-scrollbar-thumb:hover {
+    background-color: #aaa;
   }
 
   .item-list__header-title {
@@ -2439,6 +2469,10 @@ input:focus {
     color: black;
   }
 
+  .item-management-page {
+    margin-top: 20px;
+  }
+
   .item-management-page__header-schemas button {
     display: none;
   }
@@ -2477,13 +2511,14 @@ input:focus {
   }
 
   .view-mode-card__container {
-    width: 110%;
+    width: 100%;
+    padding: 20px;
   }
 
   .view-mode-card__item {
     font-size: 10px;
-    width: 100%;
-    padding: 10px;
+    width: 80%;
+    padding: 10px 30px;
   }
 
   .item-table__actions {
@@ -2493,19 +2528,31 @@ input:focus {
   }
 
   .item-table__actions button {
-    width: 30%;
     font-size: 10px;
+    margin: 3px;
+  }
+
+  .item-table__actions button svg {
+    display: none;
   }
 
   .item-table__actions-container {
     display: flex;
     align-items: center;
-    margin: 20px;
+  }
+
+  .view-mode-card__item strong {
+    margin-left: 5px;
   }
 
   .item-table__name,
   .item-table__name a,
   .item-list__table thead th {
     font-size: 8px !important;
+  }
+
+  .item-table__actions-img {
+    width: 10px;
+    height: 10px;
   }
 }
