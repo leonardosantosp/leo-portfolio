@@ -836,7 +836,7 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 10px 15px 0 0;
+  margin: -19px 15px 0 0;
 }
 
 .pagination__arrow {
@@ -1383,6 +1383,7 @@ p {
 
 .item-list__table table {
   width: 100%;
+  margin-bottom: 20px;
 }
 
 .item-list__table thead th {
@@ -2077,8 +2078,8 @@ input:focus {
 
   .skills-ticker__ticker-item .icon img {
     margin: 0;
-    width: auto;
-    height: auto;
+    width: 15px;
+    height: 15px;
   }
   .skills-ticker__ticker-item span img {
     width: 20px;
@@ -2334,9 +2335,9 @@ input:focus {
   }
 
   .stack-card {
+    padding: 10px;
     border-radius: 10px;
-    width: 44%;
-    overflow-y: auto;
+    width: 80%;
     margin: 0 10px 0 0;
     overflow-y: auto;
     overflow-x: hidden;
@@ -2377,13 +2378,18 @@ input:focus {
     gap: 5px;
   }
 
+  #particles-js {
+    width: 80%;
+    height: 40%;
+  }
+
   .stack-fields-item {
     width: 150%;
   }
 
   .stack-fields-item p {
     font-size: 8px;
-    margin-right: 25px;
+    margin-right: 19px;
     width: 30px;
   }
 
@@ -2397,6 +2403,11 @@ input:focus {
     flex-direction: column;
     overflow-x: hidden;
     overflow-y: auto;
+  }
+
+  .text-fields p {
+    font-size: 10px;
+    margin-right: 19px;
   }
 
   .text-fields::-webkit-scrollbar {
@@ -2521,10 +2532,18 @@ input:focus {
     padding: 10px 30px;
   }
 
-  .item-table__actions {
+  .view-mode-card__item .item-table__actions {
     display: flex;
+  }
+
+  .item-table__actions {
     width: 70%;
     height: 10%;
+  }
+
+  .item-list__table img {
+    width: 20px;
+    height: 20px;
   }
 
   .item-table__actions button {
