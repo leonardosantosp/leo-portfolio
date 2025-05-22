@@ -1,14 +1,13 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ChevronDown, ChevronUp } from 'lucide-react'
+import type { ReturnedTechnology } from '../api-client/technologiesApi'
+
 interface ProjectItemProps {
   logo: string
   title: string
   image: string
-  stack: {
-    name: string
-    image: string
-  }[]
+  stack: ReturnedTechnology[]
 }
 
 import { ProjectStack } from './ProjectStack'

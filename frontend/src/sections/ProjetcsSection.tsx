@@ -1,158 +1,38 @@
+import { useEffect, useState } from 'react'
 import { ProjectsList } from '../components/ProjectsList'
+import { getProjects } from '../api-client/projectsApi'
+import type { ReturnedProject } from '../api-client/projectsApi'
+import { getTechnologyById } from '../api-client/technologiesApi'
+import type { ReturnedTechnology } from '../api-client/technologiesApi'
+
+export type FullProject = Omit<ReturnedProject, 'stack'> & {
+  stack: ReturnedTechnology[]
+}
 
 export const ProjectsSection = () => {
-  const projects = [
-    {
-      image: 'https://imgur.com/LtdTASQ.png',
-      logo: 'https://imgur.com/i9UWRS8.png',
-      title: 'Spotify Clone',
-      link: 'http://projeto.com',
-      stack: [
-        {
-          name: 'React',
-          image: 'https://imgur.com/mpjlXh4.png'
-        },
-        {
-          name: 'NodeJs',
-          image: 'https://imgur.com/mpjlXh4.png'
-        },
-        {
-          name: 'CSS',
-          image: 'https://imgur.com/mpjlXh4.png'
-        }
-      ]
-    },
-    {
-      image: 'https://imgur.com/LtdTASQ.png',
-      logo: 'https://imgur.com/i9UWRS8.png',
-      title: 'Spotify Clone',
-      stack: [
-        {
-          name: 'React',
-          image: 'https://imgur.com/mpjlXh4.png'
-        },
-        {
-          name: 'NodeJs',
-          image: 'https://imgur.com/mpjlXh4.png'
-        },
-        {
-          name: 'CSS',
-          image: 'https://imgur.com/mpjlXh4.png'
-        }
-      ]
-    },
-    {
-      image: 'https://imgur.com/LtdTASQ.png',
-      logo: 'https://imgur.com/i9UWRS8.png',
-      title: 'Spotify Clone',
-      stack: [
-        {
-          name: 'React',
-          image: 'https://imgur.com/mpjlXh4.png'
-        },
-        {
-          name: 'NodeJs',
-          image: 'https://imgur.com/mpjlXh4.png'
-        },
-        {
-          name: 'CSS',
-          image: 'https://imgur.com/mpjlXh4.png'
-        }
-      ]
-    },
-    {
-      image: 'https://imgur.com/LtdTASQ.png',
-      logo: 'https://imgur.com/i9UWRS8.png',
-      title: 'Spotify Clone',
-      stack: [
-        {
-          name: 'React',
-          image: 'https://imgur.com/mpjlXh4.png'
-        },
-        {
-          name: 'NodeJs',
-          image: 'https://imgur.com/mpjlXh4.png'
-        },
-        {
-          name: 'CSS',
-          image: 'https://imgur.com/mpjlXh4.png'
-        }
-      ]
-    },
-    {
-      image: 'https://imgur.com/LtdTASQ.png',
-      logo: 'https://imgur.com/i9UWRS8.png',
-      title: 'Spotify Clone',
-      stack: [
-        {
-          name: 'React',
-          image: 'https://imgur.com/mpjlXh4.png'
-        },
-        {
-          name: 'NodeJs',
-          image: 'https://imgur.com/mpjlXh4.png'
-        },
-        {
-          name: 'CSS',
-          image: 'https://imgur.com/mpjlXh4.png'
-        }
-      ]
-    },
-    {
-      image: 'https://imgur.com/LtdTASQ.png',
-      logo: 'https://imgur.com/i9UWRS8.png',
-      title: 'Spotify Clone',
-      stack: [
-        {
-          name: 'React',
-          image: 'https://imgur.com/mpjlXh4.png'
-        },
-        {
-          name: 'NodeJs',
-          image: 'https://imgur.com/mpjlXh4.png'
-        },
-        {
-          name: 'CSS',
-          image: 'https://imgur.com/mpjlXh4.png'
-        }
-      ]
-    },
-    {
-      image: 'https://imgur.com/LtdTASQ.png',
-      logo: 'https://imgur.com/i9UWRS8.png',
-      title: 'Spotify Clone',
-      stack: [
-        {
-          name: 'React',
-          image: 'https://imgur.com/mpjlXh4.png'
-        },
-        {
-          name: 'NodeJs',
-          image: 'https://imgur.com/mpjlXh4.png'
-        },
-        {
-          name: 'CSS',
-          image: 'https://imgur.com/mpjlXh4.png'
-        },
-        {
-          name: 'React',
-          image: 'https://imgur.com/mpjlXh4.png'
-        },
-        {
-          name: 'React',
-          image: 'https://imgur.com/mpjlXh4.png'
-        },
-        {
-          name: 'React',
-          image: 'https://imgur.com/mpjlXh4.png'
-        },
-        {
-          name: 'React',
-          image: 'https://imgur.com/mpjlXh4.png'
-        }
-      ]
+  const [projects, setProjects] = useState<FullProject[]>([])
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      const response = await getProjects()
+
+      const projectsWithTech: FullProject[] = await Promise.all(
+        response.map(async project => {
+          const technologies = await Promise.all(
+            project.stack.map(id => getTechnologyById(id))
+          )
+          return {
+            ...project,
+            stack: technologies
+          }
+        })
+      )
+
+      setProjects(projectsWithTech)
     }
-  ]
+
+    fetchProjects()
+  }, [])
 
   return (
     <div id="projects">

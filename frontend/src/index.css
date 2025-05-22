@@ -428,7 +428,7 @@ a {
 }
 
 .project-item {
-  min-height: 534px;
+  min-height: 455px;
   margin: 40px;
   border-radius: 20px;
   width: 40%;
@@ -471,6 +471,7 @@ a {
 .project-item__logo img {
   margin-right: 30px;
   transition: 0.5s ease;
+  width: 130px;
 }
 
 .project-item:hover .project-item__logo {
@@ -518,11 +519,16 @@ a {
   padding: 20px;
 }
 
+.project-item__detail-content img {
+  width: 65%;
+  margin-top: 27px;
+}
+
 .project-item__detail-content h2 {
   color: white;
   font-family: 'Inter', sans-serif;
   font-weight: bold;
-  font-size: 35px;
+  font-size: 30px;
 }
 
 .project-item__detail-content a {
@@ -606,18 +612,18 @@ p {
 }
 
 .stack__item {
-  padding-top: 3px;
-  width: 70px;
+  padding: 7px;
   display: flex;
+  gap: 4px;
   background: linear-gradient(
     145deg,
     rgba(255, 255, 255, 0.05),
     rgba(255, 255, 255, 0.02)
   );
-  border: 3px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   border-radius: 15px;
   font-family: 'Inter', sans-serif;
-  font-size: 10px;
+  font-size: 8px;
   font-weight: 500;
   color: #ffffff;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -630,8 +636,8 @@ p {
 }
 
 .stack__item img {
-  width: 25px;
-  height: 25px;
+  width: 15px;
+  height: 15px;
 }
 
 .stack__item p {
@@ -836,7 +842,7 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: -19px 15px 0 0;
+  margin: 10px 15px 0 0;
 }
 
 .pagination__arrow {
@@ -1673,7 +1679,7 @@ p {
 }
 
 .stack-fields-item p {
-  font-size: 10px;
+  font-size: 9px;
   white-space: nowrap;
   width: 15%;
 }
@@ -1742,7 +1748,7 @@ input:focus {
 }
 
 .stack-card-wrapper {
-  width: 84%;
+  width: 57%;
   display: flex;
 }
 
@@ -1751,7 +1757,7 @@ input:focus {
   margin-left: 50px;
   border: 2px solid #606165;
   border-radius: 15px;
-  width: 70%;
+  width: 58%;
   padding: 10px;
 }
 
@@ -2029,6 +2035,10 @@ input:focus {
     height: 10px;
   }
 
+  .pagination {
+    margin-top: -19px;
+  }
+
   .img__container {
     width: 14%;
     height: 40px;
@@ -2121,11 +2131,20 @@ input:focus {
   }
 
   .project-item__logo h2 {
-    font-size: 20px;
+    font-size: 15px;
+  }
+
+  .arrow-down {
+    margin-top: 20px;
+    width: 30px;
   }
 
   .project-item__detail img {
     width: 200px;
+  }
+
+  .project-item__detail-header {
+    padding: 5px;
   }
 
   .project-item__detail-content h2 {

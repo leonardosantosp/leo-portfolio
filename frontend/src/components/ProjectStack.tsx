@@ -1,8 +1,7 @@
+import type { ReturnedTechnology } from '../api-client/technologiesApi'
+
 interface stackItemProps {
-  stack: {
-    name: string
-    image: string
-  }[]
+  stack: ReturnedTechnology[]
 }
 
 export const ProjectStack = ({ stack }: stackItemProps) => {
@@ -10,7 +9,7 @@ export const ProjectStack = ({ stack }: stackItemProps) => {
     <>
       {stack.map(stackItem => (
         <div className="stack__item" key={stackItem.name}>
-          <img src={stackItem.image} alt={`logo do ${stackItem.name}`} />
+          <img src={stackItem.icon} alt={`logo do ${stackItem.name}`} />
           <p>{stackItem.name}</p>
         </div>
       ))}

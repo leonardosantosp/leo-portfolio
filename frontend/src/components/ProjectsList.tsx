@@ -1,17 +1,9 @@
 import { ProjectItem } from './ProjectItem'
-
-interface Project {
-  title: string
-  logo: string
-  image: string
-  stack: {
-    name: string
-    image: string
-  }[]
-}
+import { getTechnologyById } from '../api-client/technologiesApi'
+import type { FullProject } from '../sections/ProjetcsSection'
 
 interface ProjectsListProps {
-  projects: Project[]
+  projects: FullProject[]
 }
 
 export const ProjectsList = ({ projects }: ProjectsListProps) => {
@@ -20,10 +12,10 @@ export const ProjectsList = ({ projects }: ProjectsListProps) => {
       {projects
         .map(project => (
           <ProjectItem
-            key={project.title}
+            key={project._id}
             logo={project.logo}
             title={project.title}
-            image={project.image}
+            image={project.mockup}
             stack={project.stack}
           />
         ))
