@@ -5,7 +5,8 @@ import {
   createProjectController,
   updateProjectController,
   deleteProjectController,
-  getProjectsByTechnologyController
+  getProjectsByTechnologyController,
+  getProjectByRepositoryController
 } from '../controllers/project.controller'
 import { projectSchema } from '../schemas/project.schema'
 
@@ -85,6 +86,31 @@ export function projectRoutes(app) {
       }
     },
     getProjectsByTechnologyController
+  )
+
+  app.get(
+    '/projects/repository/:repository',
+    {
+      schema: {
+        summary: '',
+        description: '',
+        tags: ['Projects'],
+        params: z.object({
+          repository: z.string()
+        }),
+        response: {
+          200: projectSchema,
+          404: z.object({
+            message: z.string()
+          }),
+          500: z.object({
+            message: z.string(),
+            error: z.string()
+          })
+        }
+      }
+    },
+    getProjectByRepositoryController
   )
 
   app.post(

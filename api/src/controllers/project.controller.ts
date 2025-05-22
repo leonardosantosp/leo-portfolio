@@ -5,7 +5,8 @@ import {
   createProjectService,
   updateProjectService,
   deleteProjectService,
-  getProjectsByTechnologyService
+  getProjectsByTechnologyService,
+  getProjectByRepositoryService
 } from '../services/project.service'
 import { ErrorCode, ErrorMessages } from '../constants/errors'
 
@@ -63,6 +64,31 @@ export const getProjectsByTechnologyController = async (req, res) => {
       return res
         .status(404)
         .send({ message: ` technology ${ErrorMessages[ErrorCode.NOT_FOUND]}` })
+    }
+    console.error(
+      `${ErrorMessages[ErrorCode.ERROR_WHILE_CREATING]} Project: `,
+      error
+    )
+    return res
+      .status(500)
+      .send({ message: ErrorMessages[ErrorCode.INTERNAL_SERVER_ERROR] })
+  }
+}
+
+export const getProjectByRepositoryController = async (req, res) => {
+  const { repository } = req.params
+
+  try {
+    const project = await getProjectByRepositoryService(repository)
+    return res.status(200).send(project)
+  } catch (error) {
+    if (
+      error instanceof Error &&
+      error.message === ErrorMessages[ErrorCode.NOT_FOUND]
+    ) {
+      res
+        .status(404)
+        .send({ message: ` project ${ErrorMessages[ErrorCode.NOT_FOUND]}` })
     }
     console.error(
       `${ErrorMessages[ErrorCode.ERROR_WHILE_CREATING]} Project: `,

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import rehypeRaw from 'rehype-raw'
 import 'github-markdown-css/github-markdown.css'
 import readme from '../assets/readme.png'
+import { useParams } from 'react-router-dom'
 
 export const ProjectReadme = () => {
   const [content, setContent] = useState('')

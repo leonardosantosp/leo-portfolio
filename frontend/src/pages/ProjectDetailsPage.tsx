@@ -4,9 +4,11 @@ import { Footer } from '../components/Footer'
 import github from '../assets/github-icon.png'
 import { useEffect, useState } from 'react'
 import { LoadingScreen } from '../components/LoadingScreen'
+import { useParams } from 'react-router-dom'
 
 export const ProjectDetailsPage = () => {
   const [loading, setLoading] = useState(true)
+  const { repository } = useParams()
 
   useEffect(() => {
     const time = setTimeout(() => {

@@ -16,6 +16,7 @@ export const ProjectsList = ({ projects }: ProjectsListProps) => {
             title={project.title}
             image={project.mockup}
             stack={project.stack}
+            repository={project.repository}
           />
         ))
         .reverse()}

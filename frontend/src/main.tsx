@@ -17,7 +17,7 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/project/:id" element={<ProjectDetailsPage />} />
+        <Route path="/project/:repository" element={<ProjectDetailsPage />} />
         <Route path="/projects/:slug" element={<ProjectsByStackPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route

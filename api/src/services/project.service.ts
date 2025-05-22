@@ -37,6 +37,21 @@ export async function getProjectsByTechnologyService(slug: string) {
   return projects
 }
 
+export async function getProjectByRepositoryService(repository: string) {
+  const project = await checkProjectUniqueness(
+    undefined,
+    undefined,
+    repository,
+    undefined
+  )
+
+  if (!project) {
+    throw new Error(ErrorCode.NOT_FOUND)
+  }
+
+  return project
+}
+
 export async function createProjectService(projectData: CreateProjectDtoType) {
   const slug = generateSlug(projectData.title)
 

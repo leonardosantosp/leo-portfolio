@@ -98,6 +98,9 @@ GET http://localhost:3333/projects/{{ projectId }}
 GET http://localhost:3333/projects/technology/html
 
 ###
+GET http://localhost:3333/projects/repository/full-stack-spotify
+
+###
 PATCH http://localhost:3333/projects/680a239d7c6442a8f0f3df59
 Content-Type: application/json
 
@@ -119,6 +122,6 @@ POST http://localhost:3333/login
 Content-Type: application/json
 
 {
-  "user": "LeoAdminPortfolio04/11026464858",
-  "password": "bf9ae3fcc1ba19f05d53a534e111a89407bb5d8c589e11ef68d486da9858dbb8baa7fdefb66b74733cad57c96e5a340f6566b1bc68004deaad024b57f0f42758"
+  "user": "user",
+  "password": "password"
 }

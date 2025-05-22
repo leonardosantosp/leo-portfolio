@@ -7,6 +7,7 @@ interface ProjectItemProps {
   logo: string
   title: string
   image: string
+  repository: string
   stack: ReturnedTechnology[]
 }
 
@@ -16,7 +17,8 @@ export const ProjectItem = ({
   logo,
   title,
   image,
-  stack
+  stack,
+  repository
 }: ProjectItemProps) => {
   const [isVisible, setIsVisible] = useState(false)
 
@@ -50,7 +52,7 @@ export const ProjectItem = ({
             <div className="project-item__detail-content">
               <h2>{title}</h2>
               <img src={image} alt="mockup do projeto" />
-              <Link to={`/project/${title.replace(/\s+/g, '_')}`}>View</Link>
+              <Link to={`/project/${repository}`}>View</Link>
             </div>
           </div>
         )}
