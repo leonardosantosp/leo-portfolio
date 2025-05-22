@@ -1,5 +1,6 @@
 import react from '../assets/app-images/react.png'
 import type { ReturnedTechnology } from '../api-client/technologiesApi'
+import { Link } from 'react-router-dom'
 
 interface AppListProps {
   currentPage: number
@@ -15,7 +16,9 @@ export const AppList = ({ currentPage, pageSize, apps }: AppListProps) => {
   return (
     <div className="apps">
       {visibleApps.map(app => (
-        <img key={app._id} src={app.appIcon} alt="" />
+        <Link to={`/projects/${app.slug}`} key={app._id}>
+          <img src={app.appIcon} alt="" />
+        </Link>
       ))}
     </div>
   )
