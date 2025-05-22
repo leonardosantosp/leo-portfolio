@@ -9,7 +9,10 @@ export const ProjectStack = ({ stack }: stackItemProps) => {
   return (
     <>
       {stack.map(stackItem => (
-        <Link to={`/projects/${stackItem.slug}`} key={stackItem.name}>
+        <Link
+          to={`/projects/technology/${stackItem.slug}`}
+          key={stackItem.name}
+        >
           <div className="stack__item">
             <img src={stackItem.icon} alt={`logo do ${stackItem.name}`} />
             <p>{stackItem.name}</p>

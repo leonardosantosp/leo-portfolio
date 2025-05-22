@@ -3,19 +3,23 @@ import { useEffect, useState } from 'react'
 import rehypeRaw from 'rehype-raw'
 import 'github-markdown-css/github-markdown.css'
 import readme from '../assets/readme.png'
-import { useParams } from 'react-router-dom'
+import type { ReturnedProject } from '../api-client/projectsApi'
 
-export const ProjectReadme = () => {
+type ProjectReadmeProps = {
+  project: ReturnedProject
+}
+
+export const ProjectReadme = ({ project }: ProjectReadmeProps) => {
   const [content, setContent] = useState('')
   const [expanded, setExpanded] = useState(false)
 
   useEffect(() => {
     fetch(
-      'https://raw.githubusercontent.com/leonardosantosp/full-stack-spotify/main/README.md'
+      `https://raw.githubusercontent.com/leonardosantosp/${project.repository}/main/README.md`
     )
       .then(res => res.text())
       .then(setContent)
-  }, [])
+  }, [project.repository])
 
   return (
     <div className="readme-wrapper">

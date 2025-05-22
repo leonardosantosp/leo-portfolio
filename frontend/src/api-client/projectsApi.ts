@@ -49,6 +49,13 @@ export const getProjectsBySlug = async (
   return response.data
 }
 
+export const getProjectByRepository = async (
+  repository: string
+): Promise<ReturnedProject> => {
+  const response = await API.get(`/projects/repository/${repository}`)
+  return response.data
+}
+
 export const createProject = async (
   project: CreateProject
 ): Promise<ReturnedProject> => {

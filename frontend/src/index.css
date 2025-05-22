@@ -660,6 +660,7 @@ p {
 
 .project-page__header img {
   margin-right: 30px;
+  width: 100px;
 }
 
 .project-page__header h2 {

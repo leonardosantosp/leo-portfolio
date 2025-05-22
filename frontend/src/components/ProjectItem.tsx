@@ -52,7 +52,7 @@ export const ProjectItem = ({
             <div className="project-item__detail-content">
               <h2>{title}</h2>
               <img src={image} alt="mockup do projeto" />
-              <Link to={`/project/${repository}`}>View</Link>
+              <Link to={`/projects/${repository}`}>View</Link>
             </div>
           </div>
         )}

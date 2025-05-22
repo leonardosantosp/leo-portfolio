@@ -16,7 +16,7 @@ export const AppList = ({ currentPage, pageSize, apps }: AppListProps) => {
   return (
     <div className="apps">
       {visibleApps.map(app => (
-        <Link to={`/projects/${app.slug}`} key={app._id}>
+        <Link to={`/projects/technology/${app.slug}`} key={app._id}>
           <img src={app.appIcon} alt="" />
         </Link>
       ))}
