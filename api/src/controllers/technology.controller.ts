@@ -4,7 +4,8 @@ import {
   getTechnologyByIdService,
   createTechnologyService,
   updateTechnologyService,
-  deleteTechnologyService
+  deleteTechnologyService,
+  getTechnologyBySlugService
 } from '../services/technology.service'
 import { ErrorCode, ErrorMessages } from '../constants/errors'
 
@@ -34,6 +35,29 @@ export const getTechnologyByIdController = async (req, res) => {
 
   try {
     const technology = await getTechnologyByIdService(id)
+    return res.status(200).send(technology)
+  } catch (error) {
+    if (error instanceof Error && error.message === ErrorCode.NOT_FOUND) {
+      return res
+        .status(404)
+        .send({ message: `Technology ${ErrorMessages[ErrorCode.NOT_FOUND]}` })
+    }
+
+    console.error(
+      `${ErrorMessages[ErrorCode.ERROR_WHILE_FETCHING]} Technology:`,
+      error
+    )
+    return res
+      .status(500)
+      .send({ message: ErrorMessages[ErrorCode.INTERNAL_SERVER_ERROR] })
+  }
+}
+
+export const getTechnologyBySlugController = async (req, res) => {
+  const { slug } = req.params
+
+  try {
+    const technology = await getTechnologyBySlugService(slug)
     return res.status(200).send(technology)
   } catch (error) {
     if (error instanceof Error && error.message === ErrorCode.NOT_FOUND) {

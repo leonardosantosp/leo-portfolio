@@ -1,168 +1,59 @@
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 import { ProjectsList } from '../components/ProjectsList'
-import iconReact from '../assets/react.png'
-
-const projects = [
-  {
-    image: 'https://imgur.com/LtdTASQ.png',
-    logo: 'https://imgur.com/i9UWRS8.png',
-    title: 'Spotify Clone',
-    link: 'http://projeto.com',
-    stack: [
-      {
-        name: 'React',
-        image: 'https://imgur.com/mpjlXh4.png'
-      },
-      {
-        name: 'NodeJs',
-        image: 'https://imgur.com/mpjlXh4.png'
-      },
-      {
-        name: 'CSS',
-        image: 'https://imgur.com/mpjlXh4.png'
-      }
-    ]
-  },
-  {
-    image: 'https://imgur.com/LtdTASQ.png',
-    logo: 'https://imgur.com/i9UWRS8.png',
-    title: 'Spotify Clone',
-    stack: [
-      {
-        name: 'React',
-        image: 'https://imgur.com/mpjlXh4.png'
-      },
-      {
-        name: 'NodeJs',
-        image: 'https://imgur.com/mpjlXh4.png'
-      },
-      {
-        name: 'CSS',
-        image: 'https://imgur.com/mpjlXh4.png'
-      }
-    ]
-  },
-  {
-    image: 'https://imgur.com/LtdTASQ.png',
-    logo: 'https://imgur.com/i9UWRS8.png',
-    title: 'Spotify Clone',
-    stack: [
-      {
-        name: 'React',
-        image: 'https://imgur.com/mpjlXh4.png'
-      },
-      {
-        name: 'NodeJs',
-        image: 'https://imgur.com/mpjlXh4.png'
-      },
-      {
-        name: 'CSS',
-        image: 'https://imgur.com/mpjlXh4.png'
-      }
-    ]
-  },
-  {
-    image: 'https://imgur.com/LtdTASQ.png',
-    logo: 'https://imgur.com/i9UWRS8.png',
-    title: 'Spotify Clone',
-    stack: [
-      {
-        name: 'React',
-        image: 'https://imgur.com/mpjlXh4.png'
-      },
-      {
-        name: 'NodeJs',
-        image: 'https://imgur.com/mpjlXh4.png'
-      },
-      {
-        name: 'CSS',
-        image: 'https://imgur.com/mpjlXh4.png'
-      }
-    ]
-  },
-  {
-    image: 'https://imgur.com/LtdTASQ.png',
-    logo: 'https://imgur.com/i9UWRS8.png',
-    title: 'Spotify Clone',
-    stack: [
-      {
-        name: 'React',
-        image: 'https://imgur.com/mpjlXh4.png'
-      },
-      {
-        name: 'NodeJs',
-        image: 'https://imgur.com/mpjlXh4.png'
-      },
-      {
-        name: 'CSS',
-        image: 'https://imgur.com/mpjlXh4.png'
-      }
-    ]
-  },
-  {
-    image: 'https://imgur.com/LtdTASQ.png',
-    logo: 'https://imgur.com/i9UWRS8.png',
-    title: 'Spotify Clone',
-    stack: [
-      {
-        name: 'React',
-        image: 'https://imgur.com/mpjlXh4.png'
-      },
-      {
-        name: 'NodeJs',
-        image: 'https://imgur.com/mpjlXh4.png'
-      },
-      {
-        name: 'CSS',
-        image: 'https://imgur.com/mpjlXh4.png'
-      }
-    ]
-  },
-  {
-    image: 'https://imgur.com/LtdTASQ.png',
-    logo: 'https://imgur.com/i9UWRS8.png',
-    title: 'Spotify Clone',
-    stack: [
-      {
-        name: 'React',
-        image: 'https://imgur.com/mpjlXh4.png'
-      },
-      {
-        name: 'NodeJs',
-        image: 'https://imgur.com/mpjlXh4.png'
-      },
-      {
-        name: 'CSS',
-        image: 'https://imgur.com/mpjlXh4.png'
-      },
-      {
-        name: 'React',
-        image: 'https://imgur.com/mpjlXh4.png'
-      },
-      {
-        name: 'React',
-        image: 'https://imgur.com/mpjlXh4.png'
-      },
-      {
-        name: 'React',
-        image: 'https://imgur.com/mpjlXh4.png'
-      },
-      {
-        name: 'React',
-        image: 'https://imgur.com/mpjlXh4.png'
-      }
-    ]
-  }
-]
+import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import {
+  getTechnologyById,
+  getTechnologyBySlug,
+  type ReturnedTechnology
+} from '../api-client/technologiesApi'
+import { getProjectsBySlug } from '../api-client/projectsApi'
+import type { FullProject } from '../sections/ProjetcsSection'
 
 export const ProjectsByStackPage = () => {
+  const { slug } = useParams()
+  const [technology, setTechnology] = useState<ReturnedTechnology>()
+  const [projects, setProjects] = useState<FullProject[]>([])
+
+  useEffect(() => {
+    if (!slug) return
+
+    const fetchTechnology = async () => {
+      const response = await getTechnologyBySlug(slug)
+      setTechnology(response)
+    }
+
+    const fetchProjects = async () => {
+      fetchTechnology()
+      const response = await getProjectsBySlug(slug)
+      const projectsWithTech: FullProject[] = await Promise.all(
+        response.map(async project => {
+          const technologies = await Promise.all(
+            project.stack.map(id => getTechnologyById(id))
+          )
+          return {
+            ...project,
+            stack: technologies
+          }
+        })
+      )
+
+      setProjects(projectsWithTech)
+    }
+
+    fetchProjects()
+  }, [slug])
+
   return (
     <div className="project-by-stack">
       <Header showMenu={false} text="léo" />
       <div className="project-by-stack__header">
-        <img src={iconReact} alt="logo da technologia X" />
-        <h2>React</h2>
+        <img
+          src={technology?.icon}
+          alt={`Logo da technologia ${technology?.name}`}
+        />
+        <h2>{technology?.name}</h2>
       </div>
 
       <ProjectsList projects={projects} />

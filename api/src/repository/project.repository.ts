@@ -1,4 +1,5 @@
 import Project from '../models/Project'
+import { checkTechnologyUniqueness } from './technology.repository'
 
 type UpdateProjectType = {
   _id: string
@@ -18,6 +19,15 @@ export async function getAllProjects() {
 
 export async function getProjectById(id: string) {
   return await Project.findById(id)
+}
+
+export async function getProjectsByTechnology(slug: string) {
+  const technology = await checkTechnologyUniqueness(undefined, slug)
+
+  if (!technology) return null
+  return await Project.find({
+    stack: technology._id
+  })
 }
 
 export async function checkProjectUniqueness(

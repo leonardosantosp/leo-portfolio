@@ -4,7 +4,8 @@ import {
   createProject,
   checkProjectUniqueness,
   updateProject,
-  deleteProject
+  deleteProject,
+  getProjectsByTechnology
 } from '../repository/project.repository'
 
 import type { CreateProjectDtoType } from '../dtos/project/create-project.dto'
@@ -24,6 +25,16 @@ export async function getProjectByIdService(id: string) {
   }
 
   return project
+}
+
+export async function getProjectsByTechnologyService(slug: string) {
+  const projects = await getProjectsByTechnology(slug)
+
+  if (!projects) {
+    throw new Error(ErrorCode.NOT_FOUND)
+  }
+
+  return projects
 }
 
 export async function createProjectService(projectData: CreateProjectDtoType) {

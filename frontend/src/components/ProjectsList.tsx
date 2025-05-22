@@ -1,5 +1,4 @@
 import { ProjectItem } from './ProjectItem'
-import { getTechnologyById } from '../api-client/technologiesApi'
 import type { FullProject } from '../sections/ProjetcsSection'
 
 interface ProjectsListProps {

@@ -18,7 +18,7 @@ createRoot(document.getElementById('root')!).render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/project/:id" element={<ProjectDetailsPage />} />
-        <Route path="/projects/:stackId" element={<ProjectsByStackPage />} />
+        <Route path="/projects/:slug" element={<ProjectsByStackPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route
           path="/admin-page"

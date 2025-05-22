@@ -54,6 +54,9 @@ GET http://localhost:3333/technologies
 GET http://localhost:3333/technologies/{{technologyId}}
 
 ###
+GET http://localhost:3333/technologies/search/nodejs
+
+###
 PATCH http://localhost:3333/technologies/{{technologyId}}
 Content-Type: application/json
 
@@ -90,6 +93,9 @@ GET http://localhost:3333/projects
 
 ### 
 GET http://localhost:3333/projects/{{ projectId }}
+
+###
+GET http://localhost:3333/projects/technology/html
 
 ###
 PATCH http://localhost:3333/projects/680a239d7c6442a8f0f3df59

@@ -26,6 +26,16 @@ export async function getTechnologyByIdService(id: string) {
   return technology
 }
 
+export async function getTechnologyBySlugService(slug: string) {
+  const technology = await checkTechnologyUniqueness(undefined, slug)
+
+  if (!technology) {
+    throw new Error(ErrorCode.NOT_FOUND)
+  }
+
+  return technology
+}
+
 export async function createTechnologyService(
   technologyData: CreateTechnologyDtoType
 ) {

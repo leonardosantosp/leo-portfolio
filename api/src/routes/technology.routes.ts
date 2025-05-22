@@ -4,7 +4,8 @@ import {
   getTechnologyByIdController,
   createTechnologyController,
   updateTechnologyController,
-  deleteTechnologyController
+  deleteTechnologyController,
+  getTechnologyBySlugController
 } from '../controllers/technology.controller.ts'
 
 import { technologySchema } from '../schemas/technology.schema.ts'
@@ -59,6 +60,32 @@ export function technologyRoutes(app) {
       }
     },
     getTechnologyByIdController
+  )
+
+  app.get(
+    '/technologies/search/:slug',
+    {
+      schema: {
+        description: 'Retrieve a technology by slug',
+        summart:
+          'Retrieves the details of a specific technology by its slug from the database.',
+        tags: ['Technologies'],
+        params: z.object({
+          slug: z.string()
+        }),
+        response: {
+          200: technologySchema,
+          404: z.object({
+            message: z.string()
+          }),
+          500: z.object({
+            message: z.string(),
+            error: z.string()
+          })
+        }
+      }
+    },
+    getTechnologyBySlugController
   )
 
   app.post(

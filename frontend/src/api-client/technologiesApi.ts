@@ -32,6 +32,13 @@ export const getTechnologyById = async (
   return response.data
 }
 
+export const getTechnologyBySlug = async (
+  slug: string
+): Promise<ReturnedTechnology> => {
+  const response = await API.get(`/technologies/search/${slug}`)
+  return response.data
+}
+
 export const createTechnology = async (
   technology: CreateTechnology
 ): Promise<ReturnedTechnology> => {

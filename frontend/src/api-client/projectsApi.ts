@@ -42,6 +42,13 @@ export const getProjectById = async (id: string): Promise<ReturnedProject> => {
   return response.data
 }
 
+export const getProjectsBySlug = async (
+  slug: string
+): Promise<ReturnedProject[]> => {
+  const response = await API.get(`/projects/technology/${slug}`)
+  return response.data
+}
+
 export const createProject = async (
   project: CreateProject
 ): Promise<ReturnedProject> => {
