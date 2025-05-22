@@ -2340,6 +2340,10 @@ input:focus {
 
   /* Project By Stack */
 
+  .project-by-stack {
+    height: 90dvh;
+  }
+
   .project-by-stack__header img {
     width: 60px;
     height: 60px;
