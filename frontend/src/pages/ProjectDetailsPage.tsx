@@ -42,7 +42,10 @@ export const ProjectDetailsPage = () => {
         <Header showMenu={false} text="léo" />
         <div className="project-page">
           <div className="project-page__header">
-            <img src={project?.logo} alt="logo do projeto X" />
+            <img
+              src={project?.logo}
+              alt={`logo do projeto ${project?.title}`}
+            />
             <h2>{project?.title}</h2>
           </div>
           <div className="links-container">
@@ -56,8 +59,8 @@ export const ProjectDetailsPage = () => {
             <a href="http://localhost:5173/" target="_blank">
               {' '}
               <img
-                src="https://imgur.com/i9UWRS8.png"
-                alt="logo do projeto X"
+                src={project?.logo}
+                alt={`logo do projeto ${project?.title}`}
                 width={30}
                 height={30}
               />{' '}

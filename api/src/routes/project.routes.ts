@@ -67,8 +67,9 @@ export function projectRoutes(app) {
     '/projects/technology/:slug',
     {
       schema: {
-        description: '',
-        summary: '',
+        description: 'Retrieve a project by its slug',
+        summary:
+          'Fetch detailed information about a specific project using its slug. Returns metadata, including title, logo, stack, mockup, repository, slug, video and links.',
         tags: ['Projects'],
         params: z.object({
           slug: z.string()
@@ -92,8 +93,9 @@ export function projectRoutes(app) {
     '/projects/repository/:repository',
     {
       schema: {
-        summary: '',
-        description: '',
+        summary: 'Retrieve a project by its repository',
+        description:
+          'Fetch detailed information about a specific project using its repository. Returns metadata, including title, logo, stack, mockup, repository, slug, video and links.',
         tags: ['Projects'],
         params: z.object({
           repository: z.string()
