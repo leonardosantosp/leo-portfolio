@@ -20,6 +20,7 @@ export const ProjectDetailsPage = () => {
       if (!repository) return
       const response = await getProjectByRepository(repository)
       setProject(response)
+      console.log(response.videoUrl)
     }
 
     const time = setTimeout(() => {
@@ -48,6 +49,20 @@ export const ProjectDetailsPage = () => {
             />
             <h2>{project?.title}</h2>
           </div>
+          {project?.videoUrl && (
+            <div className="video-wrapper">
+              <iframe
+                className="video-frame"
+                width="80%"
+                height="700"
+                src={project.videoUrl}
+                title="Vídeo de teste"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          )}
           <div className="links-container">
             <a
               href={`https://github.com/leonardosantosp/${project?.repository}`}

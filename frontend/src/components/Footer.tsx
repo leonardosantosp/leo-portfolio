@@ -5,7 +5,7 @@ import zap from '../assets/whatsapp-icon.png'
 
 export const Footer = () => {
   return (
-    <footer className="footer">
+    <div className="footer">
       <Header showMenu={false} text="léo" />
       <div className="footer__contact">
         <p>Contato: </p>
@@ -19,6 +19,6 @@ export const Footer = () => {
           <img src={zap} alt="icon whatsapp" />
         </a>
       </div>
-    </footer>
+    </div>
   )
 }

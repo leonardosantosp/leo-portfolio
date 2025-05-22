@@ -46,19 +46,21 @@ export const ProjectsByStackPage = () => {
   }, [slug])
 
   return (
-    <div className="project-by-stack">
+    <>
       <Header showMenu={false} text="léo" />
-      <div className="project-by-stack__header">
-        <img
-          src={technology?.icon}
-          alt={`Logo da technologia ${technology?.name}`}
-        />
-        <h2>{technology?.name}</h2>
+
+      <div className="project-by-stack">
+        <div className="project-by-stack__header">
+          <img
+            src={technology?.icon}
+            alt={`Logo da technologia ${technology?.name}`}
+          />
+          <h2>{technology?.name}</h2>
+        </div>
+
+        <ProjectsList projects={projects} />
       </div>
-
-      <ProjectsList projects={projects} />
-
       <Footer />
-    </div>
+    </>
   )
 }
