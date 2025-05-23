@@ -35,7 +35,7 @@ export const ProjectDetailsPage = () => {
     }
   }, [repository])
 
-  if (!project) {
+  if (!loading && !project) {
     return <NotFoundError type="Projeto" />
   }
 

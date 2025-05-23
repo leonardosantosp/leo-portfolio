@@ -63,7 +63,7 @@ export const ProjectsByStackPage = () => {
 
   const fullyLoaded = dataLoaded && imagesLoaded
 
-  if (!technology && dataLoaded) {
+  if (dataLoaded && !technology) {
     return <NotFoundError type="Tecnologia" />
   }
 
