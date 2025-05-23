@@ -1685,12 +1685,12 @@ input[type='search']:focus {
 .image-fields {
   display: flex;
   flex-direction: column;
-  width: auto;
+  width: fit-content;
   height: 30%;
   background-color: #374151;
   border: 2px solid #606165;
   border-radius: 10px;
-  padding: 15px;
+  padding: 17px;
   margin: 15px 0;
 }
 
