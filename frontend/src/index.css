@@ -2348,10 +2348,12 @@ input:focus {
 
   .video-wrapper {
     width: 76%;
+    height: 180px;
   }
 
   .video-frame {
-    height: 160px;
+    width: 100%;
+    height: 100% !important;
   }
 
   .link-text {
@@ -2639,7 +2641,7 @@ input:focus {
   }
 
   .item-list__toolbar button {
-    width: 40%;
+    width: auto;
     display: flex;
     align-items: center;
     gap: 5px;
@@ -2755,6 +2757,43 @@ input:focus {
   .item-table__actions-img {
     width: 10px;
     height: 10px;
+  }
+}
+
+/* Ipads */
+
+@media (min-width: 600px) and (max-width: 1024px) {
+  .home__text {
+    width: 325%;
+  }
+
+  img.signature {
+    width: 304px;
+  }
+
+  .home__text {
+    width: 74%;
+    font-size: 21px;
+  }
+
+  .home__contact {
+    width: 80%;
+  }
+
+  .home__contact img {
+    margin: 0 5px;
+  }
+
+  .home__contact-line {
+    margin: 0 10px;
+  }
+
+  .project-item {
+    width: 62%;
+  }
+
+  .project-item__logo h2 {
+    font-size: 27px;
   }
 }
 
