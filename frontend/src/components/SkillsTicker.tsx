@@ -16,8 +16,11 @@ export const SkillsTicker = () => {
   return (
     <div className="skills-ticker">
       <div className="skills-ticker__ticker">
-        {[...skills, ...skills].map(item => (
-          <div className="skills-ticker__ticker-item" key={`${item._id}`}>
+        {[...skills, ...skills].map((item, idx) => (
+          <div
+            className="skills-ticker__ticker-item"
+            key={`${item._id}-${idx}`}
+          >
             <span className="icon">
               <img src={item.icon} alt={`Iconde de ${item.name}`} />
             </span>

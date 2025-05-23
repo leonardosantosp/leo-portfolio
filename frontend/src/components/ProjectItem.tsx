@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ChevronDown, ChevronUp } from 'lucide-react'
 import type { ReturnedTechnology } from '../api-client/technologiesApi'
+import { ProjectStack } from './ProjectStack'
+import { LoadingScreen } from './LoadingScreen'
 
 interface ProjectItemProps {
   logo: string
@@ -10,9 +12,6 @@ interface ProjectItemProps {
   repository: string
   stack: ReturnedTechnology[]
 }
-
-import { ProjectStack } from './ProjectStack'
-import { LoadingScreen } from './LoadingScreen'
 
 export const ProjectItem = ({
   logo,
@@ -23,10 +22,15 @@ export const ProjectItem = ({
 }: ProjectItemProps) => {
   const [isVisible, setIsVisible] = useState(false)
   const [imageLoaded, setImageLoaded] = useState(false)
+  const [showVideo, setShowVideo] = useState(false)
 
   return (
     <>
-      <div className="project-item">
+      <div
+        className="project-item"
+        onMouseEnter={() => setShowVideo(true)}
+        onMouseLeave={() => setShowVideo(false)}
+      >
         {!isVisible ? (
           <div className="project-item__initial">
             <div className="project-item__logo">

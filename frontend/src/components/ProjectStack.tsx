@@ -17,13 +17,10 @@ export const ProjectStack = ({ stack }: stackItemProps) => {
 
   return (
     <>
-      {!allImagesLoaded && <span class="loader"></span>}
+      {!allImagesLoaded && <span className="loader">{}</span>}
 
       {stack.map(stackItem => (
-        <Link
-          to={`/projects/technology/${stackItem.slug}`}
-          key={stackItem.name}
-        >
+        <Link to={`/projects/technology/${stackItem.slug}`} key={stackItem._id}>
           <div
             className="stack__item"
             style={{ opacity: allImagesLoaded ? 1 : 0 }}

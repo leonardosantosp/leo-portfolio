@@ -446,6 +446,8 @@ a {
 }
 
 .project-item__initial {
+  position: relative;
+  overflow: visible;
   margin-top: 60px;
   display: flex;
   flex-direction: column;
@@ -453,7 +455,17 @@ a {
   justify-content: center;
 }
 
+.floating-video {
+  position: fixed;
+  pointer-events: none;
+  z-index: 1000;
+  transition: opacity 0.4s ease;
+  opacity: 0;
+}
+
 .project-item__logo {
+  position: relative;
+  z-index: 1;
   margin-top: 20%;
   display: flex;
   align-items: center;
@@ -714,14 +726,7 @@ p {
   display: inline-block;
   padding: 3px;
   border-radius: 20px;
-  background: radial-gradient(circle at top left, #6d28d9, #9333ea, #6d28d9);
-  box-shadow: 0 0 20px rgba(147, 51, 234, 0.6);
-  animation: subtlePulse 3s ease-in-out infinite;
   transition: transform 0.3s ease;
-}
-
-.video-wrapper:hover {
-  transform: scale(1.015);
 }
 
 .video-frame {
