@@ -63,7 +63,9 @@ export const ProjectsByStackPage = () => {
           <h2>{technology?.name}</h2>
         </div>
         {projects.length !== 0 ? (
-          <ProjectsList projects={projects} />
+          <>
+            <ProjectsList projects={projects} />
+          </>
         ) : (
           <NotFoundError technology={technology} type="Tecnologia" />
         )}
