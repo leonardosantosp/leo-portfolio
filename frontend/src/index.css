@@ -1438,31 +1438,43 @@ p {
 }
 
 .item-search {
+  position: relative;
   display: flex;
   align-items: center;
-  background: #374151;
   width: 25%;
   height: 35%;
+  border: none !important;
+}
+
+.item-search svg {
+  position: absolute;
+}
+
+.item-search input {
+  border: 2px solid #374151;
+  padding: 12px;
+  color: white;
+  text-align: center;
+  background: #323842;
+  width: 100%;
+  height: 100%;
   border-radius: 10px;
-  border: 2px solid #606165;
+}
+
+input[type='search']:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
 }
 
 .item-list__toolbar-light .item-search {
   border: 2px solid #a6a6ab;
-  background: white;
   color: rgb(72, 70, 70);
-}
-
-.item-search input {
-  background: #374151;
-  border-style: none;
-  width: 100%;
-  height: 100%;
-  border-radius: 0 10px 10px 0;
 }
 
 .item-list__toolbar-light .item-search input {
   background: white;
+  color: #1c2330;
 }
 
 .item-search-img {

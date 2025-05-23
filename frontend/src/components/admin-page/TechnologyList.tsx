@@ -3,7 +3,6 @@ import { getTechnologies } from '../../api-client/technologiesApi'
 import { useEffect, useState } from 'react'
 import { useAdmin } from './AdminProvider'
 import { ItemTableList } from './ItemTableList'
-import { ItemCard } from './ItemCard'
 import { SchemaListHeader } from './SchemaListHeader'
 import { ListCards } from './ListCards'
 
@@ -16,7 +15,8 @@ export const TechnologyList = () => {
     reloadList,
     setReloadList,
     isLight,
-    isTable
+    isTable,
+    query
   } = useAdmin()!
 
   const handleDelete = (idToDelete: string) => {
@@ -52,7 +52,9 @@ export const TechnologyList = () => {
       {isTable ? (
         <ItemTableList
           headers={['NAME', 'ICON', 'SLUG', 'APPICON']}
-          itens={technologies}
+          itens={technologies.filter(technology =>
+            technology.name.toLowerCase().includes(query.toLowerCase())
+          )}
           onDelete={technology => setSelectedItemId(technology._id)}
           onDeleteCard={(id: string) => handleDelete(id)}
           onEdit={technology => {
@@ -96,7 +98,9 @@ export const TechnologyList = () => {
         <>
           <SchemaListHeader itens={technologies} />
           <ListCards
-            itens={technologies}
+            itens={technologies.filter(technology =>
+              technology.name.toLowerCase().includes(query.toLowerCase())
+            )}
             renderRow={technology => (
               <>
                 <img

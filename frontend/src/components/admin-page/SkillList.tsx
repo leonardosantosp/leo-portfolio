@@ -3,7 +3,6 @@ import type { ReturnedSkill } from '../../api-client/skillsApi'
 import { getSkills } from '../../api-client/skillsApi'
 import { useAdmin } from './AdminProvider'
 import { ItemTableList } from './ItemTableList'
-import { ItemCard } from './ItemCard'
 import { SchemaListHeader } from './SchemaListHeader'
 import { ListCards } from './ListCards'
 
@@ -15,7 +14,8 @@ export const SkillList = () => {
     reloadList,
     setReloadList,
     isLight,
-    isTable
+    isTable,
+    query
   } = useAdmin()!
 
   const [skills, setSkills] = useState<ReturnedSkill[]>([])
@@ -52,7 +52,9 @@ export const SkillList = () => {
     >
       {isTable ? (
         <ItemTableList
-          itens={skills}
+          itens={skills.filter(skill =>
+            skill.name.toLowerCase().includes(query.toLowerCase())
+          )}
           onDelete={skill => {
             setSelectedItemId(skill._id)
           }}
@@ -85,7 +87,9 @@ export const SkillList = () => {
         <>
           <SchemaListHeader itens={skills} />
           <ListCards
-            itens={skills}
+            itens={skills.filter(skill =>
+              skill.name.toLowerCase().includes(query.toLowerCase())
+            )}
             renderRow={skill => (
               <>
                 <img src={skill.icon} alt={skill.name} height={35} width={35} />

@@ -6,7 +6,8 @@ type SchemaListHeaderProps<T> = {
 }
 
 export const SchemaListHeader = <T,>({ itens }: SchemaListHeaderProps<T>) => {
-  const { isLight, schema, setIsMenuVisible, setFormMode } = useAdmin()!
+  const { isLight, schema, setIsMenuVisible, setFormMode, query, setQuery } =
+    useAdmin()!
 
   return (
     <>
@@ -25,7 +26,12 @@ export const SchemaListHeader = <T,>({ itens }: SchemaListHeaderProps<T>) => {
       >
         <div className="item-search">
           <Search size={18} className="item-search-img" />
-          <input type="search" placeholder={`Search for ${schema}`} />
+          <input
+            type="search"
+            placeholder={`Search for ${schema}`}
+            value={query}
+            onChange={e => setQuery(e.target.value)}
+          />
         </div>
 
         <button

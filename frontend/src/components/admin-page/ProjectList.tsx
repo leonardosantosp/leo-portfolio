@@ -4,7 +4,6 @@ import type { ReturnedProject } from '../../api-client/projectsApi'
 import { ItemTableList } from './ItemTableList'
 import { useAdmin } from './AdminProvider'
 import { Link } from 'lucide-react'
-import { ItemCard } from './ItemCard'
 import { SchemaListHeader } from './SchemaListHeader'
 import { ListCards } from './ListCards'
 
@@ -17,7 +16,8 @@ export const ProjectList = () => {
     reloadList,
     setReloadList,
     isLight,
-    isTable
+    isTable,
+    query
   } = useAdmin()!
 
   const handleDelete = (idToDelete: string) => {
@@ -59,7 +59,9 @@ export const ProjectList = () => {
             'VIDEO URL',
             'SLUG'
           ]}
-          itens={projects}
+          itens={projects.filter(project =>
+            project.title.toLowerCase().includes(query.toLowerCase())
+          )}
           onDelete={project => {
             setSelectedItemId(project._id)
           }}
@@ -130,7 +132,9 @@ export const ProjectList = () => {
         <>
           <SchemaListHeader itens={projects} />
           <ListCards
-            itens={projects}
+            itens={projects.filter(project =>
+              project.title.toLowerCase().includes(query.toLowerCase())
+            )}
             onDelete={project => {
               setSelectedItemId(project._id)
             }}

@@ -1,5 +1,7 @@
 import { createContext, useState, useContext } from 'react'
 type AdminContextType = {
+  query: string
+  setQuery: (item: string) => void
   isMenuVisible: boolean
   isLight: boolean
   isTable: boolean
@@ -18,6 +20,7 @@ type AdminContextType = {
 const AdminContext = createContext<AdminContextType | null>(null)
 
 export const AdminProvider = ({ children }: { children: React.ReactNode }) => {
+  const [query, setQuery] = useState('')
   const [reloadList, setReloadList] = useState(false)
   const [isMenuVisible, setIsMenuVisible] = useState(false)
   const [isLight, setIsLight] = useState(false)
@@ -46,7 +49,9 @@ export const AdminProvider = ({ children }: { children: React.ReactNode }) => {
         isLight,
         setIsLight,
         isTable,
-        setIsTable
+        setIsTable,
+        query,
+        setQuery
       }}
     >
       {children}
