@@ -12,6 +12,7 @@ interface ProjectItemProps {
 }
 
 import { ProjectStack } from './ProjectStack'
+import { LoadingScreen } from './LoadingScreen'
 
 export const ProjectItem = ({
   logo,
@@ -21,6 +22,7 @@ export const ProjectItem = ({
   repository
 }: ProjectItemProps) => {
   const [isVisible, setIsVisible] = useState(false)
+  const [imageLoaded, setImageLoaded] = useState(false)
 
   return (
     <>
@@ -50,9 +52,30 @@ export const ProjectItem = ({
               />
             </div>
             <div className="project-item__detail-content">
-              <h2>{title}</h2>
-              <img src={image} alt="mockup do projeto" />
-              <Link to={`/projects/${repository}`}>View</Link>
+              {!imageLoaded && (
+                <div className="loading-container">
+                  <LoadingScreen />
+                  <img
+                    src={image}
+                    alt={`mockup do projeto ${title}`}
+                    className="imageLoad"
+                    style={{ opacity: 0, position: 'absolute' }}
+                    onLoad={() => setImageLoaded(true)}
+                  />
+                </div>
+              )}
+
+              {imageLoaded && (
+                <>
+                  <h2>{title}</h2>
+                  <img
+                    className="imageLoad"
+                    src={image}
+                    alt={`mockup do projeto ${title}`}
+                  />
+                  <Link to={`/projects/${repository}`}>View</Link>
+                </>
+              )}
             </div>
           </div>
         )}

@@ -492,6 +492,8 @@ a {
 }
 
 .project-item__detail {
+  width: 100%;
+  height: 100%;
   background: linear-gradient(
     135deg,
     rgba(138, 43, 226, 0.15),
@@ -504,6 +506,42 @@ a {
   border-radius: 20px;
   box-shadow: 0 0 12px rgba(138, 43, 226, 0.4),
     inset 0 0 8px rgba(138, 43, 226, 0.2);
+}
+
+.project-item__detail-content {
+  width: 100%;
+  height: 100%;
+}
+
+.loading-container {
+  position: relative;
+  min-height: 200px;
+}
+
+.loader {
+  margin-left: 33px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 32px 0 #fff, -32px 0 #fff;
+  position: relative;
+  animation: flash 0.5s ease-out infinite alternate;
+}
+
+@keyframes flash {
+  0% {
+    background-color: #fff2;
+    box-shadow: 32px 0 #fff2, -32px 0 #fff;
+  }
+  50% {
+    background-color: #fff;
+    box-shadow: 32px 0 #fff2, -32px 0 #fff2;
+  }
+  100% {
+    background-color: #fff2;
+    box-shadow: 32px 0 #fff, -32px 0 #fff2;
+  }
 }
 
 .project-item__detail .project-item__detail-content {
