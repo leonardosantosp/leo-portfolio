@@ -9,6 +9,7 @@ import {
   getProjectByRepository,
   type ReturnedProject
 } from '../api-client/projectsApi'
+import { NotFoundError } from '../components/NotFoundError'
 
 export const ProjectDetailsPage = () => {
   const [loading, setLoading] = useState(true)
@@ -33,6 +34,10 @@ export const ProjectDetailsPage = () => {
       clearTimeout(time)
     }
   }, [repository])
+
+  if (!project) {
+    return <NotFoundError type="Projeto" />
+  }
 
   return (
     <>

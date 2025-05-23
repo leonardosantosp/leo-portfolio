@@ -816,6 +816,51 @@ p {
   font-size: 35px;
 }
 
+/* ERRO 404 */
+
+.not-found-error {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.not-found-error h2 {
+  font-size: 72px;
+  font-weight: bold;
+  font-family: 'Inter', sans-serif;
+}
+
+.not-found-error p {
+  margin-top: 20px;
+  font-size: 24px;
+  font-family: 'Inter', sans-serif;
+}
+
+.back-icon {
+  display: flex;
+  align-items: center;
+  color: #4f5053;
+  margin-top: 20px;
+}
+
+.back-icon p {
+  margin: 0 20px 0 0;
+  font-size: 15px;
+}
+
+.back-icon svg {
+  transition: 0.5s ease;
+}
+
+.back-icon:hover svg {
+  transform: translateX(10px);
+}
+.back-icon svg {
+  transition: 0.5s ease;
+}
+
 .projects-list {
   display: flex;
   flex-wrap: wrap;
@@ -2352,6 +2397,14 @@ input:focus {
 
   .project-by-stack__header h2 {
     font-size: 30px;
+  }
+
+  .not-found-error {
+    height: 68vh;
+  }
+
+  .not-found-error p {
+    font-size: 15px;
   }
 
   /* Admin Page */

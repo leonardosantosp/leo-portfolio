@@ -10,6 +10,7 @@ import {
 } from '../api-client/technologiesApi'
 import { getProjectsBySlug } from '../api-client/projectsApi'
 import type { FullProject } from '../sections/ProjetcsSection'
+import { NotFoundError } from '../components/NotFoundError'
 
 export const ProjectsByStackPage = () => {
   const { slug } = useParams()
@@ -45,6 +46,10 @@ export const ProjectsByStackPage = () => {
     fetchProjects()
   }, [slug])
 
+  if (!technology) {
+    return <NotFoundError type="Tecnologia" />
+  }
+
   return (
     <>
       <Header showMenu={false} text="léo" />
@@ -57,8 +62,11 @@ export const ProjectsByStackPage = () => {
           />
           <h2>{technology?.name}</h2>
         </div>
-
-        <ProjectsList projects={projects} />
+        {projects.length !== 0 ? (
+          <ProjectsList projects={projects} />
+        ) : (
+          <NotFoundError technology={technology} type="Tecnologia" />
+        )}
       </div>
       <Footer />
     </>
