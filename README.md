@@ -3,18 +3,17 @@
 
 # 🌐 Portfólio Leonardo dos Santos Paiva
 
-Meu portfólio pessoal desenvolvido com foco em performance, acessibilidade e design responsivo. Ele apresenta meus projetos, tecnologias que domino e skills além de formas de contato.
-O projeto também conta com uma api para que eu possa criar, editar, consultar e deletar os itens criados. A api Foi criada com o intuito de tornar mais prático o processo de inserir novos projetos ao portfólio. 
+Meu portfólio pessoal foi desenvolvido com foco em performance, acessibilidade e design responsivo. Ele apresenta meus projetos, as tecnologias que domino, minhas habilidades e formas de contato. O projeto também conta com uma API que permite criar, editar, consultar e deletar os itens cadastrados. A API foi criada com o intuito de tornar mais prático o processo de inserção de novos projetos no portfólio.
 
 ## ✨ Funcionalidades
 
-- Apresentação pessoal e skills
-- Listagem de projetos com tecnologias utilizadas
+- Apresentação pessoal e habilidades (skills)
+- Listagem de projetos com as tecnologias utilizadas
 - Visualização interativa de projetos
 - Integração com vídeo
 - Responsividade
 - Interface moderna e animada
-- Criação/Edição/Deleção/Visualização e Pesquisa de projects/skills/technologies
+- Criação, edição, deleção, visualização e pesquisa de projetos, habilidades e tecnologias
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -27,29 +26,29 @@ O projeto também conta com uma api para que eu possa criar, editar, consultar e
   /frontend
   <br>&nbsp;⮡ /src
     <br>&nbsp;&nbsp;⮡ /api-client - Parte do frontend que comunica com a api
-    <br>&nbsp;&nbsp;⮡ /components - Contém os componentes relacionados ao site em geral (parte do usuário)
-      <br>&nbsp;&nbsp;&nbsp;⮡ /admin-page - Componentes do frontend relacionado a interface de gerenciamento dos itens da API
+    <br>&nbsp;&nbsp;⮡ /components - Componentes gerais do site (parte do usuário)
+      <br>&nbsp;&nbsp;&nbsp;⮡ /admin-page - Componentes da interface de gerenciamento dos itens da API (parte admin)
     <br>&nbsp;&nbsp;⮡ /hooks - Contém um hook utilizado na home
-    <br>&nbsp;&nbsp;⮡ /pages - Contém as os componentes que são gerados em outra página
-    <br>&nbsp;&nbsp;⮡ /sections - Contém os componentes de seção da homepage (Ex: Home, Projects, About)
+    <br>&nbsp;&nbsp;⮡ /pages - Contém os componentes que geram páginas distintas
+    <br>&nbsp;&nbsp;⮡ /sections - Componentes de seções da homepage (ex: Home, Projects, About)
   <br>
   
   /api
   <br>&nbsp;⮡ /src
     <br>&nbsp;&nbsp;⮡ /config - Conexão com o mongodb
-    <br>&nbsp;&nbsp;⮡ /constants - Dedicada a armazenar os enums para os erros padrões (NOT_FOUND, ALREADY_EXISTS, INTERNAL_SERVER_ERROR, etc.)
-    <br>&nbsp;&nbsp;⮡ /controllers - Dedicada a armazenar os controladores
-    <br>&nbsp;&nbsp;⮡ /dtos - (data transfer object) dedicada a armazenar os dtos para definir um padrão das entradas dos dados para criação e edição
+    <br>&nbsp;&nbsp;⮡ /constants - Armazena enums de erros padrão (NOT_FOUND, ALREADY_EXISTS,
+    <br>&nbsp;&nbsp;⮡ /controllers - Controladores das rotas
+    <br>&nbsp;&nbsp;⮡ /dtos - Objetos de transferência de dados (Data Transfer Objects), que definem os padrões de entrada para criação e edição
       <br>&nbsp;&nbsp;&nbsp;⮡ /project
       <br>&nbsp;&nbsp;&nbsp;⮡ /skill
       <br>&nbsp;&nbsp;&nbsp;⮡ /technology
-    <br>&nbsp;&nbsp;⮡ /models - Dedicada a definir os schemas utilizando mongoose
-    <br>&nbsp;&nbsp;⮡ /repository - Dedicada a armazenar as variáveis que se comunicam com o mongodb
-    <br>&nbsp;&nbsp;⮡ /routes - Dedicada a armazenar as funções para geração de rota
-    <br>&nbsp;&nbsp;⮡ /schemas - Dedicada a armazenar a tipagem dos schemas para utilização do zod
-    <br>&nbsp;&nbsp;⮡ /services - Dedicada a armazenar os serviços
-    <br>&nbsp;&nbsp;⮡ /utils - contém a função para a geração dos slugs
-  <br>&nbsp;⮡ .env - Arquivo contendo as variáveis de ambientes para autenticação da API, conexões com o mongodb e JWT.
+    <br>&nbsp;&nbsp;⮡ /models - Schemas definidos com Mongoose
+    <br>&nbsp;&nbsp;⮡ /repository - Acesso direto ao MongoDB
+    <br>&nbsp;&nbsp;⮡ /routes - Geração de rotas
+    <br>&nbsp;&nbsp;⮡ /schemas - Tipagem dos schemas utilizando Zod
+    <br>&nbsp;&nbsp;⮡ /services - Regras de negócio da aplicação
+    <br>&nbsp;&nbsp;⮡ /utils - Funções auxiliares, como a geração de slugs
+  <br>&nbsp;⮡ .env - Arquivo de variáveis de ambiente, contendo chaves de autenticação da API, conexão com MongoDB e JWT
 
 ## 🚀 Como Rodar Localmente
 
@@ -80,7 +79,8 @@ npm run dev
 
 ## 🛠️ API
 
-Para Acessar a interface da API pelo frontend basta acessar a rota /admin-page (Não é necessário estar autenticado para acessar lá, somente para edição, deleção e criação de itens)
+Para acessar a interface de gerenciamento da API pelo frontend, basta visitar a rota `/admin-page`.
+(Não é necessário estar autenticado para acessar, apenas para criar, editar ou deletar itens.)
 
 ### Rotas
 
@@ -92,9 +92,9 @@ Para Acessar a interface da API pelo frontend basta acessar a rota /admin-page (
 
   - GET /projects - lista todos os projetos
   - GET /projects/:id - retorna o projeto pelo id
-  - GET /projects/technology/:slug - retorna uma lista de projetos que contenham o slug de uma tecnologia em específica (EX: /projects/technology/react)
-  - GET /projects/repository/:repository - retorna um projeto pelo nome do repositório github
-  - POST /projects - Cria projeto (PRECISA DE AUTENTICAÇÃO)
+  - GET /projects/technology/:slug - Lista projetos por tecnologia (ex: /projects/technology/react)
+  - GET /projects/repository/:repository - Busca projeto pelo nome do repositório no GitHub
+  - POST /projects - Cria ùm projeto (PRECISA DE AUTENTICAÇÃO)
   - PATCH /projects/:id - Edita um projeto (PRECISA DE AUTENTICAÇÃO)
   - DELETE /projects/:id - Deleta um projeto (PRECISA DE AUTENTICAÇÃO)
 
