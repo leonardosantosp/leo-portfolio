@@ -76,7 +76,7 @@ export const ProjectDetailsPage = () => {
               <img src={github} alt="icone do github" />
               <div className="link-text">Ver repositório</div>
             </a>
-            <a href="http://localhost:5173/" target="_blank">
+            <a href={project?.siteUrl} target="_blank">
               {' '}
               <img
                 src={project?.logo}
