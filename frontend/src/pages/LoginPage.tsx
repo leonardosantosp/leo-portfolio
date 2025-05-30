@@ -13,7 +13,7 @@ export const LoginPage = () => {
   const handleLogin = async () => {
     try {
       const response = await fetch(
-        `https://leo-portfolio-three.vercel.app/login`,
+        `https://leo-portfolio-sl05.onrender.com/login`,
         {
           method: 'POST',
           headers: {
