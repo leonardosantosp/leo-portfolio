@@ -1,6 +1,8 @@
 ![Status](https://img.shields.io/badge/status-completo-green)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
+- 🔗 Frontend: [Acesse aqui](https://leo-portfolio-three.vercel.app/)
+
 # 🌐 Portfólio Leonardo dos Santos Paiva
 
 Meu portfólio pessoal foi desenvolvido com foco em performance, acessibilidade e design responsivo. Ele apresenta meus projetos, as tecnologias que domino, minhas habilidades e formas de contato. O projeto também conta com uma API que permite criar, editar, consultar e deletar os itens cadastrados. A API foi criada com o intuito de tornar mais prático o processo de inserção de novos projetos no portfólio.
