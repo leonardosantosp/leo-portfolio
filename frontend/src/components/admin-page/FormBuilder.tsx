@@ -266,13 +266,13 @@ export const FormBuilder = () => {
     try {
       if (formMode === 'create') {
         if (schema === 'skill') {
-          const newSkill = await createSkill(skillData)
+          await createSkill(skillData)
           toast.success('Skill created successfully!')
           setIsMenuVisible(false)
           setReloadList(true)
         }
         if (schema === 'technology') {
-          const newTechnology = await createTechnology(technologyData)
+          await createTechnology(technologyData)
           toast.success('Technology created succesfully!')
           setIsMenuVisible(false)
           setReloadList(true)
@@ -283,7 +283,7 @@ export const FormBuilder = () => {
             ...projectData,
             stack: projectData.stack.map(tech => tech._id)
           }
-          const newProject = await createProject(formattedProjectData)
+          await createProject(formattedProjectData)
           toast.success('Project created succesfully!')
           setIsMenuVisible(false)
           setReloadList(true)
@@ -291,17 +291,14 @@ export const FormBuilder = () => {
       } else {
         if (schema === 'skill') {
           if (!selectedItemId) return
-          const skill = await updateSkill(skillData, selectedItemId)
+          await updateSkill(skillData, selectedItemId)
           toast.success('Skill updated succesfully!')
           setIsMenuVisible(false)
           setReloadList(true)
         }
         if (schema === 'technology') {
           if (!selectedItemId) return
-          const technology = await updateTechnology(
-            technologyData,
-            selectedItemId
-          )
+          await updateTechnology(technologyData, selectedItemId)
           toast.success('Technology updated succesfully!')
           setIsMenuVisible(false)
           setReloadList(true)
@@ -313,10 +310,7 @@ export const FormBuilder = () => {
             ...projectData,
             stack: projectData.stack.map(tech => tech._id)
           }
-          const project = await updateProject(
-            formattedProjectData,
-            selectedItemId
-          )
+          await updateProject(formattedProjectData, selectedItemId)
           toast.success('Project updated succesfully!')
           setIsMenuVisible(false)
           setReloadList(true)

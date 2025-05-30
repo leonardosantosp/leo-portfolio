@@ -1,4 +1,3 @@
-import react from '../assets/app-images/react.png'
 import type { ReturnedTechnology } from '../api-client/technologiesApi'
 import { Link } from 'react-router-dom'
 

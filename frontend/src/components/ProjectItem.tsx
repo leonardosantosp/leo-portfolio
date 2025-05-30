@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ChevronDown, ChevronUp } from 'lucide-react'
 import type { ReturnedTechnology } from '../api-client/technologiesApi'
@@ -22,15 +22,10 @@ export const ProjectItem = ({
 }: ProjectItemProps) => {
   const [isVisible, setIsVisible] = useState(false)
   const [imageLoaded, setImageLoaded] = useState(false)
-  const [showVideo, setShowVideo] = useState(false)
 
   return (
     <>
-      <div
-        className="project-item"
-        onMouseEnter={() => setShowVideo(true)}
-        onMouseLeave={() => setShowVideo(false)}
-      >
+      <div className="project-item">
         {!isVisible ? (
           <div className="project-item__initial">
             <div className="project-item__logo">

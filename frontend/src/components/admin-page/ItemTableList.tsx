@@ -24,8 +24,7 @@ export const ItemTableList = <T,>({
   headers,
   onDeleteCard
 }: ItemTableListProps<T>) => {
-  const { schema, setIsMenuVisible, setFormMode, selectedItemId, isLight } =
-    useAdmin()!
+  const { schema, selectedItemId, isLight } = useAdmin()!
 
   const [showDeleteCard, setShowDeleteCard] = useState(false)
   const [page, setPage] = useState(0)

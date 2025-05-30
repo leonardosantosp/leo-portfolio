@@ -1,16 +1,36 @@
 import { useAdmin } from './AdminProvider'
 import type { ReturnedSkill } from '../../api-client/skillsApi'
 import type { ReturnedTechnology } from '../../api-client/technologiesApi'
-import type { ReturnedProject } from '../../api-client/projectsApi'
+
+type Project = {
+  title: string
+  logo: string
+  mockup: string
+  repository: string
+  siteUrl: string
+  videoUrl: string
+  stack: ReturnedTechnology[]
+}
+
+type Skill = {
+  name: string
+  icon: string
+}
+
+type Technology = {
+  name: string
+  icon: string
+  appIcon: string
+}
 
 type FormFieldProps = {
   label: string
   placeholder: string
   onChange: any
   error: string | undefined
-  skill?: ReturnedSkill
-  technology?: ReturnedTechnology
-  project?: ReturnedProject
+  skill?: Skill
+  technology?: Technology
+  project?: Project
 }
 
 export const FormField = ({
