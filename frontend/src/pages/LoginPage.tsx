@@ -12,13 +12,16 @@ export const LoginPage = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch(`http://localhost:3333/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ user, password })
-      })
+      const response = await fetch(
+        `https://leo-portfolio-three.vercel.app/login`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ user, password })
+        }
+      )
 
       const data = await response.json()
       console.log(data)
