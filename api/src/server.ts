@@ -46,7 +46,7 @@ app.setValidatorCompiler(validatorCompiler)
 app.setSerializerCompiler(serializerCompiler)
 
 app.register(cors, {
-  origin: 'http://localhost:5173',
+  origin: 'https://leo-portfolio-three.vercel.app',
   methods: ['GET', 'POST', 'DELETE', 'PUT', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization']
 })
