@@ -70,10 +70,6 @@ app.register(technologyRoutes)
 app.register(projectRoutes)
 app.register(autenticateRoutes)
 
-app.listen({ port: 3333 }, (err, address) => {
-  console.log(`app listening at ${address}`)
-  if (err) {
-    app.log.error(err)
-    process.exit(1)
-  }
+app.listen({ port: Number(process.env.PORT) || 3333, host: '0.0.0.0' }, () => {
+  console.log('listening...')
 })
