@@ -12,8 +12,9 @@ import { projectSchema } from '../schemas/project.schema'
 
 import { CreateProjectDto } from '../dtos/project/create-project.dto'
 import { UpdateProjectDto } from '../dtos/project/update-project.dto'
+import { FastifyInstance } from 'fastify'
 
-export function projectRoutes(app) {
+export function projectRoutes(app: FastifyInstance) {
   app.get(
     '/projects',
     {
@@ -124,21 +125,21 @@ export function projectRoutes(app) {
         description:
           'Creates a new project entry in the database with a title, repository link, site URL, technologies used, logo, mockup, and video.',
         tags: ['Projects'],
-        body: CreateProjectDto
-      },
-      response: {
-        201: projectSchema,
-        400: z.object({
-          message: z.string(),
-          error: z.string().optional()
-        }),
-        409: z.object({
-          message: z.string()
-        }),
-        500: z.object({
-          message: z.string(),
-          error: z.string()
-        })
+        body: CreateProjectDto,
+        response: {
+          201: projectSchema,
+          400: z.object({
+            message: z.string(),
+            error: z.string().optional()
+          }),
+          409: z.object({
+            message: z.string()
+          }),
+          500: z.object({
+            message: z.string(),
+            error: z.string()
+          })
+        }
       }
     },
     createProjectController

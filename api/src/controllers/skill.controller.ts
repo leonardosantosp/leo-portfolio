@@ -8,8 +8,26 @@ import {
 
 import mongoose from 'mongoose'
 import { ErrorCode, ErrorMessages } from '../constants/errors'
+import { FastifyReply, FastifyRequest } from 'fastify'
+import {
+  CreateSkillRoute,
+  UpdateSkillRoute,
+  DeleteSkillRoute
+} from '../types/skills.types'
 
-export const getAllSkillsController = async (req, res) => {
+interface SkillIdParams {
+  id: string
+}
+
+interface CreateSkillBody {
+  name: string
+  icon: string
+}
+
+export const getAllSkillsController = async (
+  req: FastifyRequest,
+  res: FastifyReply
+) => {
   try {
     const skills = await getAllSkillsService()
     return res.status(200).send(skills)
@@ -24,7 +42,10 @@ export const getAllSkillsController = async (req, res) => {
   }
 }
 
-export const getSkillByIdController = async (req, res) => {
+export const getSkillByIdController = async (
+  req: FastifyRequest<{ Params: SkillIdParams }>,
+  res: FastifyReply
+) => {
   const { id } = req.params
 
   if (!mongoose.isValidObjectId(id)) {
@@ -52,7 +73,10 @@ export const getSkillByIdController = async (req, res) => {
   }
 }
 
-export const createSkillController = async (req, res) => {
+export const createSkillController = async (
+  req: FastifyRequest<CreateSkillRoute>,
+  res: FastifyReply
+) => {
   const skillData = req.body
 
   try {
@@ -74,7 +98,10 @@ export const createSkillController = async (req, res) => {
   }
 }
 
-export const updateSkillController = async (req, res) => {
+export const updateSkillController = async (
+  req: FastifyRequest<UpdateSkillRoute>,
+  res: FastifyReply
+) => {
   const { id } = req.params
   const skillData = req.body
 
@@ -116,7 +143,10 @@ export const updateSkillController = async (req, res) => {
   }
 }
 
-export const deleteSkillController = async (req, res) => {
+export const deleteSkillController = async (
+  req: FastifyRequest<DeleteSkillRoute>,
+  res: FastifyReply
+) => {
   const { id } = req.params
 
   if (!mongoose.isValidObjectId(id)) {

@@ -8,8 +8,25 @@ import {
   getTechnologyBySlugService
 } from '../services/technology.service'
 import { ErrorCode, ErrorMessages } from '../constants/errors'
+import { FastifyReply, FastifyRequest } from 'fastify'
+import {
+  CreateTechnologyRoute,
+  UpdateTechnologyRoute,
+  DeleteTechnologyRoute
+} from '../types/technologies.types'
 
-export const getAllTechnologiesController = async (req, res) => {
+interface TechnologyIdParams {
+  id: string
+}
+
+interface TechnologySlugParams {
+  slug: string
+}
+
+export const getAllTechnologiesController = async (
+  req: FastifyRequest,
+  res: FastifyReply
+) => {
   try {
     const technologies = await getAllTechnologiesService()
     return res.status(200).send(technologies)
@@ -24,7 +41,10 @@ export const getAllTechnologiesController = async (req, res) => {
   }
 }
 
-export const getTechnologyByIdController = async (req, res) => {
+export const getTechnologyByIdController = async (
+  req: FastifyRequest<{ Params: TechnologyIdParams }>,
+  res: FastifyReply
+) => {
   const { id } = req.params
 
   if (!mongoose.isValidObjectId(id)) {
@@ -53,7 +73,10 @@ export const getTechnologyByIdController = async (req, res) => {
   }
 }
 
-export const getTechnologyBySlugController = async (req, res) => {
+export const getTechnologyBySlugController = async (
+  req: FastifyRequest<{ Params: TechnologySlugParams }>,
+  res: FastifyReply
+) => {
   const { slug } = req.params
 
   try {
@@ -76,7 +99,10 @@ export const getTechnologyBySlugController = async (req, res) => {
   }
 }
 
-export const createTechnologyController = async (req, res) => {
+export const createTechnologyController = async (
+  req: FastifyRequest<CreateTechnologyRoute>,
+  res: FastifyReply
+) => {
   const technologyData = req.body
 
   try {
@@ -98,7 +124,10 @@ export const createTechnologyController = async (req, res) => {
   }
 }
 
-export const updateTechnologyController = async (req, res) => {
+export const updateTechnologyController = async (
+  req: FastifyRequest<UpdateTechnologyRoute>,
+  res: FastifyReply
+) => {
   const technologyData = req.body
   const { id } = req.params
 
@@ -140,7 +169,10 @@ export const updateTechnologyController = async (req, res) => {
   }
 }
 
-export const deleteTechnologyController = async (req, res) => {
+export const deleteTechnologyController = async (
+  req: FastifyRequest<DeleteTechnologyRoute>,
+  res: FastifyReply
+) => {
   const { id } = req.params
 
   if (!mongoose.isValidObjectId(id)) {

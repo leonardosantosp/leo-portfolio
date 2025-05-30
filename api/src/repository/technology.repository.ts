@@ -1,4 +1,4 @@
-import Technology from '../models/Technology.ts'
+import Technology from '../models/Technology'
 
 type UpdateTechnologyType = {
   _id: string

@@ -1,4 +1,4 @@
-import Skill from '../models/Skill.ts'
+import Skill from '../models/Skill'
 
 type UpdateSkillType = {
   _id: string

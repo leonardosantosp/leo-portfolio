@@ -9,8 +9,29 @@ import {
   getProjectByRepositoryService
 } from '../services/project.service'
 import { ErrorCode, ErrorMessages } from '../constants/errors'
+import { FastifyReply, FastifyRequest } from 'fastify'
+import {
+  UpdateProjectRoute,
+  DeleteProjectRoute,
+  CreateProjectRoute
+} from '../types/projects.types'
 
-export const getAllProjectsController = async (req, res) => {
+interface ProjectParams {
+  id: string
+}
+
+interface TechnologyParams {
+  slug: string
+}
+
+interface RepositoryParams {
+  repository: string
+}
+
+export const getAllProjectsController = async (
+  req: FastifyRequest,
+  res: FastifyReply
+) => {
   try {
     const projects = await getAllProjectsService()
     return res.status(200).send(projects)
@@ -25,7 +46,10 @@ export const getAllProjectsController = async (req, res) => {
   }
 }
 
-export const getProjectByIdController = async (req, res) => {
+export const getProjectByIdController = async (
+  req: FastifyRequest<{ Params: ProjectParams }>,
+  res: FastifyReply
+) => {
   const { id } = req.params
 
   if (!mongoose.isValidObjectId(id)) {
@@ -53,7 +77,10 @@ export const getProjectByIdController = async (req, res) => {
   }
 }
 
-export const getProjectsByTechnologyController = async (req, res) => {
+export const getProjectsByTechnologyController = async (
+  req: FastifyRequest<{ Params: TechnologyParams }>,
+  res: FastifyReply
+) => {
   const { slug } = req.params
 
   try {
@@ -75,7 +102,10 @@ export const getProjectsByTechnologyController = async (req, res) => {
   }
 }
 
-export const getProjectByRepositoryController = async (req, res) => {
+export const getProjectByRepositoryController = async (
+  req: FastifyRequest<{ Params: RepositoryParams }>,
+  res: FastifyReply
+) => {
   const { repository } = req.params
 
   try {
@@ -100,7 +130,10 @@ export const getProjectByRepositoryController = async (req, res) => {
   }
 }
 
-export const createProjectController = async (req, res) => {
+export const createProjectController = async (
+  req: FastifyRequest<CreateProjectRoute>,
+  res: FastifyReply
+) => {
   const projectData = req.body
 
   try {
@@ -122,7 +155,10 @@ export const createProjectController = async (req, res) => {
   }
 }
 
-export const updateProjectController = async (req, res) => {
+export const updateProjectController = async (
+  req: FastifyRequest<UpdateProjectRoute>,
+  res: FastifyReply
+) => {
   const { id } = req.params
   const projectData = req.body
 
@@ -166,7 +202,10 @@ export const updateProjectController = async (req, res) => {
   }
 }
 
-export const deleteProjectController = async (req, res) => {
+export const deleteProjectController = async (
+  req: FastifyRequest<DeleteProjectRoute>,
+  res: FastifyReply
+) => {
   const { id } = req.params
 
   if (!mongoose.isValidObjectId(id)) {

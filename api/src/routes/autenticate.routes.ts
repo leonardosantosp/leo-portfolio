@@ -1,21 +1,32 @@
 import dotenv from 'dotenv'
+import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 
-export function autenticateRoutes(app) {
+export function autenticateRoutes(app: FastifyInstance) {
   dotenv.config()
 
-  app.post('/login', async (req, reply) => {
-    const { user, password } = req.body
+  interface LoginBody {
+    user: string
+    password: string
+  }
 
-    const isPasswordCorrect = password === process.env.ADMIN_PASSWORD
-    const isUserCorrect = user === process.env.ADMIN_USER
+  app.post(
+    '/login',
+    async (req: FastifyRequest<{ Body: LoginBody }>, reply: FastifyReply) => {
+      const { user, password } = req.body
 
-    if (!isPasswordCorrect || !isUserCorrect) {
-      return reply.status(401).send({ message: 'Usuário ou Senha incorretos' })
+      const isPasswordCorrect = password === process.env.ADMIN_PASSWORD
+      const isUserCorrect = user === process.env.ADMIN_USER
+
+      if (!isPasswordCorrect || !isUserCorrect) {
+        return reply
+          .status(401)
+          .send({ message: 'Usuário ou Senha incorretos' })
+      }
+      const token = app.jwt.sign(
+        { user: user, password: password },
+        { expiresIn: '1h' }
+      )
+      return reply.send({ token })
     }
-    const token = app.jwt.sign(
-      { user: user, password: password },
-      { expiresIn: '1h' }
-    )
-    return reply.send({ token })
-  })
+  )
 }

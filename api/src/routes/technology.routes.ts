@@ -6,13 +6,14 @@ import {
   updateTechnologyController,
   deleteTechnologyController,
   getTechnologyBySlugController
-} from '../controllers/technology.controller.ts'
+} from '../controllers/technology.controller'
 
-import { technologySchema } from '../schemas/technology.schema.ts'
-import { CreateTechnologyDto } from '../dtos/technology/create-technology.dto.ts'
-import { UpdateTechnologyDto } from '../dtos/technology/update-technology.dto.ts'
+import { technologySchema } from '../schemas/technology.schema'
+import { CreateTechnologyDto } from '../dtos/technology/create-technology.dto'
+import { UpdateTechnologyDto } from '../dtos/technology/update-technology.dto'
+import { FastifyInstance } from 'fastify'
 
-export function technologyRoutes(app) {
+export function technologyRoutes(app: FastifyInstance) {
   app.get(
     '/technologies',
     {

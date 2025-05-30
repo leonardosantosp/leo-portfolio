@@ -1,17 +1,18 @@
-import { transformer, z } from 'zod'
-import { skillSchema } from '../schemas/skill.schema.ts'
+import { z } from 'zod'
+import { skillSchema } from '../schemas/skill.schema'
 import {
   getAllSkillsController,
   getSkillByIdController,
   createSkillController,
   updateSkillController,
   deleteSkillController
-} from '../controllers/skill.controller.ts'
+} from '../controllers/skill.controller'
 
-import { CreateSkillDto } from '../dtos/skill/create-skill.dto.ts'
-import { UpdateSkillDto } from '../dtos/skill/update-skill.dto.ts'
+import { CreateSkillDto } from '../dtos/skill/create-skill.dto'
+import { UpdateSkillDto } from '../dtos/skill/update-skill.dto'
+import { FastifyInstance } from 'fastify'
 
-export function skillRoutes(app) {
+export function skillRoutes(app: FastifyInstance) {
   app.get(
     '/skills',
     {
