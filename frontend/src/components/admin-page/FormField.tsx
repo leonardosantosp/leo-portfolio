@@ -1,5 +1,4 @@
 import { useAdmin } from './AdminProvider'
-import type { ReturnedSkill } from '../../api-client/skillsApi'
 import type { ReturnedTechnology } from '../../api-client/technologiesApi'
 
 type Project = {
