@@ -4,6 +4,7 @@ import { getProjects } from '../api-client/projectsApi'
 import type { ReturnedProject } from '../api-client/projectsApi'
 import { getTechnologyById } from '../api-client/technologiesApi'
 import type { ReturnedTechnology } from '../api-client/technologiesApi'
+import { LoadingScreen } from '../components/LoadingScreen'
 
 export type FullProject = Omit<ReturnedProject, 'stack'> & {
   stack: ReturnedTechnology[]
@@ -11,6 +12,7 @@ export type FullProject = Omit<ReturnedProject, 'stack'> & {
 
 export const ProjectsSection = () => {
   const [projects, setProjects] = useState<FullProject[]>([])
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -34,10 +36,20 @@ export const ProjectsSection = () => {
     fetchProjects()
   }, [])
 
+  if (projects.length > 0) {
+    setIsLoading(false)
+  }
+
   return (
     <div id="projects">
       <h1 className="projects__title">Meus Projetos</h1>
-      <ProjectsList projects={projects} />
+      {isLoading ? (
+        <LoadingScreen />
+      ) : (
+        <>
+          <ProjectsList projects={projects} />
+        </>
+      )}
     </div>
   )
 }

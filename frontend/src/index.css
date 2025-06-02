@@ -411,6 +411,10 @@ a {
 
 /* Projects */
 
+#projects .loading-screen {
+  position: initial;
+}
+
 .projects__title {
   color: white;
   font-family: 'Inter', sans-serif;
