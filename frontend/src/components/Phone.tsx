@@ -31,9 +31,11 @@ const Phone = () => {
     fetchTechnologies()
   }, [])
 
-  if (technologies.length > 0) {
-    setIsLoading(false)
-  }
+  useEffect(() => {
+    if (technologies.length > 0) {
+      setIsLoading(false)
+    }
+  }, [technologies])
 
   return (
     <>

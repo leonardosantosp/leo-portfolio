@@ -36,9 +36,11 @@ export const ProjectsSection = () => {
     fetchProjects()
   }, [])
 
-  if (projects.length > 0) {
-    setIsLoading(false)
-  }
+  useEffect(() => {
+    if (projects.length > 0) {
+      setIsLoading(false)
+    }
+  }, [projects])
 
   return (
     <div id="projects">
